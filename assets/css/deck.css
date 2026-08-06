@@ -1,0 +1,653 @@
+/* =============================================================================
+   byzz 11 — "Was ist neu"
+   Design-System und Folien-Templates
+
+   Buehne     1920 x 1080, per transform:scale() auf jeden Bildschirm gelegt
+   Raster     Aussenrand 112 px, Grundlinie 8 px
+   Laufzeit   file:// — keine externen Ressourcen, kein Webfont-Request
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- 1 · Tokens */
+:root {
+  /* Flaechen — warmes Off-White statt Reinweiss: die byzz-Screenshots sind
+     durchweg dunkel, ein kaltes Weiss daneben wirkt klinisch und hart. */
+  --paper:      #FBF8F4;
+  --paper-2:    #FFFFFF;
+  --paper-sunk: #F3EDE4;
+
+  /* Tinte */
+  --ink:   #191714;
+  --ink-2: #57514A;
+  --ink-3: #948C82;
+  --rule:  rgba(25, 23, 20, 0.10);
+  --rule-2:rgba(25, 23, 20, 0.055);
+
+  /* Marke — exakt aus logo_od_premium_big.png */
+  --orange:      #F68B1A;
+  --orange-deep: #C2620A;   /* Orange als TEXT auf hellem Grund (Kontrast 4.6:1) */
+  --orange-soft: rgba(246, 139, 26, 0.12);
+
+  /* Kuehler Gegenpol — der Grundton der byzz-App-Oberflaeche.
+     Verbindet Deck und Produkt, statt nur Orange zu wiederholen. */
+  --slate:      #363E4B;
+  --slate-soft: rgba(54, 62, 75, 0.09);
+
+  /* Schrift */
+  --f-display: 'Familjen Grotesk', 'Archivo', system-ui, sans-serif;
+  --f-body:    'Inter', system-ui, sans-serif;
+  --f-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Raster */
+  --gutter: 112px;
+  --top:    112px;
+  --bottom: 940px;   /* unterste Grundlinie fuer Inhalt; darunter liegt die Logo-Zone */
+
+  /* Bewegung */
+  --e-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-in:  cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ------------------------------------------------------- 2 · Grundgeruest */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Zwei Ebenen, und der Unterschied ist wichtig:
+
+   #frame  ist der KOMPONIERTE Bereich — immer exakt 1920x1080. Alle
+           Folienkoordinaten in diesem Stylesheet und in index.html beziehen
+           sich ausschliesslich hierauf. Kein clamp()/vw-Layout: das Deck muss
+           auf jedem Beamer identisch aussehen, und Blur-Radien, Schattenweiten
+           und Stagger-Distanzen skalieren so automatisch mit.
+
+   #stage  ist der SICHTBARE Bereich. Er wird mit demselben Faktor skaliert,
+           waechst aber in --stage-w / --stage-h so weit ueber 1920x1080
+           hinaus, dass er nach der Skalierung das ganze Fenster deckt
+           (gesetzt in deck.js -> fit()). Nur so laufen Aurora und Korn bis an
+           die Fensterkante; bei einer starr 1920x1080 grossen Buehne endete
+           der Farbverlauf mit einer sichtbaren Kante, und daneben stand ein
+           heller Balken.
+
+   Bei genau 16:9 sind beide deckungsgleich — dort aendert sich nichts. */
+#stage {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: var(--stage-w, 1920px); height: var(--stage-h, 1080px);
+  transform-origin: 50% 50%;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  overflow: hidden;
+  background: var(--paper);
+}
+
+/* Der Inhaltsrahmen sitzt mittig in der Buehne und schneidet wie frueher bei
+   1920x1080 ab — die Folien rendern damit unveraendert. */
+#frame {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 1920px; height: 1080px;
+  margin: -540px 0 0 -960px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------- 3 · Aurora */
+/* Eine einzige, dauerhaft montierte Hintergrundebene. Ausschliesslich
+   radial-gradient — ein filter:blur() auf Kreisen dieser Groesse kostet auf
+   integrierten GPUs zweistellige Millisekunden pro Frame. */
+/* Am Inhaltsrahmen ausgerichtet, nicht an der Buehne: die Wolkenpositionen aus
+   transitions.js sind Offsets von der linken oberen Ecke dieser Ebene. Waere
+   sie an der (formatabhaengig wachsenden) Buehne aufgehaengt, saehe dieselbe
+   Folie je nach Fensterformat anders aus.
+   2380.8 x 1339.2 mit halbnegativem Rand ist exakt das frueher genutzte
+   inset:-12% eines 1920x1080-Kastens — die Komposition bleibt unveraendert. */
+#aurora {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 2380.8px; height: 1339.2px;
+  margin: -669.6px 0 0 -1190.4px;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+#aurora .bloom {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate3d(0, 0, 0);
+}
+#aurora .bloom--warm {
+  width: 1500px; height: 1200px;
+  background: radial-gradient(closest-side,
+    rgba(246, 139, 26, 0.30), rgba(246, 139, 26, 0.13) 46%, rgba(246, 139, 26, 0) 76%);
+}
+#aurora .bloom--amber {
+  width: 1150px; height: 980px;
+  background: radial-gradient(closest-side,
+    rgba(255, 196, 122, 0.32), rgba(255, 196, 122, 0.11) 50%, rgba(255, 196, 122, 0) 78%);
+}
+#aurora .bloom--cool {
+  width: 1350px; height: 1100px;
+  background: radial-gradient(closest-side,
+    rgba(54, 62, 75, 0.14), rgba(54, 62, 75, 0.05) 48%, rgba(54, 62, 75, 0) 76%);
+}
+
+/* Feines Korn gegen Banding in den Verlaeufen. 1 Kachel, base64, ~200 Byte.
+   Deckt bewusst die ganze Buehne, nicht nur den Inhaltsrahmen — sonst waere der
+   Rand bei abweichendem Fensterformat sichtbar kornfrei. */
+#grain {
+  position: absolute; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjkiIG51bU9jdGF2ZXM9IjQiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIuMzUiLz48L3N2Zz4=");
+}
+
+/* --------------------------------------------------- 4 · Signature: Blob */
+/* Die orangedental-Doppelform als wiederkehrendes Lichtzeichen. Bewusst
+   randscharf statt weichgezeichnet: ein grafisches Mal, kein diffuser Schein —
+   und damit auch kostenlos fuer den Compositor.
+
+   Die Position ist FEST: rechts, vertikal mittig, ungedreht. Das Zeichen
+   wandert nicht mehr von Folie zu Folie — es wechselt nur seine Deckkraft
+   (siehe transitions.js -> moveBlob). Ein wanderndes Zeichen zieht den Blick
+   vom Inhalt weg; ein stehendes traegt ihn.
+
+   Hoehe folgt aus dem viewBox-Verhaeltnis 156.9875 : 81.6 = 1.9239
+     1240 / 1.9239 = 644.5  ->  top (1080 - 644.5) / 2 = 218
+   Die Form laeuft rechts bewusst ueber den Buehnenrand hinaus. */
+#blobmark {
+  position: absolute;
+  /* Wie die Aurora am Inhaltsrahmen ausgerichtet: 860 - 960 = -100,
+     218 - 540 = -322. Bei 16:9 identisch mit der frueheren Angabe. */
+  left: 50%; top: 50%;
+  margin: -322px 0 0 -100px;
+  width: 1240px;
+  z-index: 1;
+  pointer-events: none;
+  color: var(--orange);
+  opacity: 0;
+  transform-origin: 50% 50%;
+}
+#blobmark svg { display: block; width: 100%; height: auto; fill: currentColor; }
+
+/* ------------------------------------------------------------- 5 · Folie */
+.slide {
+  position: absolute; inset: 0;
+  z-index: 2;
+  display: none;
+}
+.slide.is-active,
+.slide.is-leaving { display: block; }
+
+/* Traeger der Tiefenbewegung. Blur/Scale liegen NUR hier, nie auf Kindern. */
+.slide-inner {
+  position: absolute; inset: 0;
+  transform-origin: 50% 52%;
+}
+
+/* Notausgang (Taste B) fuer schwache Vorfuehrhardware. */
+body.no-blur .slide-inner,
+body.no-blur .shot__soft,
+body.no-blur .glass {
+  filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.no-blur .shot__soft { opacity: 0 !important; }
+
+/* ------------------------------------------------------- 6 · Kopf und Fuss */
+.eyebrow {
+  position: absolute;
+  left: var(--gutter); top: var(--top);
+  font: 500 17px/1 var(--f-mono);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.eyebrow b { color: var(--orange-deep); font-weight: 500; }
+.eyebrow i { font-style: normal; color: var(--rule); padding: 0 12px; }
+
+.counter {
+  position: absolute;
+  right: var(--gutter); top: var(--top);
+  font: 500 17px/1 var(--f-mono);
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.counter em { font-style: normal; color: var(--ink-2); }
+
+/* Logo-Zone: x 112–337, y 964–1016. Kein Inhaltselement darf hier hinein. */
+#brand {
+  position: absolute;
+  left: var(--gutter); bottom: 64px;
+  z-index: 3;
+  height: 52px;
+  pointer-events: none;
+}
+#brand img { display: block; height: 52px; width: auto; }
+
+/* Wortmarke unten rechts, Gegenstueck zum Logo unten links. Steht auf jeder
+   Folie — auch auf Titel, Trennern und Demo-Folien.
+   "byzz" im Grau der Kopfzeile (--ink-3), die 11 in --orange-deep: --orange
+   waere bei dieser Groesse auf --paper mit 2,3:1 nicht lesbar. */
+#wordmark {
+  position: absolute;
+  right: var(--gutter); bottom: 64px;
+  z-index: 3;
+  font: 600 30px/1 var(--f-display);
+  letter-spacing: -0.02em;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+#wordmark b { font-weight: 600; color: var(--orange-deep); }
+
+#progress {
+  position: absolute;
+  left: 0; bottom: 0;
+  z-index: 4;
+  height: 2px;
+  background: var(--orange);
+  opacity: 0.55;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  width: 1920px;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------- 7 · Typografie */
+.h-xl { font: 600 168px/0.92 var(--f-display); letter-spacing: -0.035em; }
+.h-l  { font: 600 96px/1.0  var(--f-display); letter-spacing: -0.025em; }
+.h-1  { font: 600 68px/1.08 var(--f-display); letter-spacing: -0.022em; }
+.h-2  { font: 500 38px/1.18 var(--f-display); letter-spacing: -0.012em; }
+.h-3  { font: 600 26px/1.25 var(--f-display); letter-spacing: -0.005em; }
+
+.lead { font: 400 30px/1.48 var(--f-body); color: var(--ink-2); letter-spacing: -0.004em; }
+.body { font: 400 24px/1.55 var(--f-body); color: var(--ink-2); }
+.tiny { font: 400 19px/1.5  var(--f-body); color: var(--ink-3); }
+
+.mono { font-family: var(--f-mono); font-weight: 500; letter-spacing: 0.01em; }
+
+/* Der duenne Orangestrich zwischen Headline und Fliesstext. Einziges
+   wiederkehrendes Trennelement im Deck.
+   Die Abstaende gehoeren an das Element selbst, nicht an den Elternkontext —
+   sonst kollidiert der Strich in jedem Layout, das nicht .col-l ist. */
+.rule {
+  width: 64px; height: 3px;
+  margin: 32px 0 28px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+/* Menuepfade, Ports, Dateinamen — echtes Software-Vokabular, deshalb Mono. */
+.path {
+  display: inline-flex; align-items: center; gap: 10px;
+  font: 500 21px/1 var(--f-mono);
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  padding: 11px 15px;
+  box-shadow: 0 1px 2px rgba(25, 23, 20, 0.04);
+}
+.path svg { width: 19px; height: 19px; color: var(--ink-3); flex: none; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  font: 500 19px/1 var(--f-body);
+  color: var(--ink-2);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 10px 18px 10px 14px;
+}
+.chip::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--orange); flex: none;
+}
+.chip--muted::before { background: var(--ink-3); }
+
+.badge {
+  display: inline-block;
+  font: 500 15px/1 var(--f-mono);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--orange-deep);
+  background: var(--orange-soft);
+  border-radius: 6px;
+  padding: 7px 11px;
+}
+.badge--muted { color: var(--ink-3); background: rgba(25, 23, 20, 0.06); }
+
+/* ------------------------------------------------------ 8 · Screenshot-Panel */
+/* "Lichtkasten": die dunklen byzz-Screenshots stehen nicht mit harter Kante auf
+   hellem Grund, sondern werfen ihre eigenen Farben in den Raum dahinter.
+   .shot__spill ist dieselbe 48-px-Miniatur, die auch den Tiefenuebergang traegt —
+   stark vergroessert und weit ausgeblendet ergibt sie genau diesen Schein. */
+.shot {
+  position: absolute;
+  border-radius: 16px;
+}
+/* Kein CSS-Filter: die 44-px-Miniatur IST die Weichzeichnung. Ein filter:blur()
+   hier waere doppelt teuer, weil .slide-inner den Teilbaum beim Uebergang
+   ohnehin schon in eine Textur rendert und weichzeichnet. */
+/* Groesse explizit setzen: ein <img> mit inset allein behaelt seine
+   Eigengroesse — die Miniatur wuerde als 44-px-Fleck erscheinen. */
+.shot__spill {
+  position: absolute;
+  left: -9%; top: -12%;
+  width: 118%; height: 126%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.42;
+  pointer-events: none;
+  /* Zum Rand hin auf null ausblenden. Ohne die Maske wird aus einem hellen
+     Screenshot eine graue Scheibe mit sichtbarer Kante, statt eines Scheins. */
+  -webkit-mask-image: radial-gradient(closest-side, #000 22%, rgba(0,0,0,.55) 52%, transparent 82%);
+  mask-image: radial-gradient(closest-side, #000 22%, rgba(0,0,0,.55) 52%, transparent 82%);
+}
+.shot__frame {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #14161a;
+  border: 1px solid rgba(25, 23, 20, 0.16);
+  box-shadow:
+    0 2px 4px rgba(25, 23, 20, 0.06),
+    0 18px 36px -14px rgba(25, 23, 20, 0.26),
+    0 46px 90px -30px rgba(129, 74, 12, 0.34);
+}
+.shot__frame > img,
+.shot__frame > video {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+}
+
+/* Vorgeblurte Zwillingsebene. Sie traegt den "kommt aus der Tiefe"-Effekt:
+   animiert wird ausschliesslich ihre opacity, der Blur selbst ist statisch und
+   wird einmal gerastert. Ein getweenter filter:blur() waere hier zehnmal teurer. */
+.shot__soft {
+  position: absolute; inset: 0;
+  z-index: 2;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* Bildunterschrift direkt unter dem Panel. */
+.shot__cap {
+  position: absolute;
+  left: 2px; top: calc(100% + 18px);
+  font: 500 16px/1.4 var(--f-mono);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------- 9 · Karten */
+.cards { position: absolute; display: grid; gap: 28px; }
+.cards--2 { grid-template-columns: repeat(2, 1fr); }
+.cards--3 { grid-template-columns: repeat(3, 1fr); }
+.cards--5 { grid-template-columns: repeat(5, 1fr); gap: 20px; }
+
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 36px 34px 34px;
+  box-shadow: 0 1px 2px rgba(25, 23, 20, 0.04), 0 16px 34px -22px rgba(25, 23, 20, 0.20);
+  overflow: hidden;
+}
+/* Nur EIN Panel je Folie darf echtes Glas sein — backdrop-filter muss den
+   Hintergrund pro Frame neu snapshotten. Auf einem Verlaufsgrund ist die
+   Attrappe oben optisch nicht davon zu unterscheiden. */
+.card.glass { background: rgba(255, 253, 250, 0.52); }
+.card.glass.glass-live {
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(135%);
+}
+
+/* Raster von Folie 31: vier gleich grosse Karten als 2x2-Block, daneben eine
+   breitere Karte ueber beide Reihen. Die vier sind flacher gepolstert als im
+   Standardraster — zwei Reihen unter einer zweizeiligen Ueberschrift passen
+   sonst nicht mehr zwischen y=200 und y=940. */
+.cards--app { grid-template-columns: 1fr 1fr 620px; gap: 26px; }
+.cards--app > .card { padding: 28px 30px 26px; }
+.cards--app > .card > .card__ico { margin-bottom: 18px; }
+
+/* Die hohe Karte wird fest in die dritte Spalte gesetzt, damit die vier
+   uebrigen in Lesereihenfolge automatisch 2x2 dahinter einrasten. */
+.cards--app > .card--wide {
+  grid-column: 3; grid-row: 1 / span 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 34px 40px;
+}
+.cards--app > .card--wide > .card__ico { width: 64px; height: 64px; margin-bottom: 26px; }
+.cards--app > .card--wide > .card__t { font-size: 34px; }
+.cards--app > .card--wide > .card__d { font-size: 22px; }
+.cards--app > .card--wide > .path { align-self: flex-start; margin-top: 26px; }
+
+/* Alle Piktogramme sind Konturzeichnungen. Ohne diese Regel wuerde der Browser
+   die Pfade fuellen und aus jedem Icon einen schwarzen Klecks machen. */
+svg use, .ico svg, .path svg, .card__ico svg, .demo__k svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Ausnahmen: das Markensymbol und Pfeilspitzen sind Flaechen. */
+#blobmark svg, #blobmark use { fill: currentColor; stroke: none; }
+
+.card__ico {
+  width: 44px; height: 44px;
+  margin-bottom: 22px;
+  color: var(--orange-deep);
+}
+.card__ico svg { width: 100%; height: 100%; }
+.card__t { font: 600 27px/1.25 var(--f-display); letter-spacing: -0.008em; margin-bottom: 12px; }
+.card__d { font: 400 20px/1.52 var(--f-body); color: var(--ink-2); }
+.card__n {
+  position: absolute; right: 26px; top: 24px;
+  font: 500 15px/1 var(--f-mono); color: rgba(25, 23, 20, 0.20);
+}
+
+/* Karte mit Bildplatz — vorbereitet fuer spaeter nachgelieferte Screenshots.
+   Ein <img class="card__shot"> ersetzt das <svg> im .card__ico 1:1. */
+.card__shot {
+  display: block; width: 100%; height: 132px;
+  object-fit: cover; border-radius: 10px;
+  margin-bottom: 20px; background: #14161a;
+}
+
+/* ------------------------------------------- 10 · Aufzaehlung mit Strichen */
+.marks { position: absolute; display: grid; gap: 26px; }
+.mark { display: grid; grid-template-columns: 30px 1fr; gap: 20px; align-items: start; }
+/* Die 45-Grad-Drehung macht aus dem 11-px-Quadrat eine 15,6 px breite Raute.
+   Der Versatz von 2 px holt die gedrehte Kante zurueck auf die Rasterlinie. */
+.mark__b {
+  width: 11px; height: 11px;
+  margin: 11px 0 0 2px;
+  border-radius: 3px; background: var(--orange);
+  transform: rotate(45deg);
+}
+.mark__t { font: 400 26px/1.45 var(--f-body); color: var(--ink-2); }
+.mark__t b { font-weight: 600; color: var(--ink); }
+
+/* ------------------------------------------------------- 11 · Sprachraster */
+.langs { position: absolute; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 26px; }
+.lang {
+  position: relative;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 26px 26px 24px;
+}
+.lang__n { font: 600 32px/1.1 var(--f-display); letter-spacing: -0.015em; }
+.lang__c { font: 500 15px/1 var(--f-mono); letter-spacing: 0.1em; color: var(--ink-3); margin-top: 10px; }
+.lang--new::after {
+  content: 'NEU';
+  position: absolute; right: 20px; top: 20px;
+  font: 500 12px/1 var(--f-mono); letter-spacing: 0.1em;
+  color: var(--orange-deep); background: var(--orange-soft);
+  border-radius: 5px; padding: 5px 7px;
+}
+
+/* -------------------------------------------------------- 12 · Demo-Break */
+.demo {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  text-align: center;
+}
+.demo__in { max-width: 1180px; }
+.demo__k {
+  display: inline-flex; align-items: center; gap: 12px;
+  font: 500 17px/1 var(--f-mono); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--orange-deep);
+  background: var(--orange-soft);
+  border-radius: 999px; padding: 13px 22px;
+  margin-bottom: 40px;
+}
+.demo__k svg { width: 15px; height: 15px; fill: currentColor; }
+.demo__t { font: 600 92px/1.05 var(--f-display); letter-spacing: -0.03em; }
+.demo__s { font: 400 30px/1.5 var(--f-body); color: var(--ink-2); margin-top: 30px; }
+
+/* --------------------------------------------------------- 13 · Sequenzen */
+/* Drei Screenshots, die an derselben Stelle uebereinanderblenden. */
+.seq { position: absolute; }
+.seq__stack { position: absolute; inset: 0; }
+.seq__item { position: absolute; inset: 0; opacity: 0; }
+.seq__item.is-on { opacity: 1; }
+
+.steps { position: absolute; display: flex; gap: 14px; }
+.step {
+  display: flex; align-items: center; gap: 12px;
+  font: 500 18px/1 var(--f-mono); letter-spacing: 0.05em;
+  color: var(--ink-3);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 12px 20px;
+  transition: color 0.28s var(--e-out), border-color 0.28s var(--e-out), background 0.28s var(--e-out);
+}
+.step__n { color: rgba(25, 23, 20, 0.28); }
+.step.is-on { color: var(--ink); border-color: rgba(246, 139, 26, 0.45); background: rgba(255, 255, 255, 0.9); }
+.step.is-on .step__n { color: var(--orange-deep); }
+
+/* Zeiger auf eine Stelle im Screenshot. Sitzt bei left:0 und wird ueber
+   transform:translateX an sein Ziel geschoben — die Ziel-x je Schritt stehen
+   als data-pointer an der Folie (siehe transitions.js -> movePointer).
+   Die Spitze liegt oben: top ist damit die Stelle, auf die gezeigt wird. */
+.pointer {
+  position: absolute;
+  width: 0; height: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.pointer svg {
+  display: block;
+  width: 58px; height: 98px;
+  margin-left: -29px;
+  color: var(--orange);
+}
+.pointer svg path { fill: currentColor; stroke: none; }
+
+/* ------------------------------------------------------------ 14 · Titel */
+.title-block { position: absolute; left: var(--gutter); top: 328px; }
+.title-block .h-xl { color: var(--ink); }
+.title-block .rule { margin: 46px 0 38px; width: 96px; }
+.title-sub { font: 400 52px/1.15 var(--f-body); color: var(--ink-2); letter-spacing: -0.015em; }
+
+/* --------------------------------------------------------- 15 · Divider */
+.div-block { position: absolute; left: var(--gutter); top: 392px; }
+.div-num {
+  font: 500 20px/1 var(--f-mono); letter-spacing: 0.18em;
+  color: var(--orange-deep); margin-bottom: 26px;
+}
+.div-block .h-l { max-width: 1180px; }
+.div-meta { font: 400 26px/1.5 var(--f-body); color: var(--ink-3); margin-top: 30px; }
+
+/* ------------------------------------------------------ 16 · Zwei Spalten */
+.col-l { position: absolute; left: var(--gutter); width: 660px; }
+
+
+/* --------------------------------------------------- 17 · Overlays / UI */
+/* Fuer die Notizen gibt es hier bewusst nichts: sie stehen ausschliesslich im
+   Referentenfenster (P) und dort dauerhaft, weil das Hauptfenster am Beamer
+   haengt — siehe assets/js/presenter.js. */
+
+#overview {
+  position: fixed; inset: 0;
+  z-index: 50;
+  display: none;
+  background: rgba(251, 248, 244, 0.97);
+  overflow: auto;
+  padding: 40px;
+}
+#overview.is-on { display: block; }
+#overview .ov-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px; max-width: 1500px; margin: 0 auto;
+}
+#overview .ov-i {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-2);
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: left;
+  font: 500 13px/1.32 var(--f-display);
+  color: var(--ink);
+  transition: border-color 0.15s, transform 0.15s;
+}
+#overview .ov-i:hover { border-color: var(--orange); transform: translateY(-2px); }
+#overview .ov-i.is-cur { border-color: var(--orange); box-shadow: 0 0 0 2px var(--orange-soft); }
+#overview .ov-n { font: 500 10px/1 var(--f-mono); color: var(--ink-3); display: block; margin-bottom: 8px; }
+#overview .ov-s { font: 500 9px/1 var(--f-mono); color: var(--orange-deep); position: absolute; left: 14px; bottom: 10px; letter-spacing: .08em; }
+
+#hint {
+  position: fixed; right: 22px; bottom: 18px;
+  z-index: 30;
+  font: 500 12px/1 var(--f-mono);
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 9px 14px;
+  opacity: 0;
+  transition: opacity 0.4s var(--e-out);
+  pointer-events: none;
+}
+#hint.is-on { opacity: 1; }
+
+#boot {
+  position: fixed; inset: 0; z-index: 60;
+  display: grid; place-items: center;
+  background: var(--paper);
+  transition: opacity 0.5s var(--e-out);
+}
+#boot.is-done { opacity: 0; pointer-events: none; }
+#boot .b-bar { width: 190px; height: 2px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#boot .b-bar i { display: block; height: 100%; width: 0; background: var(--orange); transition: width 0.25s linear; }
+
+/* Sichtbarer Fokus fuer Tastaturbedienung. */
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .step { transition: none; }
+}

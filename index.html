@@ -1,0 +1,1378 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>byzz 11 — Was ist neu</title>
+
+<!-- Reihenfolge zaehlt: Schriften vor Layout, GSAP vor der Bewegungslogik.
+     Alles klassische <link>/<script> — ES-Module sind unter file:// CORS-blockiert. -->
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/deck.css">
+</head>
+<body>
+
+<div id="boot"><div class="b-bar"><i></i></div></div>
+
+<!-- ===================================================================== -->
+<!-- Symbolbibliothek. Inline, weil <use href> auf eine externe SVG-Datei   -->
+<!-- unter file:// nicht aufloest.                                          -->
+<!-- ===================================================================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+  <!-- Das orangedental-Symbol. Transformationen exakt aus logo_od_symbol.svg. -->
+  <symbol id="od-blob" viewBox="0 0 156.9875 81.6">
+    <g transform="matrix(1.25,0,0,-1.25,0,81.6)"><g transform="scale(0.1,0.1)">
+      <path d="M 941.895,0 C 887.168,0 835.625,14.5391 790.867,40.1484 743.418,70.2773 687.629,87.4961 627.949,87.4961 568.367,87.4961 512.578,70.2773 465.039,40.2031 420.242,14.5391 368.73,0 313.973,0 140.586,0 0,146.164 0,326.438 0,506.672 140.586,652.82 313.973,652.82 c 54.484,0 105.656,-14.367 150.175,-39.699 47.696,-30.336 103.86,-47.875 163.801,-47.875 59.981,0 116.043,17.539 163.739,47.875 44.64,25.332 95.851,39.699 150.207,39.699 173.425,0 314.005,-146.148 314.005,-326.382 C 1255.9,146.164 1115.32,0 941.895,0"/>
+    </g></g>
+  </symbol>
+
+  <!-- Piktogramme, 24x24, Konturstil. -->
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 17a9 9 0 1 1 17 0"/><path d="M12 13.5 16.5 9"/><circle cx="12" cy="17" r="1.4"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"/><path d="M9 10.5h.01M15 10.5h.01M9.5 15c1.5 1.2 3.5 1.2 5 0"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v6M15 2v6"/><path d="M6 8h12v3a6 6 0 0 1-12 0z"/><path d="M12 17v5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="13" rx="2.5"/><path d="M10 8.8l4.5 2.7-4.5 2.7z"/><path d="M8 21h8"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 5.5h3M11 18.5h2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M9 3v18M9 10h12"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2.6l8 4.2v9.4l-8 4.2-8-4.2V6.8z"/><path d="M4 6.8l8 4.2 8-4.2M12 11v9.4"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5.2a3.2 3.2 0 0 0-6.1 1.3A3 3 0 0 0 4 9.3a3 3 0 0 0 1.2 2.4A3 3 0 0 0 5 13.5a3.1 3.1 0 0 0 2.6 3A3 3 0 0 0 12 18.6z"/><path d="M12 5.2a3.2 3.2 0 0 1 6.1 1.3A3 3 0 0 1 20 9.3a3 3 0 0 1-1.2 2.4A3 3 0 0 1 19 13.5a3.1 3.1 0 0 1-2.6 3A3 3 0 0 1 12 18.6z"/><path d="M12 5.2v13.4"/></symbol>
+  <symbol id="i-export" viewBox="0 0 24 24"><path d="M21 14v4.5A2.5 2.5 0 0 1 18.5 21h-13A2.5 2.5 0 0 1 3 18.5V14"/><path d="M12 3v12M8 7l4-4 4 4"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.3-2h7l1.3 2h1.7A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="12.8" r="3.6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L21 21"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5.8" rx="7.5" ry="3"/><path d="M4.5 5.8v12.4c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V5.8"/><path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="8" r="4.5"/><path d="M11.2 11.2L20 20M17 17l2-2M14.5 14.5l2-2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9s-1.2 6.5-3.6 9c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <!-- Filmstreifen mit Perforation. Ein Raster aus Quer- und Laengslinien liest
+       sich bei 44 px als Tabelle, nicht als Film. -->
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M7.6 4.5v15M16.4 4.5v15"/><path d="M3 9.2h4.6M3 14.8h4.6M16.4 9.2H21M16.4 14.8H21"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1.4 1.4"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0L5 13.3a4 4 0 0 0 5.7 5.7l1.4-1.4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8.5 21h7M12 16.5V21"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+
+</defs></svg>
+
+<!-- ===================================================================== -->
+<div id="stage">
+
+  <div id="aurora">
+    <div class="bloom bloom--warm"></div>
+    <div class="bloom bloom--amber"></div>
+    <div class="bloom bloom--cool"></div>
+  </div>
+
+  <div id="blobmark"><svg viewBox="0 0 156.9875 81.6"><use href="#od-blob"/></svg></div>
+  <div id="grain"></div>
+
+  <!-- Der Inhaltsrahmen: immer exakt 1920 x 1080, mittig in der Buehne.
+       Die Buehne selbst waechst bei abweichendem Fensterformat ueber diese
+       Masse hinaus, damit Aurora und Korn bis an die Fensterkante laufen und
+       keine Balken stehen bleiben. Alles Komponierte liegt in diesem Rahmen. -->
+  <div id="frame">
+
+  <!-- ================================================================= -->
+  <!-- 01 · TITEL                                                        -->
+  <!-- ================================================================= -->
+  <!-- SLIDES:START -->
+
+  <!-- 01 · aus partbase.html [0] -->
+  <section class="slide" data-title="byzz 11 — Was ist neu" data-bare data-divider>
+    <div class="slide-inner">
+      <div class="title-block">
+        <h1 class="h-xl" data-anim>byzz&nbsp;<span style="color:var(--orange)">11</span></h1>
+        <div class="rule" data-anim></div>
+        <p class="title-sub" data-anim>Was ist neu?</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Begrüßung. <b>byzz 11</b> ist kein Punkt-Release — unter der Haube ist mehr passiert als in den letzten drei Versionen zusammen.</p>
+      <p>Ablauf ansagen: vier Blöcke — Fundament, Bedienung, Funktionen, App. Fragen gern sofort.</p>
+    </template>
+  </section>
+
+  <!-- 02 · aus partA.html [0] -->
+  <section class="slide" data-title="Agenda" data-bare>
+    <div class="slide-inner">
+
+      <!-- Textspalte links: 112 – 852 -->
+      <div style="position:absolute;left:112px;top:248px;width:740px">
+        <h2 class="h-1" data-anim>Agenda</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Fundament, Bedienung, Funktionen, App</p>
+        <div data-anim style="margin-top:34px">
+          <span class="chip">Auch live in byzz</span>
+        </div>
+      </div>
+
+      <!-- Abschnittsliste rechts: 912 – 1808 -->
+      <div data-anim style="position:absolute;left:912px;top:248px;width:896px;display:grid;gap:30px">
+
+        <div style="display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start">
+          <div style="font:500 22px/1 var(--f-mono);letter-spacing:.1em;color:var(--orange-deep);padding-top:13px">01</div>
+          <div>
+            <h3 class="h-2">Neues unter der Haube</h3>
+            <p class="body" style="margin-top:10px">Fundament: HTTP, 64 Bit, byzz Paro, Face-Scan.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start;border-top:1px solid var(--rule);padding-top:30px">
+          <div style="font:500 22px/1 var(--f-mono);letter-spacing:.1em;color:var(--orange-deep);padding-top:13px">02</div>
+          <div>
+            <h3 class="h-2">Neue Menüpunkte</h3>
+            <p class="body" style="margin-top:10px">Was sich in den Menüs Hilfe und Ansicht geändert hat.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start;border-top:1px solid var(--rule);padding-top:30px">
+          <div style="font:500 22px/1 var(--f-mono);letter-spacing:.1em;color:var(--orange-deep);padding-top:13px">03</div>
+          <div>
+            <h3 class="h-2">Neue Features</h3>
+            <p class="body" style="margin-top:10px">Bildansichten, KI, 3D, Export, Sprachen.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start;border-top:1px solid var(--rule);padding-top:30px">
+          <div style="font:500 22px/1 var(--f-mono);letter-spacing:.1em;color:var(--orange-deep);padding-top:13px">04</div>
+          <div>
+            <h3 class="h-2">byzz&nbsp;app</h3>
+            <p class="body" style="margin-top:10px">Die App für Android, iOS, MacOS und Browser — löst ibyzz ab.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <template class="notes">
+      <p>Kurz durchgehen, nicht vorlesen. Wichtig ist die <b>Reihenfolge</b>: Block 01 erklärt, warum der Rest überhaupt möglich ist.</p>
+      <p>Ansagen, dass zwischendurch auch live in byzz gezeigt wird — dann wartet niemand auf Screenshots.</p>
+      <p>Block 03 ist der längste. Wer knapp in der Zeit ist, kürzt dort und nicht bei 01.</p>
+    </template>
+  </section>
+
+  <!-- 03 · aus partbase.html [1] -->
+  <section class="slide" data-title="Neues unter der Haube" data-section="1" data-divider data-bare>
+    <div class="slide-inner">
+      <div class="div-block">
+        <div class="div-num" data-anim>ABSCHNITT 01</div>
+        <h2 class="h-l" data-anim>Neues unter der Haube</h2>
+        <p class="div-meta" data-anim>Änderungen, die man nicht sieht — aber alles verändern.</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Überleitung: Das hier ist der Teil, den der Kunde <b>nicht</b> sieht — und genau deshalb der Teil, der am längsten hält.</p>
+    </template>
+  </section>
+
+  <!-- 04 · aus partbase.html [2] -->
+  <section class="slide" data-title="Server und Client sprechen HTTP" data-section="1">
+    <div class="slide-inner">
+      <div class="col-l" style="top:236px">
+        <h2 class="h-1" data-anim>Server und Client<br>sprechen jetzt HTTP.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die Kommunikation läuft über ein Standardprotokoll statt über eine Microsoft-spezifische Implementierung.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="path"><svg><use href="#i-server"/></svg>Schema&nbsp;http</span>
+          <span class="path"><svg><use href="#i-link"/></svg>Port&nbsp;8100</span>
+        </div>
+      </div>
+
+      <!-- Schaubild: Clients -> Server-Service -> Datenbank -->
+      <div data-anim style="position:absolute;left:900px;top:270px;width:908px">
+        <svg viewBox="0 0 908 420" style="width:908px;height:420px;overflow:visible">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="17" font-weight="500">
+            <!-- Clients -->
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0" y="26" width="216" height="72" rx="13"/>
+              <rect x="0" y="128" width="216" height="72" rx="13"/>
+              <rect x="0" y="230" width="216" height="72" rx="13"/>
+            </g>
+            <g fill="#57514A">
+              <text x="26" y="68">Client 1</text>
+              <text x="26" y="170">Client 2</text>
+              <text x="26" y="272">Client 3</text>
+            </g>
+
+            <!-- Verbindungen -->
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah)" opacity=".8">
+              <path d="M216 62 C 300 62 300 164 372 164"/>
+              <path d="M216 164 L372 164"/>
+              <path d="M216 266 C 300 266 300 164 372 164"/>
+            </g>
+            <text x="252" y="128" fill="#C2620A" font-size="15" letter-spacing=".08em">HTTP</text>
+
+            <!-- Server-Service -->
+            <rect x="392" y="104" width="238" height="120" rx="16" fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2"/>
+            <text x="420" y="152" fill="#191714" font-size="19">Server-Service</text>
+            <text x="420" y="182" fill="#948C82" font-size="15">= Webservice</text>
+
+            <g stroke="rgba(25,23,20,.28)" stroke-width="2" fill="none" marker-end="url(#ah)" opacity=".55">
+              <path d="M630 164 L716 164"/>
+            </g>
+
+            <!-- Datenbank -->
+            <rect x="736" y="112" width="170" height="104" rx="14" fill="#F3EDE4" stroke="rgba(25,23,20,.14)"/>
+            <text x="762" y="152" fill="#57514A" font-size="17">Datenbank</text>
+            <text x="762" y="180" fill="#948C82" font-size="15">+ Verzeichnis</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Kernaussage: <b>ein Standardprotokoll statt einer Microsoft-spezifischen Implementierung.</b> Das ist der Punkt, den die IT des Kunden hören will.</p>
+      <p>Nicht zu viel versprechen: die Netzwerkfreigabe auf das Bildverzeichnis bleibt — sie richtet der Konfigurator allerdings selbst ein.</p>
+      <p>Schema und Port stehen im Konfigurator — kommt später noch mal.</p>
+      <p>Nebeneffekt: sauberer durch Firewalls, und die Grundlage dafür, dass die byzz app überhaupt funktioniert.</p>
+    </template>
+  </section>
+
+  <!-- 05 · aus partB.html [0] -->
+  <section class="slide" data-title="Von 32 auf 64 Bit" data-section="1">
+    <div class="slide-inner">
+      <div class="col-l" style="top:236px">
+        <h2 class="h-1" data-anim>byzz 11 ist eine<br>64-Bit-Anwendung.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die 4-GB-Grenze des 32-Bit-Adressraums fällt weg. Deutlich größere Datensätze lassen sich laden.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">3D-Modelle</span>
+        </div>
+      </div>
+
+      <!-- Schaubild: Adressraum bisher / jetzt, mit der 4-GB-Marke -->
+      <div data-anim style="position:absolute;left:948px;top:268px;width:860px">
+        <svg viewBox="0 0 860 356" style="display:block;width:860px;height:356px">
+          <g font-family="IBM Plex Mono, monospace" font-weight="500">
+
+            <!-- bisher: der Balken endet an der Marke -->
+            <text x="0" y="86" fill="#948C82" font-size="15" letter-spacing=".12em">BISHER · 32 BIT</text>
+            <rect x="0" y="102" width="392" height="76" rx="14" fill="rgba(148,140,130,.16)" stroke="rgba(25,23,20,.14)"/>
+            <text x="416" y="148" fill="#948C82" font-size="16">Ende des Adressraums</text>
+
+            <!-- jetzt: der Balken laeuft durch die Marke hindurch weiter -->
+            <text x="0" y="240" fill="#C2620A" font-size="15" letter-spacing=".12em">JETZT · 64 BIT</text>
+            <rect x="0" y="256" width="784" height="76" rx="14" fill="#F68B1A"/>
+            <g fill="none" stroke="#F68B1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5">
+              <path d="M800 281 l14 13 -14 13"/>
+              <path d="M828 281 l14 13 -14 13"/>
+            </g>
+
+            <!-- Die Marke zuletzt, damit sie ueber dem orangen Balken liegt -->
+            <path d="M392 46 V 352" fill="none" stroke="rgba(25,23,20,.38)" stroke-width="2" stroke-dasharray="7 8"/>
+            <text x="392" y="30" text-anchor="middle" fill="#57514A" font-size="15" letter-spacing=".14em">4 GB</text>
+
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>byzz 11 ist als <b>64-Bit-Anwendung</b> gebaut. Eine 32-Bit-Anwendung kann nie mehr als 4 GB adressieren — an dieser Grenze sind große DVT-Datensätze und 3D-Modelle bisher gescheitert.</p>
+      <p>Für den Kunden heißt das: Der Arbeitsspeicher im Rechner wird tatsächlich nutzbar. Wer viel mit DVT und Modelldaten arbeitet, merkt es zuerst.</p>
+      <p>Nicht mit konkreten Zahlen argumentieren — wie groß ein Datensatz werden darf, hängt am Rechner des Kunden, nicht an byzz.</p>
+    </template>
+  </section>
+
+  <!-- 06 · aus partB.html [1] -->
+  <section class="slide" data-title="byzz Paro und Green X evo 21" data-section="1">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:236px;width:1300px">
+        <h2 class="h-1" data-anim>Anpassungen für flüssigeres<br>Arbeiten und mehr Möglichkeiten.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1040px">byzz Paro wurde komplett überarbeitet, und byzz besser auf Green&nbsp;X&nbsp;evo&nbsp;21 abgestimmt.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:596px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-gauge"/></svg></div>
+          <h3 class="card__t">byzz Paro</h3>
+          <p class="card__d">Das Modul für Parodontal-Befunde wurde komplett überarbeitet und läuft dadurch deutlich performanter.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-scan"/></svg></div>
+          <h3 class="card__t">Green X evo 21</h3>
+          <p class="card__d">byzz 11 wurde auf das DVT-Gerät abgestimmt — insbesondere auf dessen Face-Scan.</p>
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p><b>byzz Paro</b> — das Modul für Parodontal-Befunde — wurde komplett überarbeitet und läuft dadurch spürbar schneller. Wer den Paro-Status regelmäßig erhebt, merkt das bei jedem Aufruf.</p>
+      <p>Für den <b>Green X evo 21</b> wurde byzz 11 angepasst, insbesondere für den Face-Scan des Geräts.</p>
+      <p>Beim Vorführen: Paro nur zeigen, wenn im Testbestand wirklich ein Befund liegt — an einer leeren Karte sagt die Überarbeitung nichts.</p>
+    </template>
+  </section>
+
+  <!-- 07 · aus partB.html [2] -->
+  <section class="slide" data-title="Externe Programme finden sich selbst" data-section="1">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>byzz findet externe<br>Programme selbst.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Ist ein unterstütztes Fremdprogramm installiert, steht es in byzz sofort zur Verfügung.</p>
+
+        <div data-anim style="margin-top:34px">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span class="chip">Diagnocat</span>
+            <span class="chip">exocad</span>
+            <span class="chip">Fussen</span>
+            <span class="chip">Shining 3D</span>
+          </div>
+          <p class="tiny" style="margin-top:22px">Fussen mit ScanFlex, Preparation, Scanabutment und ModelViewer · Shining 3D mit DentalLauncher.</p>
+        </div>
+      </div>
+
+      <div class="shot" data-anim style="left:872px;top:250px;width:936px;height:549px">
+        <img class="shot__spill" src="assets/img/externeprogramme.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/externeprogramme.webp" width="1360" height="798" alt="Einstellungen mit den bereits eingetragenen Pfaden zu den externen Programmen">
+        </div>
+        <img class="shot__soft" src="assets/img/externeprogramme.soft.jpg" alt="">
+        <div class="shot__cap">EINSTELLUNGEN · EXTERNE PROGRAMME</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>byzz 11 sucht beim Start selbst nach den unterstützten Fremdprogrammen und trägt die Pfade ein. Vorher musste jeder Pfad von Hand gesucht und eingetragen werden — eine der häufigsten Rückfragen bei der Installation.</p>
+      <p>Vordefiniert sind <b>Diagnocat</b>, <b>exocad</b>, <b>Fussen</b> (ScanFlex, inklusive Preparation, Scanabutment und ModelViewer) und <b>Shining 3D</b> (DentalLauncher).</p>
+      <p>Beim Vorführen <code>Einstellungen → Externe Programme</code> öffnen und zeigen, dass die Felder schon gefüllt sind. Ist ein Programm nicht installiert, bleibt sein Feld leer — das ist kein Fehler.</p>
+    </template>
+  </section>
+
+  <!-- 08 · aus partB.html [3] -->
+  <section class="slide" data-title="Neue Menüpunkte" data-section="2" data-divider data-bare>
+    <div class="slide-inner">
+      <div class="div-block">
+        <div class="div-num" data-anim>ABSCHNITT 02</div>
+        <h2 class="h-l" data-anim>Neue Menüpunkte</h2>
+        <p class="div-meta" data-anim>Einträge in den Menüs — mehr Informationen direkt aus byzz heraus.</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Überleitung: Ab hier geht es um Dinge, die man <b>sieht</b> — drei neue Einträge in den Menüs.</p>
+      <p>Klein im Umfang, aber genau die Sorte Detail, nach der im Gespräch gefragt wird. Wer sie kennt, kann sie in zehn Sekunden zeigen.</p>
+    </template>
+  </section>
+
+  <!-- 09 · aus partB.html [4] -->
+  <section class="slide" data-title="Das Hilfe-Menü" data-section="2">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:236px;width:1300px">
+        <h2 class="h-1" data-anim>Webinare und App<br>stehen jetzt im Hilfe-Menü.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1040px">Zwei neue Einträge, beide führen aus byzz heraus.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:548px;width:1696px">
+
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-play"/></svg></div>
+          <h3 class="card__t">Webinare</h3>
+          <div style="display:flex;margin:4px 0 18px">
+            <span class="path"><svg><use href="#i-play"/></svg>Hilfe&nbsp;→&nbsp;Webinare</span>
+          </div>
+          <p class="card__d">Ruft die orangedental-Webinare auf. Der Rechner braucht dafür einen Internet-Zugang.</p>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;gap:24px;align-items:flex-start">
+            <div style="flex:1;min-width:0">
+              <div class="card__ico"><svg><use href="#i-mobile"/></svg></div>
+              <h3 class="card__t">App für Mobilgeräte</h3>
+              <div style="display:flex;margin:4px 0 18px">
+                <span class="path"><svg><use href="#i-mobile"/></svg>Hilfe&nbsp;→&nbsp;App für Mobilgeräte</span>
+              </div>
+              <p class="card__d">Zeigt die QR-Codes zu den Stores — App Store und Google Play.</p>
+            </div>
+
+            <!-- Weisse Flaeche mit Innenabstand: die QR-Module sind dunkel auf
+                 transparent und waeren auf dem Verlaufsgrund schlecht scanbar. -->
+            <div style="flex:none;display:flex;gap:16px;padding:16px;background:#FFFFFF;border:1px solid rgba(25,23,20,.14);border-radius:14px">
+              <div style="text-align:center">
+                <img src="assets/img/qr-appstore.svg" width="132" height="132" alt="QR-Code zum App Store" style="display:block;width:132px;height:132px">
+                <div class="mono" style="font-size:14px;line-height:1.3;color:#948C82;margin-top:8px">App Store</div>
+              </div>
+              <div style="text-align:center">
+                <img src="assets/img/qr-playstore.svg" width="132" height="132" alt="QR-Code zu Google Play" style="display:block;width:132px;height:132px">
+                <div class="mono" style="font-size:14px;line-height:1.3;color:#948C82;margin-top:8px">Google Play</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <template class="notes">
+      <p><code>Hilfe → Webinare</code> öffnet die orangedental-Webinare. Dafür braucht der Rechner einen <b>Internet-Zugang</b> — in Praxen ohne Netz am Behandlungsplatz vorher prüfen, sonst läuft die Vorführung ins Leere.</p>
+      <p><code>Hilfe → App für Mobilgeräte</code> zeigt die QR-Codes für App Store und Google Play. Der Kunde muss nichts abtippen und nichts suchen.</p>
+      <p>Beim Vorführen: Handy zücken und einen der beiden Codes vor dem Publikum scannen — das überzeugt schneller als jede Erklärung.</p>
+    </template>
+  </section>
+
+  <!-- 10 · aus partB.html [5] -->
+  <section class="slide" data-title="Aufnahmedatum am Vorschaubild" data-section="2">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Das Datum steht<br>am Vorschaubild.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Datum und Uhrzeit werden direkt in die Vorschaubilder eingeblendet.</p>
+      </div>
+
+      <!-- Eigener Block, weil der Menuepfad breiter ist als die Textspalte. -->
+      <div data-anim style="position:absolute;left:112px;top:560px;width:760px">
+        <div style="display:flex">
+          <span class="path"><svg><use href="#i-clock"/></svg>Ansicht&nbsp;→&nbsp;Zeige Thumbnail Erstellungsdatum und -zeit</span>
+        </div>
+        <p class="tiny" style="margin-top:26px">Aufnahmezeitpunkte sind erkennbar, ohne jedes Bild einzeln zu öffnen — hilfreich bei Verlaufskontrollen und in der Dokumentation.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:872px;top:250px;width:936px;height:549px">
+        <img class="shot__spill" src="assets/img/erstellungsdatum.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/erstellungsdatum.webp" width="1360" height="798" alt="Vorschaubilder mit eingeblendetem Aufnahmedatum und Uhrzeit">
+        </div>
+        <img class="shot__soft" src="assets/img/erstellungsdatum.soft.jpg" alt="">
+        <div class="shot__cap">ANSICHT · ZEIGE THUMBNAIL ERSTELLUNGSDATUM UND -ZEIT</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p><code>Ansicht → Zeige Thumbnail Erstellungsdatum und -zeit</code> blendet Datum und Uhrzeit direkt in die Vorschaubilder ein. Der Menüpunkt ist ein Schalter — er lässt sich genauso wieder abschalten.</p>
+      <p>Nutzen: Man sieht auf einen Blick, wann eine Aufnahme entstanden ist, ohne jedes Bild einzeln zu öffnen. Zahlt vor allem bei Verlaufskontrollen und in der Dokumentation ein.</p>
+      <p>Beim Vorführen einen Patienten mit Aufnahmen aus mehreren Jahren wählen — bei drei Bildern vom selben Tag sieht man den Unterschied nicht.</p>
+    </template>
+  </section>
+
+  <!-- 11 · aus partC.html [0] -->
+  <section class="slide" data-title="Neue Features" data-section="3" data-divider data-bare>
+    <div class="slide-inner">
+      <div class="div-block">
+        <div class="div-num" data-anim>ABSCHNITT 03</div>
+        <h2 class="h-l" data-anim>Neue Features</h2>
+        <p class="div-meta" data-anim>Was in byzz dazugekommen ist.</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Der <b>größte Block</b> des Decks. Ab hier geht es um das, was der Kunde direkt sieht und bedient.</p>
+      <p>Fragen zu Einzelheiten kurz sammeln — wir gehen die Punkte der Reihe nach durch.</p>
+    </template>
+  </section>
+
+  <!-- 12 · aus partbase.html [3] -->
+  <section class="slide" data-title="Bildansichten in drei Modi" data-section="3" data-fragments="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Dieselben Bilder,<br>drei Lesarten.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die Bildansicht lässt sich umschalten — je nachdem, ob man den Überblick, den Vergleich oder die Details braucht.</p>
+
+        <div class="steps" data-anim style="position:relative;margin-top:38px">
+          <span class="step is-on"><span class="step__n">01</span>Standard</span>
+          <span class="step"><span class="step__n">02</span>Raster</span>
+          <span class="step"><span class="step__n">03</span>Liste</span>
+        </div>
+      </div>
+
+      <div class="seq" data-anim style="left:872px;top:250px;width:936px;height:549px">
+        <div class="seq__stack">
+
+          <div class="seq__item is-on">
+            <div class="shot" style="inset:0">
+              <img class="shot__spill" src="assets/img/xray1.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/xray1.webp" width="1360" height="798" alt="Standard-Ansicht mit anatomisch angeordneten Aufnahmen"></div>
+              <img class="shot__soft" src="assets/img/xray1.soft.jpg" alt="">
+              <div class="shot__cap">Standard · anatomische Anordnung</div>
+            </div>
+          </div>
+
+          <div class="seq__item">
+            <div class="shot" style="inset:0">
+              <img class="shot__spill" src="assets/img/xray2.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/xray2.webp" width="1360" height="798" alt="Rasteransicht mit gleich großen Kacheln"></div>
+              <img class="shot__soft" src="assets/img/xray2.soft.jpg" alt="">
+              <div class="shot__cap">Raster · alles gleich groß</div>
+            </div>
+          </div>
+
+          <div class="seq__item">
+            <div class="shot" style="inset:0">
+              <img class="shot__spill" src="assets/img/xray3.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/xray3.webp" width="1360" height="798" alt="Listenansicht mit Aufnahmedatum, Zahn und Benutzer"></div>
+              <img class="shot__soft" src="assets/img/xray3.soft.jpg" alt="">
+              <div class="shot__cap">Liste · mit Datum, Zahn und Benutzer</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Zeiger auf die Umschalt-Schaltflaechen in der Fussleiste des
+           Screenshots. Die drei x-Werte sind an den Schaltflaechen der Aufnahme
+           gemessen (Mitte des weissen Rahmens in dev/build/shots/12-*), nicht
+           geschaetzt. y = 806 liegt 7 px unter der Panelkante — der Zeiger
+           deutet auf die Leiste, ohne den Screenshot zu ueberdecken. -->
+      <div class="pointer" data-anim data-pointer="1460,1494,1526.5" style="left:0;top:806px">
+        <svg viewBox="0 0 26 44" aria-hidden="true">
+          <path d="M13 0 L23.5 16 H16.4 V37 a3.4 3.4 0 0 1-6.8 0V16H2.5Z"/>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Drei Mal weiterklicken — die Ansicht wechselt an derselben Stelle.</p>
+      <p><b>Standard</b>: anatomisch angeordnet, so wie der Behandler denkt. <b>Raster</b>: gleich große Kacheln, gut zum Suchen. <b>Liste</b>: mit Datum, Zahnnummer und Benutzer — gut für die Dokumentation.</p>
+      <p>Umschalten unten rechts in der Fußleiste, ein Klick. Der Zeiger auf der Folie wandert jeweils auf die aktive Schaltfläche — beim Vorführen ruhig darauf zeigen.</p>
+    </template>
+  </section>
+
+  <!-- 13 · aus partC.html [1] -->
+  <section class="slide" data-title="Ansichten anpassen und Look &amp; Feel" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:214px;width:1300px">
+        <h2 class="h-1" data-anim>Die Oberfläche richtet sich<br>nach der Praxis, nicht umgekehrt.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1040px">Welche Module in der linken Leiste erscheinen, legt die Praxis selbst fest — dazu viele kleinere Anpassungen im Look&nbsp;&amp;&nbsp;Feel.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:596px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-eye"/></svg></div>
+          <h3 class="card__t">Aktive Bildansichten änderbar</h3>
+          <p class="card__d">Die Ansichten lassen sich ein- und ausblenden — jede Praxis sieht nur, was sie wirklich nutzt.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-sparkle"/></svg></div>
+          <h3 class="card__t">Look &amp; Feel überarbeitet</h3>
+          <p class="card__d">Viele kleinere Anpassungen in der Oberfläche — keine einzelne davon ist groß, zusammen wirkt byzz&nbsp;11 aufgeräumter.</p>
+        </div>
+      </div>
+
+      <p class="tiny" data-anim style="position:absolute;left:112px;top:876px;width:1696px">Ein- und ausblendbar: Control Center · Kamera · Kleinröntgen · OPG · Fernröntgen · DVT · Modelldaten · Dokumente · pa-on · Serien · Eigene Ansichten · Historie · Suche</p>
+    </div>
+    <template class="notes">
+      <p>Jedes Modul in der linken Leiste lässt sich einzeln ein- und ausblenden. <b>Nutzen für den Kunden:</b> Eine Praxis ohne DVT sieht auch keinen DVT-Eintrag — weniger Oberfläche, weniger Rückfragen.</p>
+      <p>Beim Look &amp; Feel bewusst nicht ins Detail gehen: es sind viele kleine Anpassungen, keine einzelne große Änderung. Wer nach einer Liste fragt, bekommt sie ehrlicherweise nicht.</p>
+    </template>
+  </section>
+
+  <!-- 14 · aus partC.html [2] -->
+  <section class="slide" data-title="KI-gestützte Läsionserkennung" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:212px">
+        <h2 class="h-1" data-anim>Eine zweite Meinung<br>in Sekunden.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Eine KI von Nostic wertet die OPG-Aufnahme aus und markiert potenzielle Läsionen im Bild.</p>
+
+        <div data-anim style="margin-top:32px">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span class="chip">Anatomisch</span>
+            <span class="chip">Anomalie</span>
+            <span class="chip">Restauration</span>
+          </div>
+          <p class="tiny" style="margin-top:16px">Je Fund: Zahnnummer, Klassifikation und Konfidenz in Prozent. Die Schwelle blendet schwache Treffer aus.</p>
+        </div>
+
+        <div data-anim style="margin-top:30px">
+          <span class="badge badge--muted">Zweitmeinung, keine Diagnose</span>
+          <p class="tiny" style="margin-top:14px">Die Befundung bleibt beim Behandler.</p>
+        </div>
+      </div>
+
+      <div class="shot" data-anim style="left:860px;top:280px;width:948px;height:447px">
+        <img class="shot__spill" src="assets/img/opg.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/opg.webp" width="1520" height="717" alt="OPG-Aufnahme mit farbig markierten Fundstellen, rechts eine Liste potenzieller Läsionen mit Zahnnummer, Klassifikation und Konfidenzwert">
+        </div>
+        <img class="shot__soft" src="assets/img/opg.soft.jpg" alt="">
+        <div class="shot__cap">OPG · POTENZIELLE LÄSIONEN</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die OPG-Aufnahme wird von einer <b>KI von Nostic</b> ausgewertet. Rechts erscheint die Liste potenzieller Läsionen mit Zahnnummer, Klassifikation und Konfidenz in Prozent; die Fundstellen sind im Bild farbig markiert.</p>
+      <p>Beim Vorführen die <b>Konfidenzschwelle</b> einmal hoch- und runterziehen — dass schwache Treffer verschwinden, macht den Nutzen sofort klar. Die Reiter Anatomisch, Anomalie und Restauration trennen die Fundarten.</p>
+      <p>Immer mitsagen: Das ist eine <b>Zweitmeinung, keine Diagnose.</b> Befund und Verantwortung bleiben beim Behandler.</p>
+    </template>
+  </section>
+
+  <!-- 15 · aus partC.html [4] -->
+  <section class="slide" data-title="3D-Modelldaten im Model-Viewer" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:260px">
+        <h2 class="h-1" data-anim>3D-Darstellung von<br>Intraoralscans.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die Modelldaten werden im Model-Viewer frei im Raum gedreht und aus jeder Richtung betrachtet.</p>
+
+        <div data-anim style="margin-top:32px">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span class="chip">STL</span>
+            <span class="chip">OBJ</span>
+            <span class="chip">PLY</span>
+          </div>
+          <p class="tiny" style="margin-top:16px">Unterstützte Dateiformate. Ober- und Unterkiefer einzeln oder zusammen in Okklusion.</p>
+        </div>
+      </div>
+
+      <div class="shot" data-anim style="left:848px;top:220px;width:960px;height:540px">
+        <div class="shot__frame">
+          <video src="assets/video/model-viewer.mp4" muted loop playsinline preload="auto"
+                 width="1440" height="810"></video>
+        </div>
+        <div class="shot__cap">BILDSCHIRMAUFNAHME · 3D-MODEL-VIEWER</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Modelldaten aus dem Intraoralscan lassen sich im <b>Model-Viewer</b> frei drehen — Ober- und Unterkiefer einzeln oder zusammen in Okklusion.</p>
+      <p>Das Video läuft in Schleife; nichts klicken, einfach laufen lassen und dazu sprechen. Für den Kunden ist das vor allem im <b>Patientengespräch</b> das Argument.</p>
+      <p>Als Dateiformate werden <b>STL, OBJ und PLY</b> gelesen. Darüber hinaus nichts zusagen — weitere Formate vorab mit der Technik klären.</p>
+    </template>
+  </section>
+
+  <!-- 16 · aus partC.html [3] -->
+  <section class="slide" data-title="DVT-Viewer als neuer Standard" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Das ganze Volumen<br>in einem Fenster.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die drei Schnittebenen und die volumetrische 3D-Ansicht liegen nebeneinander; jede Ansicht lässt sich einzeln groß schalten.</p>
+
+        <div data-anim style="margin-top:32px">
+          <span class="path"><svg><use href="#i-cube"/></svg>DVT-Einstellungen</span>
+          <p class="tiny" style="margin-top:16px">byzz als Standard-DVT-Viewer.</p>
+        </div>
+
+        <div data-anim style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">Axial</span>
+          <span class="chip">Sagittal</span>
+          <span class="chip">Coronal</span>
+          <span class="chip">3D-Ansicht</span>
+        </div>
+      </div>
+
+      <div class="shot" data-anim style="left:848px;top:220px;width:960px;height:540px">
+        <div class="shot__frame">
+          <video src="assets/video/dvt-viewer.mp4" muted loop playsinline preload="auto"
+                 width="1440" height="810"></video>
+        </div>
+        <div class="shot__cap">BILDSCHIRMAUFNAHME · byzz-DVT-VIEWER</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>In den <b>DVT-Einstellungen</b> wird der byzz-DVT-Viewer als primärer 3D-Viewer gesetzt — danach öffnen DVT-Aufnahmen direkt in diesem Fenster.</p>
+      <p>Axial, sagittal, coronal und das Volumen liegen zusammen auf einem Bild; jede der vier Ansichten lässt sich einzeln groß schalten.</p>
+      <p>Beim Vorführen einmal eine Ansicht groß ziehen und wieder zurück — das ist der Punkt, der hängen bleibt.</p>
+    </template>
+  </section>
+
+  <!-- 17 · aus partD.html [0] -->
+  <section class="slide" data-title="DVT-Einstellungen: Ez3D-i und 3D-Slida" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:214px;width:1300px">
+        <h2 class="h-1" data-anim>Ez3D-i Segmentation<br>3D-Slida-Integration</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1060px">Erweiterte Einstellungen und eine neue Schnittstelle.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:600px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-cube"/></svg></div>
+          <h3 class="card__t">Ez3D-i Segmentation Engine</h3>
+          <p class="card__d">Die Segmentation Engine lässt sich in den DVT-Einstellungen ein- und ausschalten — je nachdem, ob die Praxis sie braucht.</p>
+          <div style="margin-top:18px"><span class="badge badge--muted">In den DVT-Einstellungen</span></div>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-link"/></svg></div>
+          <h3 class="card__t">3D-Slida-Schnittstelle</h3>
+          <p class="card__d">Die Schnittstelle ist in byzz 11 integriert.</p>
+          <div style="margin-top:18px"><span class="badge">Testing steht noch aus</span></div>
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Zwei Einstellungen rund um DVT und 3D. Die <b>Ez3D-i Segmentation Engine</b> ist ab byzz 11 in den DVT-Einstellungen ein- und ausschaltbar — praktisch, wenn eine Praxis sie nicht nutzt oder die Leistung am Arbeitsplatz knapp ist.</p>
+      <p>Die <b>3D-Slida-Schnittstelle</b> ist eingebaut, aber noch nicht getestet. Genau so bitte auch beim Kunden formulieren: vorhanden, Freigabe steht aus.</p>
+      <p>Keine Zusagen zu Funktionsumfang oder Termin machen — Nachfragen an die Entwicklung weitergeben.</p>
+    </template>
+  </section>
+
+  <!-- 18 · aus partD.html [1] -->
+  <section class="slide" data-title="DVT-Export mit eigenem Betrachter" data-section="3" data-fragments="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Das DVT geht raus,<br>der Betrachter mit.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Der Export legt die DVT-Daten und ein Betrachterprogramm zusammen ab. Der Empfänger braucht kein byzz.</p>
+
+        <div class="steps" data-anim style="position:relative;margin-top:38px">
+          <span class="step is-on"><span class="step__n">01</span>Aufrufen</span>
+          <span class="step"><span class="step__n">02</span>Ziel wählen</span>
+          <span class="step"><span class="step__n">03</span>Weitergeben</span>
+        </div>
+      </div>
+
+      <!-- Feste Flaeche 936x560 ab 872/250. Jedes Bild sitzt darin mit seinem
+           eigenen Seitenverhaeltnis, horizontal und vertikal zentriert:
+             1150x717 -> 880x549  bei 28/6     (Mitte 468/280.5)
+              610x489 -> 610x489  bei 163/36   (Mitte 468/280.5)
+              950x204 -> 936x201  bei 0/180    (Mitte 468/280.5) -->
+      <div class="seq" data-anim style="left:872px;top:250px;width:936px;height:560px">
+        <div class="seq__stack">
+
+          <div class="seq__item is-on">
+            <div class="shot" style="left:28px;top:6px;width:880px;height:549px">
+              <img class="shot__spill" src="assets/img/dvt-export1.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/dvt-export1.webp" width="1150" height="717" alt="Kontextmenü der DVT-Liste mit dem Eintrag Export (DVT mit Betrachter)"></div>
+              <img class="shot__soft" src="assets/img/dvt-export1.soft.jpg" alt="">
+              <div class="shot__cap">Kontextmenü · Export (DVT mit Betrachter)</div>
+            </div>
+          </div>
+
+          <div class="seq__item">
+            <div class="shot" style="left:163px;top:36px;width:610px;height:489px">
+              <img class="shot__spill" src="assets/img/dvt-export2.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/dvt-export2.webp" width="610" height="489" alt="Dialog DVT-Export mit Zielverzeichnis, drei Exportoptionen und Auswahl der Exportsprache"></div>
+              <img class="shot__soft" src="assets/img/dvt-export2.soft.jpg" alt="">
+              <div class="shot__cap">Dialog · DVT-Export</div>
+            </div>
+          </div>
+
+          <div class="seq__item">
+            <div class="shot" style="left:0;top:180px;width:936px;height:201px">
+              <img class="shot__spill" src="assets/img/dvt-export3.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/dvt-export3.webp" width="950" height="204" alt="Zielordner mit den Verzeichnissen dicom, series und viewer sowie der Datei DVT-Betrachter.exe"></div>
+              <img class="shot__soft" src="assets/img/dvt-export3.soft.jpg" alt="">
+              <div class="shot__cap">Ergebnisordner · DVT-Betrachter.exe</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Drei Mal weiterklicken. <b>Aufrufen</b>: im Kontextmenü der DVT-Liste steht der neue Eintrag <code>Export (DVT mit Betrachter)</code> direkt unter dem normalen Export.</p>
+      <p><b>Ziel wählen</b>: Zielverzeichnis, dazu drei Optionen — Unterverzeichnis mit Patientenname, kein Unterverzeichnis (überschreibt vorhandene Daten) oder Zip-Datei. Die Exportsprache lässt sich separat einstellen; darauf hinweisen, wenn der Empfänger im Ausland sitzt.</p>
+      <p>Der Verkaufspunkt ist der dritte Schritt: im Zielordner liegen <code>dicom</code>, <code>series</code>, <code>viewer</code> und die <code>DVT-Betrachter.exe</code>. <b>Überweiser, Labor und Patient brauchen kein byzz</b>, um das DVT anzusehen.</p>
+    </template>
+  </section>
+
+  <!-- 19 · aus partD.html [2] -->
+  <section class="slide" data-title="dentaleyepad ohne Zusatzsoftware" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Das dentaleyepad<br>kommuniziert jetzt<br>direkt mit byzz.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Bisher lief die Anbindung über eine zusätzliche Software. Die entfällt in byzz.</p>
+      </div>
+
+      <div class="marks" data-anim style="left:112px;top:636px;width:700px">
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Ein Installationsschritt weniger</b> beim Einrichten.</p></div>
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Eine Fehlerquelle weniger</b> im laufenden Betrieb.</p></div>
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Aufnahmen landen direkt</b> beim richtigen Patienten.</p></div>
+      </div>
+
+      <!-- Schaubild: der Zwischenschritt faellt weg -->
+      <div data-anim style="position:absolute;left:900px;top:356px;width:908px">
+        <svg viewBox="0 0 908 310" style="width:908px;height:310px;overflow:visible">
+          <defs>
+            <marker id="ah-dep-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#948C82"/>
+            </marker>
+            <marker id="ah-dep-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="17" font-weight="500">
+
+            <!-- vorher -->
+            <text x="0" y="16" fill="#948C82" font-size="15" letter-spacing=".14em">VORHER</text>
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0"   y="36" width="252" height="76" rx="13"/>
+              <rect x="328" y="36" width="252" height="76" rx="13"/>
+              <rect x="656" y="36" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#948C82">
+              <text x="26"  y="80">dentaleyepad</text>
+              <text x="354" y="80">Zusatzsoftware</text>
+              <text x="682" y="80">byzz 10</text>
+            </g>
+            <g stroke="#948C82" stroke-width="2" fill="none" marker-end="url(#ah-dep-g)" opacity=".75">
+              <path d="M262 74 L318 74"/>
+              <path d="M590 74 L646 74"/>
+            </g>
+
+            <!-- jetzt -->
+            <text x="0" y="200" fill="#C2620A" font-size="15" letter-spacing=".14em">JETZT</text>
+            <g fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2">
+              <rect x="0"   y="220" width="252" height="76" rx="13"/>
+              <rect x="656" y="220" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#191714">
+              <text x="26"  y="264">dentaleyepad</text>
+              <text x="682" y="264">byzz 11</text>
+            </g>
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah-dep-o)">
+              <path d="M262 258 L646 258"/>
+            </g>
+            <text x="454" y="242" fill="#C2620A" font-size="15" text-anchor="middle">ohne Umweg</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Das <b>dentaleyepad</b> ist in byzz 11 direkt angebunden. Bisher brauchte es dafür eine weitere Software auf dem Rechner — die fällt weg.</p>
+      <p>Für den Kunden heißt das: ein Installationsschritt weniger bei der Einrichtung und ein Programm weniger, das im Betrieb ausfallen kann. Die Aufnahmen landen direkt beim geöffneten Patienten.</p>
+      <p>Beim Vorführen auf den Weg zeigen, nicht auf die Technik: Aufnahme machen, Bild ist da.</p>
+    </template>
+  </section>
+
+  <!-- 20 · aus partD.html [3] -->
+  <section class="slide" data-title="Referenzsuche" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:236px;width:720px">
+        <h2 class="h-1" data-anim>Eine gespeicherte Suche<br>läuft jedes Mal neu.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die Referenzsuche wird bei jedem Aufruf neu ausgeführt. Auch bei geändertem Datenbestand findet sie die richtigen Bilder.</p>
+      </div>
+
+      <div class="marks" data-anim style="left:112px;top:704px;width:720px">
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Keine eingefrorene Liste</b> — die Treffer zeigen den heutigen Stand.</p></div>
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Neue Fälle sind automatisch dabei</b>, wenn sie den Kriterien entsprechen.</p></div>
+      </div>
+
+      <!-- Schaubild: dieselbe gespeicherte Suche, zwei Zeitpunkte -->
+      <div data-anim style="position:absolute;left:900px;top:356px;width:908px">
+        <svg viewBox="0 0 908 310" style="width:908px;height:310px;overflow:visible">
+          <defs>
+            <marker id="ah-ref-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#948C82"/>
+            </marker>
+            <marker id="ah-ref-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="17" font-weight="500">
+
+            <!-- vorher -->
+            <text x="0" y="16" fill="#948C82" font-size="15" letter-spacing=".14em">EINE GESPEICHERTE LISTE</text>
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0"   y="36" width="252" height="76" rx="13"/>
+              <rect x="656" y="36" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#948C82">
+              <text x="26"  y="80">Suche</text>
+              <text x="682" y="80">Stand von damals</text>
+            </g>
+            <g stroke="#948C82" stroke-width="2" fill="none" marker-end="url(#ah-ref-g)" opacity=".75">
+              <path d="M262 74 L646 74"/>
+            </g>
+            <text x="454" y="58" fill="#948C82" font-size="15" text-anchor="middle">einmal ausgeführt</text>
+
+            <!-- jetzt -->
+            <text x="0" y="200" fill="#C2620A" font-size="15" letter-spacing=".14em">EINE REFERENZSUCHE</text>
+            <g fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2">
+              <rect x="0"   y="220" width="252" height="76" rx="13"/>
+              <rect x="656" y="220" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#191714">
+              <text x="26"  y="264">Suche</text>
+              <text x="682" y="264">Stand von heute</text>
+            </g>
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah-ref-o)">
+              <path d="M262 258 L646 258"/>
+            </g>
+            <text x="454" y="242" fill="#C2620A" font-size="15" text-anchor="middle">bei jedem Aufruf</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die <b>Referenzsuche</b> ist keine eingefrorene Liste: Was einmal als Suche gespeichert wurde, läuft bei jedem Öffnen neu gegen den aktuellen Bestand.</p>
+      <p>Der Punkt, der beim Kunden zählt: <b>Auch wenn sich der Datenbestand geändert hat, kommen die richtigen Bilder.</b> Neue Fälle, die den Kriterien entsprechen, stehen automatisch mit drin.</p>
+      <p>Beim Vorführen das Schaubild von oben nach unten erklären — die obere Zeile ist das, was der Kunde von früher kennt.</p>
+    </template>
+  </section>
+
+  <!-- 21 · aus partD.html [4] -->
+  <section class="slide" data-title="Merging und Migration" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:250px;width:900px">
+        <h2 class="h-1" data-anim>Merging und Migration.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Bestände zusammenführen — aus einer zweiten byzz-Datenbank oder aus einem fremden System.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:540px;width:920px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-database"/></svg></div>
+          <h3 class="card__t">Datenbank-Merging</h3>
+          <p class="card__d">Zwei byzz-Datenbanken lassen sich zusammenführen. Thema bei Praxisübernahmen, Zusammenlegungen und Standortfusionen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-plug"/></svg></div>
+          <h3 class="card__t">Weitere Migrations&shy;möglichkeiten</h3>
+          <p class="card__d">Bilddaten kommen auch aus einem DICOMDIR, aus einem PACS oder aus einer fremden Bildverwaltung (BVS) herein.</p>
+        </div>
+      </div>
+
+      <div class="shot" data-anim style="left:1092px;top:230px;width:716px;height:609px">
+        <img class="shot__spill" src="assets/img/merge-migrator.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/merge-migrator.webp" width="716" height="609" alt="byzz Merge Migrator mit den Quellen Merge, DICOMDIR, PACS und BVS">
+        </div>
+        <img class="shot__soft" src="assets/img/merge-migrator.soft.jpg" alt="">
+        <div class="shot__cap">BYZZ MERGE MIGRATOR</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p><b>Datenbank-Merging</b> führt zwei byzz-Datenbanken zusammen. Das ist das Argument bei Praxisübernahmen, Zusammenlegungen und Standortfusionen — Bestände müssen nicht nebeneinander weiterlaufen.</p>
+      <p>Derselbe Weg holt Bilddaten auch von außen herein: <b>DICOMDIR, PACS und BVS</b> — also Bildverwaltungen anderer Hersteller mit eigener Datenbank.</p>
+      <p>Merging ist ein Projekt, kein Klick: immer vorher mit dem Support abstimmen. Keine Termine und keine Vollständigkeit zusagen.</p>
+    </template>
+  </section>
+
+  <!-- 22 · aus partbase.html [4] -->
+  <section class="slide" data-title="Konfigurator: Aktivierung, Lizenzierung, Patching" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:214px;width:1300px">
+        <h2 class="h-1" data-anim>Der Konfigurator —<br>die Zentrale für administrative Aufgaben.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1040px">Aktivierung, Lizenzierung und Patching laufen zusammen im byzz&nbsp;Konfigurator — nicht mehr über drei getrennte Wege.</p>
+      </div>
+
+      <div class="cards cards--3" data-anim style="left:112px;top:596px;width:1696px">
+        <div class="card glass">
+          <span class="card__n">01</span>
+          <div class="card__ico"><svg><use href="#i-key"/></svg></div>
+          <h3 class="card__t">Aktivierung</h3>
+          <p class="card__d">Neue Installationen werden direkt im Konfigurator freigeschaltet.</p>
+        </div>
+        <div class="card">
+          <span class="card__n">02</span>
+          <div class="card__ico"><svg><use href="#i-doc"/></svg></div>
+          <h3 class="card__t">Lizenzierung</h3>
+          <p class="card__d">Module und Laufzeiten sind an einer Stelle sichtbar und änderbar.</p>
+        </div>
+        <div class="card">
+          <span class="card__n">03</span>
+          <div class="card__ico"><svg><use href="#i-export"/></svg></div>
+          <h3 class="card__t">Patching</h3>
+          <p class="card__d">Updates werden nur über den Konfigurator eingespielt.</p>
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Für den Außendienst der praktische Punkt: <b>ein Werkzeug für alles drei.</b> Kein Suchen mehr, welches Fenster wofür zuständig war.</p>
+      <p>Läuft auf dem Server, nicht am Arbeitsplatz.</p>
+    </template>
+  </section>
+
+  <!-- 23 · aus partD.html [5] -->
+  <section class="slide" data-title="byzz spricht acht Sprachen" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:206px;width:1300px">
+        <h2 class="h-1" data-anim>byzz spricht<br>jetzt acht Sprachen.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1060px">Für weitere Märkte und mehr Kunden.</p>
+      </div>
+
+      <div class="langs" data-anim style="left:112px;top:560px;width:1696px">
+        <div class="lang"><div class="lang__n">Dänisch</div><div class="lang__c">DA</div></div>
+        <div class="lang"><div class="lang__n">Deutsch</div><div class="lang__c">DE</div></div>
+        <div class="lang"><div class="lang__n">Englisch</div><div class="lang__c">EN</div></div>
+        <div class="lang"><div class="lang__n">Französisch</div><div class="lang__c">FR</div></div>
+        <div class="lang"><div class="lang__n">Italienisch</div><div class="lang__c">IT</div></div>
+        <div class="lang"><div class="lang__n">Portugiesisch</div><div class="lang__c">PT</div></div>
+        <div class="lang"><div class="lang__n">Russisch</div><div class="lang__c">RU</div></div>
+        <div class="lang"><div class="lang__n">Spanisch</div><div class="lang__c">ES</div></div>
+      </div>
+
+      <p class="tiny" data-anim style="position:absolute;left:112px;top:846px;width:1100px">Unabhängig davon lässt sich beim DVT-Export die Exportsprache eigens wählen.</p>
+    </div>
+    <template class="notes">
+      <p>byzz 11 kommt in <b>acht Sprachen</b>: Dänisch, Deutsch, Englisch, Französisch, Italienisch, Portugiesisch, Russisch und Spanisch.</p>
+      <p>Zwei Ansatzpunkte im Gespräch: die Export-Märkte und mehrsprachige Teams in größeren Praxen und MVZ — die Oberfläche lässt sich pro Arbeitsplatz umstellen.</p>
+      <p>Nicht verwechseln: Beim <code>DVT-Export</code> gibt es zusätzlich eine eigene Auswahl der Exportsprache, die nur den Betrachter beim Empfänger betrifft.</p>
+    </template>
+  </section>
+
+  <!-- 24 · aus partE.html [0] -->
+  <section class="slide" data-title="byzz app" data-section="4" data-divider data-bare>
+    <div class="slide-inner">
+      <div class="div-block">
+        <div class="div-num" data-anim>ABSCHNITT 04</div>
+        <h2 class="h-l" data-anim>byzz app</h2>
+        <p class="div-meta" data-anim>Ein neues Kapitel in byzz — und eines, das der Kunde in den Händen halten kann.</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Übergang markieren: Bis hierhin ging es um Fundament und Arbeitsplatz. Jetzt kommt das Stück, das <b>aus der Praxis herausgeht</b> — aufs Tablet, aufs Handy, in den Browser.</p>
+      <p>Ankündigen, dass dieser Abschnitt länger ist als die anderen — er ist der wichtigste Punkt des Releases.</p>
+    </template>
+  </section>
+
+  <!-- 25 · aus partE.html [1] -->
+  <section class="slide" data-title="Die byzz app löst ibyzz ab" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:250px">
+        <h2 class="h-1" data-anim>Die byzz app<br>löst ibyzz ab.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Dieselbe App auf Android, iOS, MacOS und im Browser. Die FTP-Installation entfällt — die App spricht direkt mit dem Server-Service.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">Android</span>
+          <span class="chip">iOS</span>
+          <span class="chip">MacOS</span>
+          <span class="chip">Browser</span>
+        </div>
+      </div>
+
+      <!-- Schaubild: alter Weg (FTP) gegen neuen Weg (HTTP) -->
+      <div data-anim style="position:absolute;left:868px;top:300px;width:940px">
+        <svg viewBox="0 0 940 390" style="width:940px;height:390px;overflow:visible">
+          <defs>
+            <marker id="ah-e-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#948C82"/>
+            </marker>
+            <marker id="ah-e-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="16" font-weight="500">
+
+            <!-- Alter Weg. Drei Stationen, rechte Kante buendig mit der Zeile
+                 darunter: 0–188 · 376–564 · 678–940. Die rechte Station ist
+                 breiter als die uebrigen, weil "byzz 10 Server-Service" in
+                 IBM Plex Mono 16 px 212 px misst. -->
+            <text x="0" y="14" fill="#948C82" font-size="15" letter-spacing=".16em">BISHER · ibyzz</text>
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0"   y="38" width="188" height="78" rx="13"/>
+              <rect x="376" y="38" width="188" height="78" rx="13"/>
+              <rect x="678" y="38" width="262" height="78" rx="13"/>
+            </g>
+            <g fill="#948C82" text-anchor="middle">
+              <text x="94"  y="84">Gerät</text>
+              <text x="470" y="84">FTP-Installation</text>
+              <text x="809" y="84">byzz 10 Server-Service</text>
+            </g>
+            <g stroke="#948C82" stroke-width="2" fill="none" marker-end="url(#ah-e-grey)" opacity=".75">
+              <path d="M188 77 L374 77"/>
+              <path d="M564 77 L676 77"/>
+            </g>
+            <text x="0" y="148" fill="#948C82" font-size="15">Manuelle Einrichtung in jeder Praxis · fehleranfällig</text>
+
+            <!-- Neuer Weg -->
+            <text x="0" y="228" fill="#C2620A" font-size="15" letter-spacing=".16em">NEU · byzz app</text>
+            <rect x="0"   y="252" width="188" height="78" rx="13" fill="#FFFFFF" stroke="rgba(25,23,20,.14)"/>
+            <rect x="678" y="252" width="262" height="78" rx="16" fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2"/>
+            <g fill="#191714" text-anchor="middle">
+              <text x="94"  y="298">Gerät</text>
+              <text x="809" y="298">byzz 11 Server-Service</text>
+            </g>
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah-e-orange)">
+              <path d="M188 291 L676 291"/>
+            </g>
+            <text x="432" y="278" fill="#C2620A" font-size="15" letter-spacing=".08em" text-anchor="middle">HTTP</text>
+            <text x="0" y="362" fill="#948C82" font-size="15">Keine Installation · die App verbindet sich direkt</text>
+
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Der Satz, der hängen bleiben muss: <b>ibyzz ist Geschichte.</b> Die byzz app ist der Nachfolger — dieselbe App für Android, iOS, MacOS und Browser.</p>
+      <p>Einen Server-Service gab es auch in byzz 10 schon. Der schmerzhafte Teil war die <b>FTP-Installation</b>, einmal pro Gerät. Genau die entfällt, weil die App über HTTP direkt mit dem Server-Service spricht — die Umstellung aus Abschnitt 01.</p>
+      <p>Beim Vorführen: das Schaubild von oben nach unten erklären, nicht andersherum. Der Kunde erkennt seinen eigenen Frust in der oberen Zeile wieder.</p>
+    </template>
+  </section>
+
+  <!-- 26 · aus partE.html [2] -->
+  <section class="slide" data-title="Einstieg über den Browser" data-section="4">
+    <div class="slide-inner">
+      <!-- Die Ueberschrift laeuft ueber die volle Breite, nicht in .col-l:
+           "Client-Erstinstallation ohne Medium." misst in h-1 rund 1180 px und
+           wuerde in der 660er Spalte in vier Zeilen zerfallen. Das Panel rutscht
+           dafuer unter die Ueberschrift und wird kleiner. -->
+      <div style="position:absolute;left:112px;top:196px;width:1400px">
+        <h2 class="h-1" data-anim>Client-Erstinstallation ohne Medium.<br>App&nbsp;Zugriff ohne Installation.</h2>
+        <div class="rule" data-anim></div>
+      </div>
+
+      <div class="col-l" style="top:432px">
+        <!-- Umbruch von Hand: der automatische liesse "Browser" allein stehen,
+             und die Adresszeile darunter saesse dann unter einem Schusterjungen. -->
+        <p class="lead" data-anim>Direktzugriff auf den Server-Service<br>über den Browser</p>
+        <!-- Die Adresszeile sitzt mittig unter der Zeile darueber, deshalb
+             text-align:center ueber die volle Spaltenbreite. -->
+        <p class="mono" data-anim style="margin-top:14px;width:660px;text-align:center;font-size:26px;line-height:1.3;color:var(--ink)">http://&lt;servername&gt;:8100</p>
+
+        <div class="marks" data-anim style="position:relative;margin-top:34px;width:660px">
+          <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Browser-App starten</b> — läuft sofort, es wird nichts installiert.</p></div>
+          <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Desktop-App laden</b> — der Download für den festen Arbeitsplatz.</p></div>
+        </div>
+
+        <p class="tiny" data-anim style="margin-top:24px">Oben die Version, unten Kontakt und TeamViewer für den Support.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:1008px;top:420px;width:800px;height:450px">
+        <img class="shot__spill" src="assets/img/app-home.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-home.webp" width="1600" height="899" alt="Startseite der byzz app mit den Schaltflächen für die Browser-App und den Desktop-App-Download">
+        </div>
+        <img class="shot__soft" src="assets/img/app-home.soft.jpg" alt="">
+        <div class="shot__cap">STARTSEITE · BROWSER ODER DESKTOP</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Das ist die Folie für den Termin beim Kunden: <b>Adresse aufrufen, Browser-App starten, fertig.</b> Kein Setup, keine Rechte, kein IT-Termin nötig.</p>
+      <p>Die Desktop-App ist derselbe Funktionsumfang für Arbeitsplätze, an denen dauerhaft damit gearbeitet wird.</p>
+      <p>Beim Vorführen ruhig einmal zeigen, dass unten Kontakt und TeamViewer-Zugang stehen — das nimmt der Praxis die Sorge, im Ernstfall allein dazustehen.</p>
+    </template>
+  </section>
+
+  <!-- 27 · aus partE.html [3] -->
+  <section class="slide" data-title="Login" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:284px">
+        <h2 class="h-1" data-anim>Login wie in der<br>Desktop&nbsp;Anwendung.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Anmeldung wie gewohnt.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">Praxis</span>
+          <span class="chip">Benutzer</span>
+          <span class="chip">Passwort</span>
+        </div>
+        <p class="tiny" data-anim style="margin-top:24px">Unten stehen byzz-Version und App-Version nebeneinander — die erste Frage im Support ist damit beantwortet.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:551px">
+        <img class="shot__spill" src="assets/img/app-login.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-login.webp" width="1600" height="892" alt="Anmeldemaske der byzz app mit den Feldern Praxis, Benutzer und Passwort">
+        </div>
+        <img class="shot__soft" src="assets/img/app-login.soft.jpg" alt="">
+        <div class="shot__cap">ANMELDUNG · PRAXIS, BENUTZER, PASSWORT</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Kurz halten. Wichtig ist nur: <b>gemerkter Standardlogin</b> — am Tablet im Behandlungszimmer will niemand dreimal täglich eine Praxiskennung tippen.</p>
+      <p>Die beiden Versionsnummern unten immer mitzeigen. Bei jedem Support-Fall werden genau diese zwei Zahlen gebraucht.</p>
+    </template>
+  </section>
+
+  <!-- 28 · aus partE.html [4] -->
+  <section class="slide" data-title="Patientenliste" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:300px">
+        <h2 class="h-1" data-anim>Der Patient ist<br>sofort da.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Oben das Suchfeld, am Rand der alphabetische Schnellzugriff. Links die Auswahl, rechts der Inhalt.</p>
+        <p class="tiny" data-anim style="margin-top:28px">Dasselbe Bedienmuster — wer es einmal kennt, findet sich überall zurecht.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:510px">
+        <img class="shot__spill" src="assets/img/app-patienten.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-patienten.webp" width="1600" height="826" alt="Patientenliste der byzz app mit Suchfeld und alphabetischem Schnellzugriff am Rand">
+        </div>
+        <img class="shot__soft" src="assets/img/app-patienten.soft.jpg" alt="">
+        <div class="shot__cap">PATIENTEN · SUCHE UND ALPHABET-SPRUNG</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die Patientenliste ist der Einstieg in alles Weitere. <b>Suchen oder springen</b> — mehr Wege gibt es nicht, und mehr braucht es auch nicht.</p>
+      <p>Der Alphabet-Streifen am Rand ist für die Bedienung mit dem Daumen gemacht, nicht für die Maus. Beim Vorführen deshalb wirklich am Tablet zeigen.</p>
+    </template>
+  </section>
+
+  <!-- 29 · aus partE.html [5] -->
+  <section class="slide" data-title="Medien nach Typ" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:250px">
+        <h2 class="h-1" data-anim>Bekannte Aufteilung<br>der Bildtypen.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Innerhalb eines Patienten liegen die Bilder in den entsprechenden Kategorien.</p>
+        <div data-anim style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip chip--muted">Alles</span>
+          <span class="chip chip--muted">Kamera</span>
+          <span class="chip chip--muted">Kleinröntgen</span>
+          <span class="chip chip--muted">OPG</span>
+          <span class="chip chip--muted">Fernröntgen</span>
+          <span class="chip">DVT</span>
+          <span class="chip chip--muted">Dokument</span>
+          <span class="chip chip--muted">Modelldaten</span>
+        </div>
+        <p class="tiny" data-anim style="margin-top:24px">Jede Kachel zeigt das Aufnahmedatum und ein Info-Symbol.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:551px">
+        <img class="shot__spill" src="assets/img/app-dvts.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-dvts.webp" width="1600" height="892" alt="Patientenakte in der byzz app, Reiter DVT mit Kacheln und Aufnahmedatum">
+        </div>
+        <img class="shot__soft" src="assets/img/app-dvts.soft.jpg" alt="">
+        <div class="shot__cap">PATIENTENAKTE · REITER DVT</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die Reiter sind die einzige Navigation innerhalb eines Patienten: <b>ein Reiter je Medientyp</b>, links im Bild der ausgewählte.</p>
+      <p>Für den Behandler heißt das: kein Scrollen durch alles, was je aufgenommen wurde. Wer das OPG sucht, tippt auf OPG.</p>
+      <p>Das Aufnahmedatum steht an jeder Kachel — das ist beim Vergleich alter und neuer Aufnahmen der entscheidende Wert.</p>
+    </template>
+  </section>
+
+  <!-- 30 · aus partE.html [6] -->
+  <section class="slide" data-title="DVT-Viewer in der App" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Ein DVT auf dem<br>Tablet — direkt<br>am Stuhl.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Der DVT-Viewer auch in der App: konfigurierbare MPR/3D-Ansicht.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">3D</span>
+          <span class="chip">Axial</span>
+          <span class="chip">Sagittal</span>
+          <span class="chip">Coronal</span>
+        </div>
+        <p class="tiny" data-anim style="margin-top:26px">Die Fadenkreuze lassen sich verschieben — die Schnittebenen folgen.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:553px">
+        <img class="shot__spill" src="assets/img/app-3d.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-3d.webp" width="1600" height="896" alt="DVT-Viewer der byzz app mit 3D-Rendering und den Schnittebenen axial, sagittal und coronal">
+        </div>
+        <img class="shot__soft" src="assets/img/app-3d.soft.jpg" alt="">
+        <div class="shot__cap">DVT-VIEWER · 3D UND DREI SCHNITTEBENEN</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Das ist die Folie, an der die meisten Kunden aufhorchen: <b>ein vollwertiger DVT-Viewer auf dem Tablet</b>, kein Standbild und kein abgespeckter Betrachter.</p>
+      <p>Nutzen: Der Behandler bleibt am Stuhl und zeigt dem Patienten die Aufnahme dort, wo das Gespräch stattfindet.</p>
+      <p>Beim Vorführen ein Fadenkreuz mit dem Finger ziehen und zusehen lassen, wie die anderen beiden Ebenen mitlaufen. Das erklärt mehr als jede Beschreibung.</p>
+    </template>
+  </section>
+
+  <!-- 31 · aus partE.html [7] -->
+  <section class="slide" data-title="Alles in einer App" data-section="4">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:206px;width:1300px">
+        <h2 class="h-1" data-anim>Vier Betrachter stecken in der App,<br>begleitet von der Kamera-Aufnahme.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1040px">Für jeden Medientyp bringt die byzz app den passenden Betrachter mit.</p>
+      </div>
+
+      <!-- Die vier Betrachter als 2x2-Block, die Kamera-Aufnahme daneben ueber
+           beide Reihen: sie ist kein Betrachter, sondern der Weg hinein. -->
+      <div class="cards cards--app" data-anim style="left:112px;top:518px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-cube"/></svg></div>
+          <h3 class="card__t">DVT-Viewer</h3>
+          <p class="card__d">3D-Rendering und drei Schnittebenen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-scan"/></svg></div>
+          <h3 class="card__t">Model-Viewer</h3>
+          <p class="card__d">Modelldaten am Gerät ansehen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-doc"/></svg></div>
+          <h3 class="card__t">PDF-Viewer</h3>
+          <p class="card__d">Dokumente in der App öffnen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-film"/></svg></div>
+          <h3 class="card__t">Video-Player</h3>
+          <p class="card__d">Videos in der App abspielen.</p>
+        </div>
+        <div class="card card--wide">
+          <div class="card__ico"><svg><use href="#i-camera"/></svg></div>
+          <h3 class="card__t">Kamera-Aufnahme</h3>
+          <p class="card__d">Aufnahmen mit der Gerätekamera.</p>
+          <span class="path"><svg><use href="#i-layout"/></svg>Reiter Kamera</span>
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Zusammenfassung des Abschnitts: <b>ein Programm statt fünf.</b> Was in der Akte liegt, lässt sich in der App auch öffnen — ohne Umweg über ein anderes Werkzeug.</p>
+      <p>Vier Betrachter: DVT, Modelldaten, PDF und Video. Die <b>Kamera-Aufnahme ist kein Betrachter</b>, sondern der Weg hinein — sie sitzt im Reiter Kamera.</p>
+      <p>Der DVT-Viewer ist das Argument, die übrigen drei sind die Selbstverständlichkeit, die eine App zum Arbeitsgerät macht.</p>
+      <p>Zu PDF, Video und Kamera keine Detailversprechen machen — dazu liegt noch nichts vor.</p>
+    </template>
+  </section>
+
+  <!-- 32 · aus partA.html [1] -->
+  <section class="slide" data-title="byzz in neuer Generation">
+    <div class="slide-inner">
+
+      <div style="position:absolute;left:112px;top:200px;width:1500px">
+        <h2 class="h-1" data-anim>byzz in neuer Generation.</h2>
+        <div class="rule" data-anim></div>
+      </div>
+
+      <!-- Vier Karten in zwei Reihen: ein Raster, nicht zwei. -->
+      <div class="cards cards--2" data-anim style="left:112px;top:380px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-mobile"/></svg></div>
+          <h3 class="card__t">Eine App für alle Geräte</h3>
+          <p class="card__d">Die byzz&nbsp;app läuft auf Android, iOS, MacOS und im Browser.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-cube"/></svg></div>
+          <h3 class="card__t">DVT-Viewer</h3>
+          <p class="card__d">Für einfaches Betrachten keine extra Software mehr benötigt.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-export"/></svg></div>
+          <h3 class="card__t">DVT-Export mit Betrachter</h3>
+          <p class="card__d">Der Export bringt seinen eigenen Betrachter mit — der Empfänger braucht nichts zu installieren.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-brain"/></svg></div>
+          <h3 class="card__t">KI-Unterstützung für Kleinröntgen und OPGs</h3>
+          <p class="card__d">Durch Nostic werden potentielle Läsionen im Röntgenbild markiert.</p>
+        </div>
+      </div>
+
+    </div>
+    <template class="notes">
+      <p>Das ist die Folie zum Abfotografieren: vier Sätze, die beim Kunden ohne Rückfrage funktionieren.</p>
+      <p>Der stärkste Einstieg ist meist die <b>byzz app</b> — ein Gerät, das der Kunde in der Hand hält, überzeugt schneller als jede Architektur.</p>
+      <p>Beim KI-Punkt immer dazusagen: <b>befundet wird weiter selbst.</b> Sonst entsteht eine Erwartung, die niemand einlösen will.</p>
+    </template>
+  </section>
+
+  <!-- 33 · aus partA.html [2] -->
+  <section class="slide" data-title="Fragen" data-bare>
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:404px;width:1180px">
+        <div class="div-num" data-anim>BYZZ 11</div>
+        <h2 class="h-l" data-anim>Fragen?</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Auch weitere Anmerkungen und Wünsche sind willkommen.</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Offene Punkte jetzt sammeln, nicht auf später vertrösten. Anmerkungen und Wünsche aus dem Außendienst ausdrücklich einladen und mitschreiben.</p>
+      <p>Wer etwas nachschauen will: <code>Hilfe → Webinare</code> ist der kürzeste Weg — der Menüpunkt ist selbst Teil von byzz 11.</p>
+    </template>
+  </section>
+
+  <!-- SLIDES:END -->
+
+  <div id="brand"><img src="assets/brand/logo_od_premium_big.png" alt="orangedental — premium innovations"></div>
+  <div id="wordmark" aria-hidden="true">byzz&nbsp;<b>11</b></div>
+  <div id="progress"></div>
+
+  </div><!-- /#frame -->
+</div>
+
+<div id="overview"><div class="ov-grid"></div></div>
+<div id="hint"></div>
+
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/transitions.js"></script>
+<script src="assets/js/overview.js"></script>
+<script src="assets/js/presenter.js"></script>
+<script src="assets/js/deck.js"></script>
+</body>
+</html>
