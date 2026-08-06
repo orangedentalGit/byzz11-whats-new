@@ -1,0 +1,56 @@
+# Veröffentlicht das Deck auf GitHub Pages.
+#
+# Diese Datei gehört NICHT in dieses Projekt, sondern in das Release-Repository:
+#   .github/workflows/pages.yml
+# Anleitung: dev/docs/VEROEFFENTLICHEN.md
+#
+# Voraussetzung im Repo: Settings -> Pages -> Source steht auf "GitHub Actions".
+# Steht dort "Deploy from a branch", läuft stattdessen GitHubs eingebauter
+# Workflow und diese Datei wird ignoriert.
+
+name: Deck auf GitHub Pages veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # erlaubt einen neuen Anlauf ohne Commit
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Ein Deployment zur Zeit. cancel-in-progress bleibt false: ein laufendes
+# Deployment abzubrechen ist genau der Zustand, der die Warteschlange blockiert.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Alle drei Actions laufen auf Node 24. Ältere Hauptversionen lösen die
+      # Deprecation-Meldung zu Node 20 aus — sachlich harmlos, aber vermeidbar.
+      - name: Repository auschecken
+        uses: actions/checkout@v6
+
+      # Ein Job ohne Build-Schritt: das Deck ist bereits fertig, es wird nur
+      # verpackt. path: . nimmt das gesamte Repository. Kein Jekyll — der
+      # Inhalt geht unverändert raus.
+      - name: Deck als Pages-Artefakt packen
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v5
+        with:
+          # Voreinstellung sind 600000 ms. GitHubs Pages-Warteschlange hängt
+          # zeitweise mehrere Minuten; 20 Minuten überstehen das, statt nach
+          # zehn mit "Timeout reached, aborting!" abzubrechen.
+          timeout: 1200000
