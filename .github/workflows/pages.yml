@@ -46,11 +46,10 @@ jobs:
         with:
           path: .
 
+      # Kein timeout: setzen. 600000 ms sind nicht nur die Voreinstellung,
+      # sondern das erlaubte Maximum — höhere Werte werden kommentarlos darauf
+      # zurückgesetzt ("timeout value is greater than the allowed maximum").
+      # Gegen eine hängende Pages-Warteschlange hilft der Parameter also nicht.
       - name: Auf GitHub Pages veröffentlichen
         id: deployment
         uses: actions/deploy-pages@v5
-        with:
-          # Voreinstellung sind 600000 ms. GitHubs Pages-Warteschlange hängt
-          # zeitweise mehrere Minuten; 20 Minuten überstehen das, statt nach
-          # zehn mit "Timeout reached, aborting!" abzubrechen.
-          timeout: 1200000
