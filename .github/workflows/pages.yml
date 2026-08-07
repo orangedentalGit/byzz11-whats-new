@@ -1,12 +1,17 @@
 # Veröffentlicht das Deck auf GitHub Pages.
 #
-# Diese Datei gehört NICHT in dieses Projekt, sondern in das Release-Repository:
-#   .github/workflows/pages.yml
-# Anleitung: dev/docs/VEROEFFENTLICHEN.md
+# Diese Datei liegt hier in derselben Struktur, in der sie auch im Repository
+# stehen muss — publish.bat kopiert sie unverändert nach publish\.github\.
+# GitHub erkennt Workflows ausschließlich unter .github/workflows/. Weder eine
+# pages.yml in der Wurzel noch ein workflows/ ohne .github wird gefunden, und
+# beides bleibt ohne Fehlermeldung: Es läuft dann stillschweigend GitHubs
+# eingebauter Workflow weiter.
+#
+# Anleitung und Fehlerdiagnose: dev/docs/VEROEFFENTLICHEN.md
 #
 # Voraussetzung im Repo: Settings -> Pages -> Source steht auf "GitHub Actions".
-# Steht dort "Deploy from a branch", läuft stattdessen GitHubs eingebauter
-# Workflow und diese Datei wird ignoriert.
+# Steht dort "Deploy from a branch", läuft ebenfalls der eingebaute Workflow und
+# diese Datei wird ignoriert.
 
 name: Deck auf GitHub Pages veröffentlichen
 

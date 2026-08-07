@@ -133,7 +133,8 @@
 
     var keys = el('div', 'keys');
     keys.innerHTML =
-      '<b>← →</b> blättern &nbsp; <b>F</b> Vollbild &nbsp; <b>O</b> Übersicht &nbsp; ' +
+      '<b>← →</b> blättern &nbsp; <b>Pos1</b> erste Folie &nbsp; <b>Ende</b> letzte Folie &nbsp; ' +
+      '<b>F</b> Vollbild &nbsp; <b>O</b> Übersicht &nbsp; ' +
       '<b>B</b> Weichzeichnung &nbsp; <b>R</b> Timer zurücksetzen';
 
     /* Tasten im Popup an die Deck-Logik des Openers weiterreichen. */

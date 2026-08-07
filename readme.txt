@@ -1,5 +1,5 @@
 ===============================================================================
-  byzz 11 - "Was ist neu"          Praesentation, 33 Folien
+  byzz 11 - "Was ist neu"          Praesentation, 34 Folien
 ===============================================================================
 
 
@@ -18,7 +18,7 @@
   ---------------------------------------------------------------------------
 
   byzz-11-was-ist-neu.pdf enthaelt dieselben Folien statisch - ohne
-  Uebergaenge, dafuer zum Weitergeben, Ausdrucken und Mitlesen. 37 Seiten,
+  Uebergaenge, dafuer zum Weitergeben, Ausdrucken und Mitlesen. 38 Seiten,
   weil die beiden mehrstufigen Folien jeden Schritt einzeln zeigen. Die
   Videos stehen dort als Standbild.
 
@@ -108,8 +108,8 @@
   03 - 07   Neues unter der Haube
   08 - 10   Neue Menuepunkte
   11 - 23   Neue Features
-  24 - 31   byzz app
-  32 - 33   Zusammenfassung und Fragen
+  24 - 32   byzz app
+  33 - 34   Zusammenfassung und Dank
 
   Eigene Demo-Folien gibt es nicht mehr. Wer live in byzz zeigen will,
   wechselt einfach an der passenden Stelle in das Programm und kommt

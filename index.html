@@ -41,6 +41,9 @@
   <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2.6l8 4.2v9.4l-8 4.2-8-4.2V6.8z"/><path d="M4 6.8l8 4.2 8-4.2M12 11v9.4"/></symbol>
   <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5.2a3.2 3.2 0 0 0-6.1 1.3A3 3 0 0 0 4 9.3a3 3 0 0 0 1.2 2.4A3 3 0 0 0 5 13.5a3.1 3.1 0 0 0 2.6 3A3 3 0 0 0 12 18.6z"/><path d="M12 5.2a3.2 3.2 0 0 1 6.1 1.3A3 3 0 0 1 20 9.3a3 3 0 0 1-1.2 2.4A3 3 0 0 1 19 13.5a3.1 3.1 0 0 1-2.6 3A3 3 0 0 1 12 18.6z"/><path d="M12 5.2v13.4"/></symbol>
   <symbol id="i-export" viewBox="0 0 24 24"><path d="M21 14v4.5A2.5 2.5 0 0 1 18.5 21h-13A2.5 2.5 0 0 1 3 18.5V14"/><path d="M12 3v12M8 7l4-4 4 4"/></symbol>
+  <!-- Gespiegeltes i-export: Pfeil nach unten. Ein Download mit dem Export-Pfeil
+       nach oben liest sich falsch herum, auch wenn die Schale dieselbe ist. -->
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 14v4.5A2.5 2.5 0 0 1 18.5 21h-13A2.5 2.5 0 0 1 3 18.5V14"/><path d="M12 3v12M16 11l-4 4-4-4"/></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.3-2h7l1.3 2h1.7A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="12.8" r="3.6"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L21 21"/></symbol>
   <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5.8" rx="7.5" ry="3"/><path d="M4.5 5.8v12.4c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V5.8"/><path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3"/></symbol>
@@ -90,8 +93,8 @@
       </div>
     </div>
     <template class="notes">
-      <p>Begrüßung. <b>byzz 11</b> ist kein Punkt-Release — unter der Haube ist mehr passiert als in den letzten drei Versionen zusammen.</p>
-      <p>Ablauf ansagen: vier Blöcke — Fundament, Bedienung, Funktionen, App. Fragen gern sofort.</p>
+      <p>In <b>byzz 11</b> ist unter der Haube mehr passiert als in den letzten drei Versionen zusammen.</p>
+      <p>Die folgenden Folien zeigen in vier Blöcken, was neu ist — Fundament, Bedienung, Funktionen und die byzz app.</p>
     </template>
   </section>
 
@@ -105,7 +108,9 @@
         <div class="rule" data-anim></div>
         <p class="lead" data-anim>Fundament, Bedienung, Funktionen, App</p>
         <div data-anim style="margin-top:34px">
-          <span class="chip">Auch live in byzz</span>
+          <a class="chip chip--link" href="https://data.orangedental.de/f/1b3950c2c83846a78f99/?dl=1" target="_blank" rel="noopener">
+            <svg><use href="#i-download"/></svg>Diese Präsentation als PDF herunterladen
+          </a>
         </div>
       </div>
 
@@ -147,9 +152,9 @@
       </div>
     </div>
     <template class="notes">
-      <p>Kurz durchgehen, nicht vorlesen. Wichtig ist die <b>Reihenfolge</b>: Block 01 erklärt, warum der Rest überhaupt möglich ist.</p>
-      <p>Ansagen, dass zwischendurch auch live in byzz gezeigt wird — dann wartet niemand auf Screenshots.</p>
-      <p>Block 03 ist der längste. Wer knapp in der Zeit ist, kürzt dort und nicht bei 01.</p>
+      <p>Die Präsentation ist in vier Blöcke geteilt. Die Reihenfolge hat einen Grund: Block 01 beschreibt das Fundament — HTTP, 64 Bit, byzz Paro, Face-Scan — und erklärt damit, warum das Übrige überhaupt möglich ist.</p>
+      <p>Block 02 sind die neuen Menüpunkte, Block 03 mit Abstand der größte: Bildansichten, KI, 3D, Export und Sprachen. Block 04 gehört der byzz app, die ibyzz ablöst.</p>
+      <p>Der Link unter der Überschrift führt auf diese Präsentation als PDF.</p>
     </template>
   </section>
 
@@ -163,7 +168,7 @@
       </div>
     </div>
     <template class="notes">
-      <p>Überleitung: Das hier ist der Teil, den der Kunde <b>nicht</b> sieht — und genau deshalb der Teil, der am längsten hält.</p>
+      <p>Der erste Block betrifft das Fundament: HTTP-Kommunikation, 64 Bit, das überarbeitete byzz Paro und die Anpassung an den Green X evo 21. Das ist der Teil, den man im Alltag <b>nicht</b> sieht — und genau deshalb der Teil, der am längsten hält.</p>
     </template>
   </section>
 
@@ -175,7 +180,7 @@
         <div class="rule" data-anim></div>
         <p class="lead" data-anim>Die Kommunikation läuft über ein Standardprotokoll statt über eine Microsoft-spezifische Implementierung.</p>
         <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
-          <span class="path"><svg><use href="#i-server"/></svg>Schema&nbsp;http</span>
+          <span class="path"><svg><use href="#i-server"/></svg>Schema&nbsp;http/https</span>
           <span class="path"><svg><use href="#i-link"/></svg>Port&nbsp;8100</span>
         </div>
       </div>
@@ -227,10 +232,9 @@
       </div>
     </div>
     <template class="notes">
-      <p>Kernaussage: <b>ein Standardprotokoll statt einer Microsoft-spezifischen Implementierung.</b> Das ist der Punkt, den die IT des Kunden hören will.</p>
-      <p>Nicht zu viel versprechen: die Netzwerkfreigabe auf das Bildverzeichnis bleibt — sie richtet der Konfigurator allerdings selbst ein.</p>
-      <p>Schema und Port stehen im Konfigurator — kommt später noch mal.</p>
-      <p>Nebeneffekt: sauberer durch Firewalls, und die Grundlage dafür, dass die byzz app überhaupt funktioniert.</p>
+      <p>Server und Clients sprechen in byzz 11 <b>HTTP</b> — ein Standardprotokoll statt einer Microsoft-spezifischen Implementierung. Der Server-Service ist damit ein Webservice; die Clients erreichen ihn über Schema und Port, beides einstellbar im Konfigurator.</p>
+      <p>Was bleibt: die Netzwerkfreigabe auf das Bildverzeichnis. Sie richtet der Konfigurator allerdings selbst ein.</p>
+      <p>Zwei Folgen daraus: Der Verkehr läuft sauberer durch Firewalls, und die byzz app kann überhaupt erst mit dem Server sprechen.</p>
     </template>
   </section>
 
@@ -274,8 +278,8 @@
     </div>
     <template class="notes">
       <p>byzz 11 ist als <b>64-Bit-Anwendung</b> gebaut. Eine 32-Bit-Anwendung kann nie mehr als 4 GB adressieren — an dieser Grenze sind große DVT-Datensätze und 3D-Modelle bisher gescheitert.</p>
-      <p>Für den Kunden heißt das: Der Arbeitsspeicher im Rechner wird tatsächlich nutzbar. Wer viel mit DVT und Modelldaten arbeitet, merkt es zuerst.</p>
-      <p>Nicht mit konkreten Zahlen argumentieren — wie groß ein Datensatz werden darf, hängt am Rechner des Kunden, nicht an byzz.</p>
+      <p>In der Praxis heißt das: Der Arbeitsspeicher im Rechner wird tatsächlich nutzbar. Wer viel mit DVT und Modelldaten arbeitet, merkt es zuerst.</p>
+      <p>Eine feste Obergrenze gibt es damit nicht mehr zu nennen — wie groß ein Datensatz werden darf, hängt ab jetzt am Rechner, nicht an byzz.</p>
     </template>
   </section>
 
@@ -304,7 +308,7 @@
     <template class="notes">
       <p><b>byzz Paro</b> — das Modul für Parodontal-Befunde — wurde komplett überarbeitet und läuft dadurch spürbar schneller. Wer den Paro-Status regelmäßig erhebt, merkt das bei jedem Aufruf.</p>
       <p>Für den <b>Green X evo 21</b> wurde byzz 11 angepasst, insbesondere für den Face-Scan des Geräts.</p>
-      <p>Beim Vorführen: Paro nur zeigen, wenn im Testbestand wirklich ein Befund liegt — an einer leeren Karte sagt die Überarbeitung nichts.</p>
+      <p>Beides sind Anpassungen im Bestand, keine neuen Module: Wer Paro und den Green X evo 21 bereits nutzt, arbeitet weiter wie bisher — nur schneller und ohne Sonderweg für den Face-Scan.</p>
     </template>
   </section>
 
@@ -337,9 +341,9 @@
       </div>
     </div>
     <template class="notes">
-      <p>byzz 11 sucht beim Start selbst nach den unterstützten Fremdprogrammen und trägt die Pfade ein. Vorher musste jeder Pfad von Hand gesucht und eingetragen werden — eine der häufigsten Rückfragen bei der Installation.</p>
+      <p>byzz 11 kennt die <b>Standardpfade</b> der unterstützten Fremdprogramme. Sie stehen unter <code>Einstellungen → Externe Programme</code> von vornherein in den Feldern — liegt ein Programm dort, wo sein Installationsprogramm es hinlegt, und das ist der Regelfall, ist es damit sofort nutzbar.</p>
       <p>Vordefiniert sind <b>Diagnocat</b>, <b>exocad</b>, <b>Fussen</b> (ScanFlex, inklusive Preparation, Scanabutment und ModelViewer) und <b>Shining 3D</b> (DentalLauncher).</p>
-      <p>Beim Vorführen <code>Einstellungen → Externe Programme</code> öffnen und zeigen, dass die Felder schon gefüllt sind. Ist ein Programm nicht installiert, bleibt sein Feld leer — das ist kein Fehler.</p>
+      <p>Weicht eine Installation ausnahmsweise vom Standardpfad ab, lässt sich der Eintrag im selben Dialog anpassen. Leer bleibt ein Feld dabei nie — es steht immer der Standardpfad darin. Vorher musste jeder Pfad von Hand gesucht und eingetragen werden, eine der häufigsten Rückfragen bei der Installation.</p>
     </template>
   </section>
 
@@ -353,23 +357,35 @@
       </div>
     </div>
     <template class="notes">
-      <p>Überleitung: Ab hier geht es um Dinge, die man <b>sieht</b> — drei neue Einträge in den Menüs.</p>
-      <p>Klein im Umfang, aber genau die Sorte Detail, nach der im Gespräch gefragt wird. Wer sie kennt, kann sie in zehn Sekunden zeigen.</p>
+      <p>Ab hier geht es um Dinge, die man <b>sieht</b>: vier neue Einträge in den Menüs — drei im Hilfe-Menü, einer im Menü Ansicht.</p>
+      <p>Klein im Umfang, aber alle vier führen zu etwas, das vorher nicht aus byzz heraus erreichbar war.</p>
     </template>
   </section>
 
   <!-- 09 · aus partB.html [4] -->
   <section class="slide" data-title="Das Hilfe-Menü" data-section="2">
     <div class="slide-inner">
-      <div style="position:absolute;left:112px;top:236px;width:1300px">
-        <h2 class="h-1" data-anim>Webinare und App<br>stehen jetzt im Hilfe-Menü.</h2>
+      <div style="position:absolute;left:112px;top:214px;width:1300px">
+        <h2 class="h-1" data-anim>Drei neue Einträge im Hilfe-Menü.</h2>
         <div class="rule" data-anim></div>
-        <p class="lead" data-anim style="max-width:1040px">Zwei neue Einträge, beide führen aus byzz heraus.</p>
+        <p class="lead" data-anim style="max-width:1040px">Alle drei führen aus byzz heraus.</p>
       </div>
 
-      <div class="cards cards--2" data-anim style="left:112px;top:548px;width:1696px">
+      <!-- Drei Karten statt zwei: die Ueberschrift ist deshalb einzeilig und der
+           Block startet frueher. Zweizeilig plus QR-Codes passt nicht mehr
+           zwischen y=200 und y=940. -->
+      <div class="cards cards--3" data-anim style="left:112px;top:440px;width:1696px">
 
         <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-globe"/></svg></div>
+          <h3 class="card__t">Häufig gestellte Fragen</h3>
+          <div style="display:flex;margin:4px 0 18px">
+            <span class="path"><svg><use href="#i-globe"/></svg>Hilfe&nbsp;→&nbsp;Häufig gestellte Fragen</span>
+          </div>
+          <p class="card__d">Führt auf die FAQ-Seite der orangedental-Webseite — dort stehen die Antworten auf die häufigsten Fragen.</p>
+        </div>
+
+        <div class="card">
           <div class="card__ico"><svg><use href="#i-play"/></svg></div>
           <h3 class="card__t">Webinare</h3>
           <div style="display:flex;margin:4px 0 18px">
@@ -379,27 +395,24 @@
         </div>
 
         <div class="card">
-          <div style="display:flex;gap:24px;align-items:flex-start">
-            <div style="flex:1;min-width:0">
-              <div class="card__ico"><svg><use href="#i-mobile"/></svg></div>
-              <h3 class="card__t">App für Mobilgeräte</h3>
-              <div style="display:flex;margin:4px 0 18px">
-                <span class="path"><svg><use href="#i-mobile"/></svg>Hilfe&nbsp;→&nbsp;App für Mobilgeräte</span>
-              </div>
-              <p class="card__d">Zeigt die QR-Codes zu den Stores — App Store und Google Play.</p>
-            </div>
+          <div class="card__ico"><svg><use href="#i-mobile"/></svg></div>
+          <h3 class="card__t">App für Mobilgeräte</h3>
+          <div style="display:flex;margin:4px 0 18px">
+            <span class="path"><svg><use href="#i-mobile"/></svg>Hilfe&nbsp;→&nbsp;App für Mobilgeräte</span>
+          </div>
+          <p class="card__d">Zeigt die QR-Codes zu den Stores — App Store und Google Play.</p>
 
-            <!-- Weisse Flaeche mit Innenabstand: die QR-Module sind dunkel auf
-                 transparent und waeren auf dem Verlaufsgrund schlecht scanbar. -->
-            <div style="flex:none;display:flex;gap:16px;padding:16px;background:#FFFFFF;border:1px solid rgba(25,23,20,.14);border-radius:14px">
-              <div style="text-align:center">
-                <img src="assets/img/qr-appstore.svg" width="132" height="132" alt="QR-Code zum App Store" style="display:block;width:132px;height:132px">
-                <div class="mono" style="font-size:14px;line-height:1.3;color:#948C82;margin-top:8px">App Store</div>
-              </div>
-              <div style="text-align:center">
-                <img src="assets/img/qr-playstore.svg" width="132" height="132" alt="QR-Code zu Google Play" style="display:block;width:132px;height:132px">
-                <div class="mono" style="font-size:14px;line-height:1.3;color:#948C82;margin-top:8px">Google Play</div>
-              </div>
+          <!-- Weisse Flaeche mit Innenabstand: die QR-Module sind dunkel auf
+               transparent und waeren auf dem Verlaufsgrund schlecht scanbar.
+               In der schmalen Karte stehen sie unter dem Text, nicht daneben. -->
+          <div style="display:inline-flex;gap:16px;margin-top:18px;padding:14px;background:#FFFFFF;border:1px solid rgba(25,23,20,.14);border-radius:14px">
+            <div style="text-align:center">
+              <img src="assets/img/qr-appstore.svg" width="112" height="112" alt="QR-Code zum App Store" style="display:block;width:112px;height:112px">
+              <div class="mono" style="font-size:14px;line-height:1.3;color:#948C82;margin-top:8px">App Store</div>
+            </div>
+            <div style="text-align:center">
+              <img src="assets/img/qr-playstore.svg" width="112" height="112" alt="QR-Code zu Google Play" style="display:block;width:112px;height:112px">
+              <div class="mono" style="font-size:14px;line-height:1.3;color:#948C82;margin-top:8px">Google Play</div>
             </div>
           </div>
         </div>
@@ -407,9 +420,9 @@
       </div>
     </div>
     <template class="notes">
-      <p><code>Hilfe → Webinare</code> öffnet die orangedental-Webinare. Dafür braucht der Rechner einen <b>Internet-Zugang</b> — in Praxen ohne Netz am Behandlungsplatz vorher prüfen, sonst läuft die Vorführung ins Leere.</p>
-      <p><code>Hilfe → App für Mobilgeräte</code> zeigt die QR-Codes für App Store und Google Play. Der Kunde muss nichts abtippen und nichts suchen.</p>
-      <p>Beim Vorführen: Handy zücken und einen der beiden Codes vor dem Publikum scannen — das überzeugt schneller als jede Erklärung.</p>
+      <p><code>Hilfe → Häufig gestellte Fragen</code> führt auf die FAQ-Seite der orangedental-Webseite — der schnellste Weg zu einer Antwort, ohne zum Telefon zu greifen.</p>
+      <p><code>Hilfe → Webinare</code> öffnet die orangedental-Webinare. Beide Einträge führen ins Web und brauchen deshalb einen <b>Internet-Zugang</b> am Rechner — an Behandlungsplätzen ohne Netz bleiben sie wirkungslos.</p>
+      <p><code>Hilfe → App für Mobilgeräte</code> zeigt die QR-Codes für App Store und Google Play. Die beiden Codes auf dieser Folie sind dieselben — sie lassen sich direkt vom Bildschirm scannen, nichts abtippen und nichts suchen.</p>
     </template>
   </section>
 
@@ -419,7 +432,7 @@
       <div class="col-l" style="top:224px">
         <h2 class="h-1" data-anim>Das Datum steht<br>am Vorschaubild.</h2>
         <div class="rule" data-anim></div>
-        <p class="lead" data-anim>Datum und Uhrzeit werden direkt in die Vorschaubilder eingeblendet.</p>
+        <p class="lead" data-anim>Datum und Uhrzeit werden auf Wunsch direkt in die Vorschaubilder eingeblendet.</p>
       </div>
 
       <!-- Eigener Block, weil der Menuepfad breiter ist als die Textspalte. -->
@@ -441,8 +454,7 @@
     </div>
     <template class="notes">
       <p><code>Ansicht → Zeige Thumbnail Erstellungsdatum und -zeit</code> blendet Datum und Uhrzeit direkt in die Vorschaubilder ein. Der Menüpunkt ist ein Schalter — er lässt sich genauso wieder abschalten.</p>
-      <p>Nutzen: Man sieht auf einen Blick, wann eine Aufnahme entstanden ist, ohne jedes Bild einzeln zu öffnen. Zahlt vor allem bei Verlaufskontrollen und in der Dokumentation ein.</p>
-      <p>Beim Vorführen einen Patienten mit Aufnahmen aus mehreren Jahren wählen — bei drei Bildern vom selben Tag sieht man den Unterschied nicht.</p>
+      <p>Man sieht auf einen Blick, wann eine Aufnahme entstanden ist, ohne jedes Bild einzeln zu öffnen. Das zahlt vor allem bei Verlaufskontrollen und in der Dokumentation ein — überall dort, wo Aufnahmen aus mehreren Jahren nebeneinander liegen.</p>
     </template>
   </section>
 
@@ -456,8 +468,8 @@
       </div>
     </div>
     <template class="notes">
-      <p>Der <b>größte Block</b> des Decks. Ab hier geht es um das, was der Kunde direkt sieht und bedient.</p>
-      <p>Fragen zu Einzelheiten kurz sammeln — wir gehen die Punkte der Reihe nach durch.</p>
+      <p>Der <b>größte Block</b> der Präsentation. Ab hier geht es um das, was man direkt sieht und bedient.</p>
+      <p>Der Reihe nach: Bildansichten und Oberfläche, KI-gestützte Läsionserkennung, 3D-Modelldaten und DVT, der DVT-Export mit eigenem Betrachter, das dentaleyepad, Referenzsuche, Merging, der Konfigurator und die Sprachen.</p>
     </template>
   </section>
 
@@ -521,9 +533,8 @@
       </div>
     </div>
     <template class="notes">
-      <p>Drei Mal weiterklicken — die Ansicht wechselt an derselben Stelle.</p>
-      <p><b>Standard</b>: anatomisch angeordnet, so wie der Behandler denkt. <b>Raster</b>: gleich große Kacheln, gut zum Suchen. <b>Liste</b>: mit Datum, Zahnnummer und Benutzer — gut für die Dokumentation.</p>
-      <p>Umschalten unten rechts in der Fußleiste, ein Klick. Der Zeiger auf der Folie wandert jeweils auf die aktive Schaltfläche — beim Vorführen ruhig darauf zeigen.</p>
+      <p>Dieselben Bilder in drei Anordnungen. <b>Standard</b>: anatomisch angeordnet, so wie der Behandler denkt. <b>Raster</b>: gleich große Kacheln, gut zum Suchen. <b>Liste</b>: mit Datum, Zahnnummer und Benutzer — gut für die Dokumentation.</p>
+      <p>Umgeschaltet wird unten rechts in der Fußleiste, ein Klick je Modus. Der orangefarbene Zeiger auf der Folie steht jeweils auf der aktiven Schaltfläche.</p>
     </template>
   </section>
 
@@ -549,11 +560,12 @@
         </div>
       </div>
 
-      <p class="tiny" data-anim style="position:absolute;left:112px;top:876px;width:1696px">Ein- und ausblendbar: Control Center · Kamera · Kleinröntgen · OPG · Fernröntgen · DVT · Modelldaten · Dokumente · pa-on · Serien · Eigene Ansichten · Historie · Suche</p>
+      <p class="tiny" data-anim style="position:absolute;left:112px;top:862px;width:1696px">Ein- und ausblendbar: Kamera · Kleinröntgen · OPG · Fernröntgen · DVT · Modelldaten · Dokumente · pa-on · Serien · Eigene Ansichten — Control Center, Historie und Suche bleiben immer sichtbar.</p>
     </div>
     <template class="notes">
-      <p>Jedes Modul in der linken Leiste lässt sich einzeln ein- und ausblenden. <b>Nutzen für den Kunden:</b> Eine Praxis ohne DVT sieht auch keinen DVT-Eintrag — weniger Oberfläche, weniger Rückfragen.</p>
-      <p>Beim Look &amp; Feel bewusst nicht ins Detail gehen: es sind viele kleine Anpassungen, keine einzelne große Änderung. Wer nach einer Liste fragt, bekommt sie ehrlicherweise nicht.</p>
+      <p>Die Module in der linken Leiste lassen sich einzeln ein- und ausblenden. <b>Der Nutzen:</b> Eine Praxis ohne DVT sieht auch keinen DVT-Eintrag — weniger Oberfläche, weniger Rückfragen.</p>
+      <p>Ausgenommen sind <b>Control Center, Historie und Suche</b> — die drei bleiben immer sichtbar. Die vollständige Aufzählung steht unten auf der Folie.</p>
+      <p>Das überarbeitete Look &amp; Feel besteht aus vielen kleinen Anpassungen in der Oberfläche, keine einzelne davon ist groß. Eine Liste dazu gibt es nicht; der Unterschied zeigt sich im Gesamteindruck.</p>
     </template>
   </section>
 
@@ -591,8 +603,8 @@
     </div>
     <template class="notes">
       <p>Die OPG-Aufnahme wird von einer <b>KI von Nostic</b> ausgewertet. Rechts erscheint die Liste potenzieller Läsionen mit Zahnnummer, Klassifikation und Konfidenz in Prozent; die Fundstellen sind im Bild farbig markiert.</p>
-      <p>Beim Vorführen die <b>Konfidenzschwelle</b> einmal hoch- und runterziehen — dass schwache Treffer verschwinden, macht den Nutzen sofort klar. Die Reiter Anatomisch, Anomalie und Restauration trennen die Fundarten.</p>
-      <p>Immer mitsagen: Das ist eine <b>Zweitmeinung, keine Diagnose.</b> Befund und Verantwortung bleiben beim Behandler.</p>
+      <p>Über die <b>Konfidenzschwelle</b> lässt sich einstellen, ab welcher Sicherheit ein Treffer angezeigt wird — schwache Treffer verschwinden damit aus der Liste. Die Reiter Anatomisch, Anomalie und Restauration trennen die Fundarten.</p>
+      <p>Wichtig zur Einordnung: Das ist eine <b>Zweitmeinung, keine Diagnose.</b> Befund und Verantwortung bleiben beim Behandler.</p>
     </template>
   </section>
 
@@ -624,8 +636,8 @@
     </div>
     <template class="notes">
       <p>Modelldaten aus dem Intraoralscan lassen sich im <b>Model-Viewer</b> frei drehen — Ober- und Unterkiefer einzeln oder zusammen in Okklusion.</p>
-      <p>Das Video läuft in Schleife; nichts klicken, einfach laufen lassen und dazu sprechen. Für den Kunden ist das vor allem im <b>Patientengespräch</b> das Argument.</p>
-      <p>Als Dateiformate werden <b>STL, OBJ und PLY</b> gelesen. Darüber hinaus nichts zusagen — weitere Formate vorab mit der Technik klären.</p>
+      <p>Das Video auf der Folie läuft in Schleife und zeigt genau diese Drehbewegung. Am stärksten wirkt das im <b>Patientengespräch</b> — dort erklärt sich das Modell von selbst.</p>
+      <p>Gelesen werden die Dateiformate <b>STL, OBJ und PLY</b>. Zu weiteren Formaten liegt nichts vor.</p>
     </template>
   </section>
 
@@ -660,8 +672,8 @@
     </div>
     <template class="notes">
       <p>In den <b>DVT-Einstellungen</b> wird der byzz-DVT-Viewer als primärer 3D-Viewer gesetzt — danach öffnen DVT-Aufnahmen direkt in diesem Fenster.</p>
-      <p>Axial, sagittal, coronal und das Volumen liegen zusammen auf einem Bild; jede der vier Ansichten lässt sich einzeln groß schalten.</p>
-      <p>Beim Vorführen einmal eine Ansicht groß ziehen und wieder zurück — das ist der Punkt, der hängen bleibt.</p>
+      <p>Axial, sagittal, coronal und das Volumen liegen zusammen auf einem Bild; jede der vier Ansichten lässt sich einzeln groß schalten und wieder zurückstellen.</p>
+      <p>Für das einfache Betrachten einer DVT-Aufnahme wird damit keine zusätzliche Software mehr benötigt.</p>
     </template>
   </section>
 
@@ -691,8 +703,7 @@
     </div>
     <template class="notes">
       <p>Zwei Einstellungen rund um DVT und 3D. Die <b>Ez3D-i Segmentation Engine</b> ist ab byzz 11 in den DVT-Einstellungen ein- und ausschaltbar — praktisch, wenn eine Praxis sie nicht nutzt oder die Leistung am Arbeitsplatz knapp ist.</p>
-      <p>Die <b>3D-Slida-Schnittstelle</b> ist eingebaut, aber noch nicht getestet. Genau so bitte auch beim Kunden formulieren: vorhanden, Freigabe steht aus.</p>
-      <p>Keine Zusagen zu Funktionsumfang oder Termin machen — Nachfragen an die Entwicklung weitergeben.</p>
+      <p>Die <b>3D-Slida-Schnittstelle</b> ist eingebaut, aber noch nicht getestet: vorhanden, Freigabe steht aus. Zu Funktionsumfang und Termin liegt bislang nichts fest.</p>
     </template>
   </section>
 
@@ -750,9 +761,9 @@
       </div>
     </div>
     <template class="notes">
-      <p>Drei Mal weiterklicken. <b>Aufrufen</b>: im Kontextmenü der DVT-Liste steht der neue Eintrag <code>Export (DVT mit Betrachter)</code> direkt unter dem normalen Export.</p>
-      <p><b>Ziel wählen</b>: Zielverzeichnis, dazu drei Optionen — Unterverzeichnis mit Patientenname, kein Unterverzeichnis (überschreibt vorhandene Daten) oder Zip-Datei. Die Exportsprache lässt sich separat einstellen; darauf hinweisen, wenn der Empfänger im Ausland sitzt.</p>
-      <p>Der Verkaufspunkt ist der dritte Schritt: im Zielordner liegen <code>dicom</code>, <code>series</code>, <code>viewer</code> und die <code>DVT-Betrachter.exe</code>. <b>Überweiser, Labor und Patient brauchen kein byzz</b>, um das DVT anzusehen.</p>
+      <p>Der Export in drei Schritten. <b>Aufrufen</b>: im Kontextmenü der DVT-Liste steht der neue Eintrag <code>Export (DVT mit Betrachter)</code> direkt unter dem normalen Export.</p>
+      <p><b>Ziel wählen</b>: Zielverzeichnis, dazu drei Optionen — Unterverzeichnis mit Patientenname, kein Unterverzeichnis (überschreibt vorhandene Daten) oder Zip-Datei. Die Sprache des Betrachters lässt sich separat einstellen, was zählt, wenn der Empfänger im Ausland sitzt.</p>
+      <p>Der entscheidende Schritt ist der dritte: im Zielordner liegen <code>dicom</code>, <code>series</code>, <code>viewer</code> und die <code>DVT-Betrachter.exe</code>. <b>Überweiser, Labor und Patient brauchen kein byzz</b>, um das DVT anzusehen.</p>
     </template>
   </section>
 
@@ -762,7 +773,7 @@
       <div class="col-l" style="top:224px">
         <h2 class="h-1" data-anim>Das dentaleyepad<br>kommuniziert jetzt<br>direkt mit byzz.</h2>
         <div class="rule" data-anim></div>
-        <p class="lead" data-anim>Bisher lief die Anbindung über eine zusätzliche Software. Die entfällt in byzz.</p>
+        <p class="lead" data-anim>Bisher lief die Anbindung über eine zusätzliche Software. Die entfällt in byzz 11.</p>
       </div>
 
       <div class="marks" data-anim style="left:112px;top:636px;width:700px">
@@ -821,8 +832,8 @@
     </div>
     <template class="notes">
       <p>Das <b>dentaleyepad</b> ist in byzz 11 direkt angebunden. Bisher brauchte es dafür eine weitere Software auf dem Rechner — die fällt weg.</p>
-      <p>Für den Kunden heißt das: ein Installationsschritt weniger bei der Einrichtung und ein Programm weniger, das im Betrieb ausfallen kann. Die Aufnahmen landen direkt beim geöffneten Patienten.</p>
-      <p>Beim Vorführen auf den Weg zeigen, nicht auf die Technik: Aufnahme machen, Bild ist da.</p>
+      <p>In der Praxis heißt das: ein Installationsschritt weniger bei der Einrichtung und ein Programm weniger, das im Betrieb ausfallen kann. Die Aufnahmen landen direkt beim geöffneten Patienten.</p>
+      <p>Der Ablauf am Behandlungsplatz bleibt derselbe wie bisher: Aufnahme machen, Bild ist da — nur ohne den Zwischenschritt im Schaubild rechts.</p>
     </template>
   </section>
 
@@ -854,7 +865,7 @@
           <g font-family="IBM Plex Mono, monospace" font-size="17" font-weight="500">
 
             <!-- vorher -->
-            <text x="0" y="16" fill="#948C82" font-size="15" letter-spacing=".14em">EINE GESPEICHERTE LISTE</text>
+            <text x="0" y="16" fill="#948C82" font-size="15" letter-spacing=".14em">GESPEICHERTE LISTE</text>
             <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
               <rect x="0"   y="36" width="252" height="76" rx="13"/>
               <rect x="656" y="36" width="252" height="76" rx="13"/>
@@ -869,7 +880,7 @@
             <text x="454" y="58" fill="#948C82" font-size="15" text-anchor="middle">einmal ausgeführt</text>
 
             <!-- jetzt -->
-            <text x="0" y="200" fill="#C2620A" font-size="15" letter-spacing=".14em">EINE REFERENZSUCHE</text>
+            <text x="0" y="200" fill="#C2620A" font-size="15" letter-spacing=".14em">REFERENZSUCHE</text>
             <g fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2">
               <rect x="0"   y="220" width="252" height="76" rx="13"/>
               <rect x="656" y="220" width="252" height="76" rx="13"/>
@@ -888,8 +899,8 @@
     </div>
     <template class="notes">
       <p>Die <b>Referenzsuche</b> ist keine eingefrorene Liste: Was einmal als Suche gespeichert wurde, läuft bei jedem Öffnen neu gegen den aktuellen Bestand.</p>
-      <p>Der Punkt, der beim Kunden zählt: <b>Auch wenn sich der Datenbestand geändert hat, kommen die richtigen Bilder.</b> Neue Fälle, die den Kriterien entsprechen, stehen automatisch mit drin.</p>
-      <p>Beim Vorführen das Schaubild von oben nach unten erklären — die obere Zeile ist das, was der Kunde von früher kennt.</p>
+      <p>Der Punkt, der zählt: <b>Auch wenn sich der Datenbestand geändert hat, kommen die richtigen Bilder.</b> Neue Fälle, die den Kriterien entsprechen, stehen automatisch mit drin.</p>
+      <p>Das Schaubild rechts stellt beides gegenüber: oben die einmal ausgeführte, gespeicherte Liste mit dem Stand von damals — unten die Referenzsuche, die bei jedem Aufruf den heutigen Stand liefert.</p>
     </template>
   </section>
 
@@ -911,7 +922,7 @@
         <div class="card">
           <div class="card__ico"><svg><use href="#i-plug"/></svg></div>
           <h3 class="card__t">Weitere Migrations&shy;möglichkeiten</h3>
-          <p class="card__d">Bilddaten kommen auch aus einem DICOMDIR, aus einem PACS oder aus einer fremden Bildverwaltung (BVS) herein.</p>
+          <p class="card__d">Bilddaten auch aus DICOMDIR, PACS oder aus einer fremden Bildverwaltung (BVS) übernehmen.</p>
         </div>
       </div>
 
@@ -925,33 +936,33 @@
       </div>
     </div>
     <template class="notes">
-      <p><b>Datenbank-Merging</b> führt zwei byzz-Datenbanken zusammen. Das ist das Argument bei Praxisübernahmen, Zusammenlegungen und Standortfusionen — Bestände müssen nicht nebeneinander weiterlaufen.</p>
+      <p><b>Datenbank-Merging</b> führt zwei byzz-Datenbanken zusammen. Das Thema kommt bei Praxisübernahmen, Zusammenlegungen und Standortfusionen — Bestände müssen nicht nebeneinander weiterlaufen.</p>
       <p>Derselbe Weg holt Bilddaten auch von außen herein: <b>DICOMDIR, PACS und BVS</b> — also Bildverwaltungen anderer Hersteller mit eigener Datenbank.</p>
-      <p>Merging ist ein Projekt, kein Klick: immer vorher mit dem Support abstimmen. Keine Termine und keine Vollständigkeit zusagen.</p>
+      <p>Merging ist ein Projekt, kein Klick — Umfang und Ablauf werden vorher mit dem orangedental-Support abgestimmt. Wie vollständig eine Übernahme gelingt, hängt am Quellsystem.</p>
     </template>
   </section>
 
   <!-- 22 · aus partbase.html [4] -->
-  <section class="slide" data-title="Konfigurator: Aktivierung, Lizenzierung, Patching" data-section="3">
+  <section class="slide" data-title="Konfigurator: Lizenzierung, Aktivierung, Patching" data-section="3">
     <div class="slide-inner">
       <div style="position:absolute;left:112px;top:214px;width:1300px">
         <h2 class="h-1" data-anim>Der Konfigurator —<br>die Zentrale für administrative Aufgaben.</h2>
         <div class="rule" data-anim></div>
-        <p class="lead" data-anim style="max-width:1040px">Aktivierung, Lizenzierung und Patching laufen zusammen im byzz&nbsp;Konfigurator — nicht mehr über drei getrennte Wege.</p>
+        <p class="lead" data-anim style="max-width:1040px">Lizenzierung, Aktivierung und Patching laufen zusammen im byzz&nbsp;Konfigurator — nicht mehr über drei getrennte Wege.</p>
       </div>
 
       <div class="cards cards--3" data-anim style="left:112px;top:596px;width:1696px">
         <div class="card glass">
           <span class="card__n">01</span>
-          <div class="card__ico"><svg><use href="#i-key"/></svg></div>
-          <h3 class="card__t">Aktivierung</h3>
-          <p class="card__d">Neue Installationen werden direkt im Konfigurator freigeschaltet.</p>
-        </div>
-        <div class="card">
-          <span class="card__n">02</span>
           <div class="card__ico"><svg><use href="#i-doc"/></svg></div>
           <h3 class="card__t">Lizenzierung</h3>
           <p class="card__d">Module und Laufzeiten sind an einer Stelle sichtbar und änderbar.</p>
+        </div>
+        <div class="card">
+          <span class="card__n">02</span>
+          <div class="card__ico"><svg><use href="#i-key"/></svg></div>
+          <h3 class="card__t">Aktivierung</h3>
+          <p class="card__d">Vorgefertigte Lizenzen können auch über die Aktivierung freigeschaltet werden.</p>
         </div>
         <div class="card">
           <span class="card__n">03</span>
@@ -962,8 +973,8 @@
       </div>
     </div>
     <template class="notes">
-      <p>Für den Außendienst der praktische Punkt: <b>ein Werkzeug für alles drei.</b> Kein Suchen mehr, welches Fenster wofür zuständig war.</p>
-      <p>Läuft auf dem Server, nicht am Arbeitsplatz.</p>
+      <p>Lizenzierung, Aktivierung und Patching liegen in byzz 11 im selben Werkzeug — dem <b>byzz Konfigurator</b>. Vorher führte jede dieser Aufgaben über einen eigenen Weg.</p>
+      <p>Der Konfigurator läuft auf dem Server, nicht am einzelnen Arbeitsplatz. Updates werden ausschließlich über ihn eingespielt.</p>
     </template>
   </section>
 
@@ -991,8 +1002,8 @@
     </div>
     <template class="notes">
       <p>byzz 11 kommt in <b>acht Sprachen</b>: Dänisch, Deutsch, Englisch, Französisch, Italienisch, Portugiesisch, Russisch und Spanisch.</p>
-      <p>Zwei Ansatzpunkte im Gespräch: die Export-Märkte und mehrsprachige Teams in größeren Praxen und MVZ — die Oberfläche lässt sich pro Arbeitsplatz umstellen.</p>
-      <p>Nicht verwechseln: Beim <code>DVT-Export</code> gibt es zusätzlich eine eigene Auswahl der Exportsprache, die nur den Betrachter beim Empfänger betrifft.</p>
+      <p>Die Oberfläche lässt sich <b>pro Arbeitsplatz</b> umstellen — das zählt für Standorte im Ausland ebenso wie für mehrsprachige Teams in größeren Praxen und MVZ.</p>
+      <p>Davon zu unterscheiden: Beim <code>DVT-Export</code> gibt es eine eigene Sprachauswahl, die nur den Betrachter beim Empfänger betrifft.</p>
     </template>
   </section>
 
@@ -1006,8 +1017,8 @@
       </div>
     </div>
     <template class="notes">
-      <p>Übergang markieren: Bis hierhin ging es um Fundament und Arbeitsplatz. Jetzt kommt das Stück, das <b>aus der Praxis herausgeht</b> — aufs Tablet, aufs Handy, in den Browser.</p>
-      <p>Ankündigen, dass dieser Abschnitt länger ist als die anderen — er ist der wichtigste Punkt des Releases.</p>
+      <p>Bis hierhin ging es um Fundament und Arbeitsplatz. Jetzt kommt das Stück, das <b>aus der Praxis herausgeht</b> — aufs Tablet, aufs Handy, in den Browser.</p>
+      <p>Die byzz app löst ibyzz ab und ist der weitreichendste Punkt dieser Version. Die folgenden Folien gehen sie der Reihe nach durch: Einstieg, Login, Patientenliste, Medien, Einstellungen, DVT-Viewer und die eingebauten Betrachter.</p>
     </template>
   </section>
 
@@ -1079,9 +1090,9 @@
       </div>
     </div>
     <template class="notes">
-      <p>Der Satz, der hängen bleiben muss: <b>ibyzz ist Geschichte.</b> Die byzz app ist der Nachfolger — dieselbe App für Android, iOS, MacOS und Browser.</p>
-      <p>Einen Server-Service gab es auch in byzz 10 schon. Der schmerzhafte Teil war die <b>FTP-Installation</b>, einmal pro Gerät. Genau die entfällt, weil die App über HTTP direkt mit dem Server-Service spricht — die Umstellung aus Abschnitt 01.</p>
-      <p>Beim Vorführen: das Schaubild von oben nach unten erklären, nicht andersherum. Der Kunde erkennt seinen eigenen Frust in der oberen Zeile wieder.</p>
+      <p><b>ibyzz ist Geschichte.</b> Die byzz app ist der Nachfolger — dieselbe App für Android, iOS, MacOS und Browser.</p>
+      <p>Einen Server-Service gab es auch in byzz 10 schon. Der aufwendige Teil war die <b>FTP-Installation</b>, einmal pro Gerät. Genau die entfällt, weil die App über HTTP direkt mit dem Server-Service spricht — die Umstellung aus Abschnitt 01.</p>
+      <p>Das Schaubild rechts zeigt beide Wege übereinander: oben der Aufwand aus ibyzz, unten der direkte Weg in byzz 11.</p>
     </template>
   </section>
 
@@ -1123,9 +1134,9 @@
       </div>
     </div>
     <template class="notes">
-      <p>Das ist die Folie für den Termin beim Kunden: <b>Adresse aufrufen, Browser-App starten, fertig.</b> Kein Setup, keine Rechte, kein IT-Termin nötig.</p>
-      <p>Die Desktop-App ist derselbe Funktionsumfang für Arbeitsplätze, an denen dauerhaft damit gearbeitet wird.</p>
-      <p>Beim Vorführen ruhig einmal zeigen, dass unten Kontakt und TeamViewer-Zugang stehen — das nimmt der Praxis die Sorge, im Ernstfall allein dazustehen.</p>
+      <p>Der Einstieg in einem Satz: <b>Adresse aufrufen, Browser-App starten, fertig.</b> Kein Setup, keine Rechte, kein IT-Termin nötig.</p>
+      <p>Die Desktop-App bietet denselben Funktionsumfang für Arbeitsplätze, an denen dauerhaft damit gearbeitet wird.</p>
+      <p>Unten auf der Seite stehen Kontakt und TeamViewer-Zugang — Hilfe ist also von derselben Stelle aus erreichbar.</p>
     </template>
   </section>
 
@@ -1154,8 +1165,8 @@
       </div>
     </div>
     <template class="notes">
-      <p>Kurz halten. Wichtig ist nur: <b>gemerkter Standardlogin</b> — am Tablet im Behandlungszimmer will niemand dreimal täglich eine Praxiskennung tippen.</p>
-      <p>Die beiden Versionsnummern unten immer mitzeigen. Bei jedem Support-Fall werden genau diese zwei Zahlen gebraucht.</p>
+      <p>Der <b>Standardlogin lässt sich merken</b> — am Tablet im Behandlungszimmer muss damit nicht dreimal täglich eine Praxiskennung getippt werden.</p>
+      <p>Unten im Bild stehen zwei Versionsnummern. Genau diese beiden Zahlen werden bei einem Support-Fall benötigt.</p>
     </template>
   </section>
 
@@ -1165,7 +1176,7 @@
       <div class="col-l" style="top:300px">
         <h2 class="h-1" data-anim>Der Patient ist<br>sofort da.</h2>
         <div class="rule" data-anim></div>
-        <p class="lead" data-anim>Oben das Suchfeld, am Rand der alphabetische Schnellzugriff. Links die Auswahl, rechts der Inhalt.</p>
+        <p class="lead" data-anim>Übersichtliche Auswahl mit Suchfeld und alphabetischem Schnellzugriff.</p>
         <p class="tiny" data-anim style="margin-top:28px">Dasselbe Bedienmuster — wer es einmal kennt, findet sich überall zurecht.</p>
       </div>
 
@@ -1180,7 +1191,7 @@
     </div>
     <template class="notes">
       <p>Die Patientenliste ist der Einstieg in alles Weitere. <b>Suchen oder springen</b> — mehr Wege gibt es nicht, und mehr braucht es auch nicht.</p>
-      <p>Der Alphabet-Streifen am Rand ist für die Bedienung mit dem Daumen gemacht, nicht für die Maus. Beim Vorführen deshalb wirklich am Tablet zeigen.</p>
+      <p>Der Alphabet-Streifen am Rand ist für die Bedienung mit dem Daumen gemacht, nicht für die Maus — er zeigt seinen Nutzen erst am Tablet.</p>
     </template>
   </section>
 
@@ -1215,12 +1226,41 @@
     </div>
     <template class="notes">
       <p>Die Reiter sind die einzige Navigation innerhalb eines Patienten: <b>ein Reiter je Medientyp</b>, links im Bild der ausgewählte.</p>
-      <p>Für den Behandler heißt das: kein Scrollen durch alles, was je aufgenommen wurde. Wer das OPG sucht, tippt auf OPG.</p>
+      <p>Damit entfällt das Scrollen durch alles, was je aufgenommen wurde. Wer das OPG sucht, tippt auf OPG.</p>
       <p>Das Aufnahmedatum steht an jeder Kachel — das ist beim Vergleich alter und neuer Aufnahmen der entscheidende Wert.</p>
     </template>
   </section>
 
   <!-- 30 · aus partE.html [6] -->
+  <section class="slide" data-title="Einstellungen der App" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:250px">
+        <h2 class="h-1" data-anim>Jeder richtet sich<br>die App selbst ein.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Optionen zu Funktionalität, Darstellung und Sprache.</p>
+        <p class="tiny" data-anim style="margin-top:28px">Mehrere Farbschemata zur Auswahl, dazu Schalter für Patientenliste, Login und Navigation.</p>
+      </div>
+
+      <!-- Panelhoehe gerechnet: 988 x 900/1424 = 624,5 -> 625. Das Bild ist
+           hoeher als die uebrigen App-Aufnahmen, weil der Einstellungsbereich
+           bis an den unteren Fensterrand reicht. -->
+      <div class="shot" data-anim style="left:820px;top:250px;width:988px;height:625px">
+        <img class="shot__spill" src="assets/img/app-options.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-options.webp" width="1424" height="900" alt="Einstellungen der byzz app mit Schaltern für die Funktionalität und Farbschemata für das Erscheinungsbild">
+        </div>
+        <img class="shot__soft" src="assets/img/app-options.soft.jpg" alt="">
+        <div class="shot__cap">EINSTELLUNGEN · FUNKTIONALITÄT UND ERSCHEINUNGSBILD</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die Einstellungen sitzen im Zahnrad rechts oben und gelten <b>je Gerät</b> — jeder richtet sich seine Ansicht selbst ein, ohne dass es andere betrifft.</p>
+      <p>Oben Schalter für die Funktionalität: ob sich die Patientenliste nach der Auswahl schließt, ob das Datum an den Vorschaubildern steht, ob das Suchfeld im Login erscheint.</p>
+      <p>Darunter das Erscheinungsbild mit mehreren Farbschemata zur Auswahl, dazu die Sprache. Ein Wechsel wirkt sofort auf die gesamte Oberfläche — vorgegeben ist hier nichts.</p>
+    </template>
+  </section>
+
+  <!-- 31 · aus partE.html [7] -->
   <section class="slide" data-title="DVT-Viewer in der App" data-section="4">
     <div class="slide-inner">
       <div class="col-l" style="top:224px">
@@ -1246,13 +1286,13 @@
       </div>
     </div>
     <template class="notes">
-      <p>Das ist die Folie, an der die meisten Kunden aufhorchen: <b>ein vollwertiger DVT-Viewer auf dem Tablet</b>, kein Standbild und kein abgespeckter Betrachter.</p>
-      <p>Nutzen: Der Behandler bleibt am Stuhl und zeigt dem Patienten die Aufnahme dort, wo das Gespräch stattfindet.</p>
-      <p>Beim Vorführen ein Fadenkreuz mit dem Finger ziehen und zusehen lassen, wie die anderen beiden Ebenen mitlaufen. Das erklärt mehr als jede Beschreibung.</p>
+      <p><b>Ein vollwertiger DVT-Viewer auf dem Tablet</b> — kein Standbild und kein abgespeckter Betrachter.</p>
+      <p>Wird das Fadenkreuz mit dem Finger gezogen, laufen die beiden anderen Ebenen mit. Axial, sagittal und coronal bleiben dabei immer auf derselben Stelle.</p>
+      <p>Damit bleibt der Behandler am Stuhl und zeigt dem Patienten die Aufnahme dort, wo das Gespräch stattfindet.</p>
     </template>
   </section>
 
-  <!-- 31 · aus partE.html [7] -->
+  <!-- 32 · aus partE.html [8] -->
   <section class="slide" data-title="Alles in einer App" data-section="4">
     <div class="slide-inner">
       <div style="position:absolute;left:112px;top:206px;width:1300px">
@@ -1295,12 +1335,12 @@
     <template class="notes">
       <p>Zusammenfassung des Abschnitts: <b>ein Programm statt fünf.</b> Was in der Akte liegt, lässt sich in der App auch öffnen — ohne Umweg über ein anderes Werkzeug.</p>
       <p>Vier Betrachter: DVT, Modelldaten, PDF und Video. Die <b>Kamera-Aufnahme ist kein Betrachter</b>, sondern der Weg hinein — sie sitzt im Reiter Kamera.</p>
-      <p>Der DVT-Viewer ist das Argument, die übrigen drei sind die Selbstverständlichkeit, die eine App zum Arbeitsgerät macht.</p>
-      <p>Zu PDF, Video und Kamera keine Detailversprechen machen — dazu liegt noch nichts vor.</p>
+      <p>Der DVT-Viewer ist davon der weitreichendste Punkt, die übrigen drei sind die Selbstverständlichkeit, die eine App zum Arbeitsgerät macht.</p>
+      <p>Zu PDF-Viewer, Video-Player und Kamera-Aufnahme liegen bislang keine Einzelheiten vor.</p>
     </template>
   </section>
 
-  <!-- 32 · aus partA.html [1] -->
+  <!-- 33 · aus partA.html [1] -->
   <section class="slide" data-title="byzz in neuer Generation">
     <div class="slide-inner">
 
@@ -1309,9 +1349,23 @@
         <div class="rule" data-anim></div>
       </div>
 
-      <!-- Vier Karten in zwei Reihen: ein Raster, nicht zwei. -->
-      <div class="cards cards--2" data-anim style="left:112px;top:380px;width:1696px">
+      <!-- Sechs Karten in zwei Reihen: ein Raster, nicht zwei. Reihenfolge von
+           unten nach oben gedacht — erst das Fundament, dann was darauf steht.
+           Die Karten sind hier nur 546 px breit statt 834 wie im Zweierraster;
+           die Beschreibungen sind deshalb kuerzer als auf den Detailfolien,
+           sonst laufen sie ueber die erlaubten zwei Zeilen. -->
+      <div class="cards cards--3" data-anim style="left:112px;top:368px;width:1696px">
         <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-server"/></svg></div>
+          <h3 class="card__t">Zukunftssicheres Fundament</h3>
+          <p class="card__d">Mit HTTP und 64&nbsp;Bit steht byzz&nbsp;11 auf einer Basis, die auch morgen noch trägt.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-plug"/></svg></div>
+          <h3 class="card__t">Mehr Praxisintegration</h3>
+          <p class="card__d">Aktuelle Geräte und Fremdprogramme sind direkt angebunden — ohne Zwischensoftware.</p>
+        </div>
+        <div class="card">
           <div class="card__ico"><svg><use href="#i-mobile"/></svg></div>
           <h3 class="card__t">Eine App für alle Geräte</h3>
           <p class="card__d">Die byzz&nbsp;app läuft auf Android, iOS, MacOS und im Browser.</p>
@@ -1324,36 +1378,45 @@
         <div class="card">
           <div class="card__ico"><svg><use href="#i-export"/></svg></div>
           <h3 class="card__t">DVT-Export mit Betrachter</h3>
-          <p class="card__d">Der Export bringt seinen eigenen Betrachter mit — der Empfänger braucht nichts zu installieren.</p>
+          <p class="card__d">Der Export bringt seinen eigenen Betrachter mit — ohne Installation beim Empfänger.</p>
         </div>
         <div class="card">
           <div class="card__ico"><svg><use href="#i-brain"/></svg></div>
-          <h3 class="card__t">KI-Unterstützung für Kleinröntgen und OPGs</h3>
-          <p class="card__d">Durch Nostic werden potentielle Läsionen im Röntgenbild markiert.</p>
+          <h3 class="card__t">KI-Unterstützung im Röntgenbild</h3>
+          <p class="card__d">Nostic markiert potentielle Läsionen in Kleinröntgen und OPGs.</p>
         </div>
       </div>
 
     </div>
     <template class="notes">
-      <p>Das ist die Folie zum Abfotografieren: vier Sätze, die beim Kunden ohne Rückfrage funktionieren.</p>
-      <p>Der stärkste Einstieg ist meist die <b>byzz app</b> — ein Gerät, das der Kunde in der Hand hält, überzeugt schneller als jede Architektur.</p>
-      <p>Beim KI-Punkt immer dazusagen: <b>befundet wird weiter selbst.</b> Sonst entsteht eine Erwartung, die niemand einlösen will.</p>
+      <p>Sechs Punkte, die einen deutlichen Unterschied zu den Vorgängerversionen ausmachen — zusammengefasst auf einer Folie.</p>
+      <p>Die Reihenfolge geht von unten nach oben: Zuunterst das Fundament aus HTTP und 64&nbsp;Bit, darauf die engere Anbindung an Geräte und Fremdprogramme, darauf die <b>byzz app</b> — dieselbe Anwendung auf Android, iOS, MacOS und im Browser.</p>
+      <p>Dazu der DVT-Viewer, der für das einfache Betrachten keine Zusatzsoftware mehr benötigt, und ein DVT-Export, der seinen eigenen Betrachter mitbringt.</p>
+      <p>Zur KI-Unterstützung durch Nostic gehört eine Einschränkung: sie markiert potenzielle Läsionen, <b>befundet wird weiterhin selbst.</b> Es ist eine Zweitmeinung, keine Diagnose.</p>
     </template>
   </section>
 
-  <!-- 33 · aus partA.html [2] -->
-  <section class="slide" data-title="Fragen" data-bare>
+  <!-- 34 · aus partA.html [2] -->
+  <section class="slide" data-title="Vielen Dank" data-bare>
     <div class="slide-inner">
-      <div style="position:absolute;left:112px;top:404px;width:1180px">
-        <div class="div-num" data-anim>BYZZ 11</div>
-        <h2 class="h-l" data-anim>Fragen?</h2>
-        <div class="rule" data-anim></div>
-        <p class="lead" data-anim>Auch weitere Anmerkungen und Wünsche sind willkommen.</p>
+      <div class="shot" data-anim style="left:544px;top:200px;width:832px;height:487px">
+        <img class="shot__spill" src="assets/img/bcc.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/bcc.webp" width="1251" height="733" alt="byzz 11 Control Center mit der Übersicht aller Aufnahmen eines Patienten">
+        </div>
+        <img class="shot__soft" src="assets/img/bcc.soft.jpg" alt="">
+      </div>
+
+      <div data-anim style="position:absolute;left:0;top:736px;width:1920px;text-align:center">
+        <h2 class="h-l">Vielen Dank.</h2>
+        <div class="rule" style="margin-left:auto;margin-right:auto"></div>
+        <p class="lead">Wir freuen uns, wenn byzz&nbsp;11 Ihren Praxisalltag leichter macht.</p>
       </div>
     </div>
     <template class="notes">
-      <p>Offene Punkte jetzt sammeln, nicht auf später vertrösten. Anmerkungen und Wünsche aus dem Außendienst ausdrücklich einladen und mitschreiben.</p>
-      <p>Wer etwas nachschauen will: <code>Hilfe → Webinare</code> ist der kürzeste Weg — der Menüpunkt ist selbst Teil von byzz 11.</p>
+      <p>Im Bild das <b>byzz Control Center</b> — die Übersicht, in der alle Aufnahmen eines Patienten nebeneinander liegen: OPG, Kleinröntgen, DVT, Fernröntgen, Bissflügel, Kamera, Modelldaten und Dokumente. Dort läuft zusammen, was auf den vorherigen Folien einzeln zu sehen war.</p>
+      <p>Zum Nachschlagen führen zwei Wege direkt aus byzz heraus: <code>Hilfe → Häufig gestellte Fragen</code> und <code>Hilfe → Webinare</code>. Beide Menüpunkte sind selbst Teil von byzz 11.</p>
+      <p>Diese Präsentation als PDF gibt es über den Link auf Folie 2.</p>
     </template>
   </section>
 

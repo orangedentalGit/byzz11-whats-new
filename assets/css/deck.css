@@ -315,6 +315,19 @@ body.no-blur .shot__soft { opacity: 0 !important; }
 }
 .chip--muted::before { background: var(--ink-3); }
 
+/* Klickbarer Chip: Symbol statt Punkt. Aktuell der PDF-Download auf Folie 02.
+   deck.js nimmt Klicks auf <a> vom Blaettern aus — der Link blaettert also nicht
+   nebenbei weiter. Externe https-Ziele sind unter file:// erlaubt: das ist eine
+   Navigation, kein fetch(). */
+.chip--link {
+  color: var(--orange-deep);
+  text-decoration: none;
+  transition: border-color 0.18s var(--e-out), background 0.18s var(--e-out);
+}
+.chip--link::before { display: none; }
+.chip--link svg { width: 19px; height: 19px; flex: none; }
+.chip--link:hover { border-color: rgba(246, 139, 26, 0.55); background: #FFFFFF; }
+
 .badge {
   display: inline-block;
   font: 500 15px/1 var(--f-mono);
