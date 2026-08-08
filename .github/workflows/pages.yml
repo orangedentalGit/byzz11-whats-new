@@ -7,7 +7,7 @@
 # beides bleibt ohne Fehlermeldung: Es läuft dann stillschweigend GitHubs
 # eingebauter Workflow weiter.
 #
-# Anleitung und Fehlerdiagnose: dev/docs/VEROEFFENTLICHEN.md
+# Anleitung und Fehlerdiagnose: dev/docs/veroeffentlichen.md
 #
 # Voraussetzung im Repo: Settings -> Pages -> Source steht auf "GitHub Actions".
 # Steht dort "Deploy from a branch", läuft ebenfalls der eingebaute Workflow und

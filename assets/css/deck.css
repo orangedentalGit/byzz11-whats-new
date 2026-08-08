@@ -87,8 +87,8 @@ html, body {
   background: var(--paper);
 }
 
-/* Der Inhaltsrahmen sitzt mittig in der Buehne und schneidet wie frueher bei
-   1920x1080 ab — die Folien rendern damit unveraendert. */
+/* Der Inhaltsrahmen sitzt mittig in der Buehne und ist immer exakt 1920x1080 —
+   alle Folienkoordinaten beziehen sich darauf. */
 #frame {
   position: absolute;
   left: 50%; top: 50%;

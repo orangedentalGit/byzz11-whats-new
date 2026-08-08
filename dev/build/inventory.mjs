@@ -1,17 +1,17 @@
 /**
- * Liest index.html und schreibt die Folienuebersicht nach dev/docs/INHALT.md.
+ * Liest index.html und schreibt die Folienuebersicht nach dev/docs/inhalt.md.
  *
  * Zweck: Die Tabelle im Inhaltsdokument soll nie von der Wirklichkeit abweichen.
  * Nach jeder Folienaenderung einmal `node dev/build/inventory.mjs` laufen lassen.
  *
  * Aufruf:  node inventory.mjs [--print]
- *   --print  nur ausgeben, dev/docs/INHALT.md nicht anfassen
+ *   --print  nur ausgeben, dev/docs/inhalt.md nicht anfassen
  */
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { INDEX, DOCS } from './paths.mjs';
 
-const DOC = join(DOCS, 'INHALT.md');
+const DOC = join(DOCS, 'inhalt.md');
 const START = '<!-- INVENTAR:START -->';
 const END = '<!-- INVENTAR:END -->';
 
@@ -97,7 +97,7 @@ try { doc = await readFile(DOC, 'utf8'); }
 catch { console.error(`${DOC} fehlt — erst anlegen, mit den Markern ${START} / ${END}.`); process.exit(1); }
 
 const a = doc.indexOf(START), b = doc.indexOf(END);
-if (a < 0 || b < 0) { console.error(`Marker ${START} / ${END} fehlen in dev/docs/INHALT.md`); process.exit(1); }
+if (a < 0 || b < 0) { console.error(`Marker ${START} / ${END} fehlen in dev/docs/inhalt.md`); process.exit(1); }
 
 await writeFile(DOC, doc.slice(0, a + START.length) + '\n\n' + block + '\n\n' + doc.slice(b), 'utf8');
 console.log(`${rows.length} Folien -> ${DOC}`);

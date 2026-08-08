@@ -12,12 +12,12 @@ nicht, wenn es drei Ebenen tief liegt.
 
 | | |
 |---|---|
-| `publish.bat` | Füllt `publish/` mit allem, was online geht. Kopiert mit `robocopy` — **kein Node, kein `npm install`**, läuft also auch auf einem frisch aufgesetzten Rechner. Details: [VEROEFFENTLICHEN.md](VEROEFFENTLICHEN.md) |
+| `publish.bat` | Füllt `publish/` mit allem, was online geht. Kopiert mit `robocopy` — **kein Node, kein `npm install`**, läuft also auch auf einem frisch aufgesetzten Rechner. Details: [veroeffentlichen.md](veroeffentlichen.md) |
 | `pdf.bat` | Ruft `dev/build/pdf.mjs` auf. Prüft vorher, ob Node und die Pakete da sind, und sagt sonst im Klartext, was fehlt — sonst blitzt beim Doppelklick nur kurz ein Fenster auf. Argumente werden durchgereicht: `pdf.bat --klein` |
 
 Beide benutzen `%~dp0`, also das Verzeichnis der Batchdatei — nicht das
 Arbeitsverzeichnis. Dasselbe Prinzip wie `paths.mjs` bei den Node-Werkzeugen, aus
-demselben Grund (siehe [FALLSTRICKE.md](FALLSTRICKE.md) §11).
+demselben Grund (siehe [fallstricke.md](fallstricke.md) §11).
 
 > Batchdateien brauchen **CRLF**-Zeilenenden. Wer sie mit einem Editor bearbeitet, der
 > LF schreibt, bekommt schwer deutbare Fehler bei `goto` und mehrzeiligen Blöcken.
@@ -271,12 +271,12 @@ Setzt `index.html` aus den Teildateien in `dev/build/slides/` zusammen. Die Reih
 liegt. Ersetzt wird alles zwischen `<!-- SLIDES:START -->` und `<!-- SLIDES:END -->`.
 
 ⚠ **Überschreibt Handarbeit in `index.html`.** Siehe
-[FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
+[folien-bearbeiten.md](folien-bearbeiten.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
 
 ### Sind Teildateien und `index.html` deckungsgleich?
 
 `--check` beantwortet diese Frage **nicht** — es zählt nur Folien je Teildatei und
-schaut `index.html` überhaupt nicht an ([FALLSTRICKE.md §9](FALLSTRICKE.md)). Wer
+schaut `index.html` überhaupt nicht an ([fallstricke.md §9](fallstricke.md)). Wer
 wissen will, ob jemand direkt in `index.html` gearbeitet hat, montiert gegen eine
 Sicherungskopie und vergleicht:
 
@@ -299,12 +299,12 @@ einzige Prüfung, die den in §9 beschriebenen stillen Verlust vorher findet.
 ## Inventar
 
 ```bash
-node inventory.mjs           # schreibt die Folientabelle nach dev/docs/INHALT.md
+node inventory.mjs           # schreibt die Folientabelle nach dev/docs/inhalt.md
 node inventory.mjs --print   # nur ausgeben
 ```
 
 Liest `index.html` und schreibt Nummer, Titel, Abschnitt, Typ, Fragmentzahl, verwendetes
-Material und Notizlänge in die Tabelle in `dev/docs/INHALT.md`. **Nach jeder Folienänderung
+Material und Notizlänge in die Tabelle in `dev/docs/inhalt.md`. **Nach jeder Folienänderung
 laufen lassen** — dann kann die Doku nicht von der Wirklichkeit abweichen.
 
 ---

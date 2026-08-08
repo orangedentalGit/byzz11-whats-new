@@ -224,7 +224,7 @@ die Schrift wird `--orange-deep`, beim Überfahren hellt der Grund auf. Genutzt 
 für den PDF-Download. Zwei Dinge dazu:
 
 - Externe `https://`-Ziele funktionieren unter `file://` — das ist eine **Navigation**, kein
-  `fetch()`, und fällt damit nicht unter die Regel in [FALLSTRICKE.md](FALLSTRICKE.md) §1.
+  `fetch()`, und fällt damit nicht unter die Regel in [fallstricke.md](fallstricke.md) §1.
   Immer mit `target="_blank"`, sonst verlässt der Vortragende sein Deck.
 - `deck.js` nimmt Klicks auf `a`, `button` und `video` vom Blättern aus. Ein Link auf einer
   Folie schaltet also nicht nebenbei weiter.
@@ -445,6 +445,6 @@ Taste `B` schaltet alles davon global ab — der Notausgang für fremde Vorführ
 - **Sprechnotizen sind Zusammenfassungen, keine Regieanweisungen.** Das Deck wird auch
   weitergegeben und allein durchgesehen — Anweisungen an den Vortragenden („kurz durchgehen",
   „beim Vorführen …", „nichts zusagen") gehören nicht hinein. Einschränkungen als Aussage
-  formulieren. Ausführlich in [FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md#sprechnotizen-ändern).
+  formulieren. Ausführlich in [folien-bearbeiten.md](folien-bearbeiten.md#sprechnotizen-ändern).
 - `.lead` maximal 3 Zeilen, `.card__d` maximal 2.
 - Nichts erfinden, was nicht belegt ist. Lieber knapper schreiben als spekulieren.

@@ -4,23 +4,44 @@ Das Deck braucht keinen Server — Doppelklick auf `index.html` genügt. Eine
 Pages-Veröffentlichung ist nur die Bequemlichkeit, statt eines Ordners einen
 Link weitergeben zu können. Fällt Pages aus, ist nichts verloren.
 
-Release-Repository: `orangedentalGit/view` → https://orangedentalgit.github.io/view/
+Repository: `orangedentalGit/byzz11-whats-new`
+→ https://orangedentalgit.github.io/byzz11-whats-new/
 
 ## Der Ablauf
 
-**Doppelklick auf `publish.bat`** — das ist alles. Danach im erzeugten `publish/`
-committen und pushen:
+**Committen und pushen — mehr ist es nicht.**
 
 ```bash
-cd publish
 git status                      # erst ansehen, was sich geändert hat
 git add -A
 git commit -m "Deck aktualisiert"
 git push
 ```
 
-`publish.bat` kopiert nach Positivliste und braucht dafür weder Node noch eine
-Einrichtung — es benutzt `robocopy`, das zu Windows gehört:
+Der Workflow in `.github/workflows/pages.yml` läuft bei jedem Push nach `main`,
+packt mit `path: .` das **gesamte Repository** und stellt es online. Es gibt
+keinen Zwischenschritt und kein zweites Repository.
+
+> **Das ganze Projektverzeichnis geht mit online — und das ist so gewollt.**
+> Unter der Adresse oben sind also auch `dev/docs/`, `dev/screenshots/`,
+> `dev/prompts/`, `CLAUDE.md` und `README.md` öffentlich abrufbar, nicht nur das
+> Deck. Wer künftig etwas in `dev/` ablegt, das nicht nach außen soll, muss es in
+> die `.gitignore` aufnehmen — sonst steht es beim nächsten Push im Netz.
+
+### Wie es dazu kam (08.08.2026)
+
+Vorher lief es zweistufig: `publish.bat` füllte `publish/` nach Positivliste,
+und `publish/` war ein **eigenes** Repository (`orangedentalGit/view`), das nur
+das Deck enthielt. Seit das ganze Projektverzeichnis unter Versionskontrolle
+steht, ist das entfallen — das damalige Release-Repository wurde in
+`byzz11-whats-new` umbenannt und nimmt jetzt die Quelle selbst auf. Alte Links
+auf `…github.io/view/` laufen ins Leere (HTTP 404); die Repo-Umbenennung leitet
+zwar Git-Zugriffe weiter, die Pages-Adresse aber nicht.
+
+### Was aus `publish.bat` geworden ist
+
+Das Skript kopiert weiterhin nach Positivliste und braucht dafür weder Node noch
+eine Einrichtung — es benutzt `robocopy`, das zu Windows gehört:
 
 | kommt mit | bleibt zurück |
 |---|---|
@@ -28,10 +49,17 @@ Einrichtung — es benutzt `robocopy`, das zu Windows gehört:
 | `assets/` | `CLAUDE.md`, `README.md` |
 | `.github/` | `byzz-11-was-ist-neu.pdf`, `publish.bat`, `pdf.bat` |
 
-Zwei Eigenschaften, auf die Verlass ist: Ein `.git` in `publish/` wird nie
-angefasst — gespiegelt werden ausschließlich `assets` und `.github`. Und was in
-der Quelle gelöscht wurde, verschwindet auch im Ziel; alte Bilder bleiben nicht
-als Leichen liegen.
+Sein Zweck ist aber nur noch, **eine Deck-Fassung ohne `dev/` zum Weitergeben**
+zu erzeugen — als Ordner, auf einem Stick, als Mailanhang. Zum Veröffentlichen
+wird es nicht mehr gebraucht.
+
+> **Aus `publish/` heraus nicht pushen.** Das Verzeichnis steht in der
+> `.gitignore` und hat kein `.git`. Legte man dort eines an und pushte nach
+> `byzz11-whats-new`, würde die Deck-Fassung die Quelle ersetzen und `dev/` im
+> Repository löschen. Die frühere Anleitung dazu stand bis zum 08.08.2026 im
+> Skript selbst und ist genau deshalb entfernt worden — der alte Name
+> `orangedentalGit/view` zeigt nach der Umbenennung stillschweigend auf dasselbe
+> Repository.
 
 Das PDF geht bewusst nicht mit — aber es hängt seit Nachtrag 6 daran:
 
@@ -53,18 +81,25 @@ curl -sI "https://data.orangedental.de/f/1b3950c2c83846a78f99/?dl=1" | grep -i c
 
 Der Wert muss zur Größe der lokalen `byzz-11-was-ist-neu.pdf` passen.
 
-## Einmalig einrichten
+## Einrichtung
 
-Beim allerersten Mal zusätzlich:
+Steht und muss nicht wiederholt werden: Das Repository ist verbunden, und
+`Settings → Pages → Source` steht auf **„GitHub Actions"**.
 
-1. in `publish/` ein Repository anlegen und mit `orangedentalGit/view` verbinden
-2. im Repo: `Settings → Pages → Source` auf **„GitHub Actions"** stellen
+Auf einer frischen Maschine genügt deshalb:
 
-`publish.bat` schreibt die nötigen Git-Befehle am Ende selbst auf den Bildschirm,
-je nachdem ob `publish/` schon ein Repository ist oder nicht.
+```bash
+git clone https://github.com/orangedentalGit/byzz11-whats-new.git
+cd byzz11-whats-new/dev/build
+npm ci                          # nur nötig, wenn die Werkzeuge laufen sollen
+```
 
-Die Reihenfolge ist nicht beliebig: Steht die Quelle auf „GitHub Actions", ohne
-dass ein Workflow im Repo liegt, passiert schlicht nichts.
+Das Deck selbst braucht keinen dieser Schritte — `index.html` doppelklicken
+genügt, `assets/` liegt vollständig im Repository.
+
+Für ein neues Repository wäre die Reihenfolge nicht beliebig: Steht die Quelle
+auf „GitHub Actions", ohne dass ein Workflow im Repo liegt, passiert schlicht
+nichts.
 
 > **Warum `.github/` schon im Projekt liegt.** Früher lag der Workflow unter
 > `dev/deploy/pages.yml` und musste beim Kopieren nach `.github/workflows/`
@@ -96,12 +131,13 @@ greater than the allowed maximum" und rechnet mit 600000 weiter.
 
 ```bash
 # Seite und Assets — alles muss 200 liefern
-curl -s -o /dev/null -w "%{http_code}\n" https://orangedentalgit.github.io/view/
-curl -s -o /dev/null -w "%{http_code}\n" https://orangedentalgit.github.io/view/assets/css/deck.css
-curl -s -o /dev/null -w "%{http_code}\n" https://orangedentalgit.github.io/view/assets/video/dvt-viewer.mp4
+BASIS=https://orangedentalgit.github.io/byzz11-whats-new
+curl -s -o /dev/null -w "%{http_code}\n" "$BASIS/"
+curl -s -o /dev/null -w "%{http_code}\n" "$BASIS/assets/css/deck.css"
+curl -s -o /dev/null -w "%{http_code}\n" "$BASIS/assets/video/dvt-viewer.mp4"
 
 # Lief der Workflow durch?
-curl -s "https://api.github.com/repos/orangedentalGit/view/actions/runs?per_page=3"
+curl -s "https://api.github.com/repos/orangedentalGit/byzz11-whats-new/actions/runs?per_page=3"
 ```
 
 > Die Website darf man beliebig oft abfragen. Die **API** dagegen erlaubt ohne
@@ -114,7 +150,7 @@ Danach einmal im Browser durchklicken: Übergänge, beide Videos, Referentenansi
 > Die Abnahme bleibt der Doppelklick auf `index.html`. Pages ist die
 > *zusätzliche* Prüfung, nicht die maßgebliche — unter `http://` funktioniert
 > vieles, was unter `file://` scheitert, und `file://` ist die Randbedingung
-> (`FALLSTRICKE.md` §1).
+> (`fallstricke.md` §1).
 
 ### Groß- und Kleinschreibung
 

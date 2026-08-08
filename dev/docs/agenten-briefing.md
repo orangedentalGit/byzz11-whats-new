@@ -4,7 +4,7 @@ Vorlage, um Folien **parallel von mehreren Agenten** bauen zu lassen. So sind di
 nach den fünf Referenzfolien entstanden: fünf Agenten gleichzeitig, danach eine Montage.
 
 Wer nur ein, zwei Folien ändert, braucht das hier nicht — dann direkt
-[FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md).
+[folien-bearbeiten.md](folien-bearbeiten.md).
 
 ---
 
@@ -34,7 +34,7 @@ Maßgeblich ist immer `ORDER` in `dev/build/assemble.mjs`, nicht diese Tabelle.
 
 **1 · Pflichtlektüre, in dieser Reihenfolge**
 
-- `dev/docs/DESIGN-SYSTEM.md` — Raster, Farben, Schrift, Bausteine, Bildtabelle, Piktogramme
+- `dev/docs/design-system.md` — Raster, Farben, Schrift, Bausteine, Bildtabelle, Piktogramme
 - `index.html` — die fertigen Referenzfolien als Muster für Stil und Tonfall
 
 **2 · Genau eine Ausgabedatei**, kein Zugriff auf `index.html`, `assets/` oder fremde Teildateien.
@@ -97,7 +97,7 @@ Von der Projektwurzel aus, kein `cd` nötig:
 node dev/build/assemble.mjs --check   # sind alle Teildateien vollständig?
 node dev/build/assemble.mjs           # zusammensetzen
 node dev/build/shot.mjs --frag        # alle Folien fotografieren und prüfen
-node dev/build/inventory.mjs          # Gliederung in dev/docs/INHALT.md fortschreiben
+node dev/build/inventory.mjs          # Gliederung in dev/docs/inhalt.md fortschreiben
 ```
 
 > **Agenten bessern nach.** Zwei der fünf haben ihre Teildatei noch korrigiert, *nachdem*
@@ -106,5 +106,5 @@ node dev/build/inventory.mjs          # Gliederung in dev/docs/INHALT.md fortsch
 > `index.html` arbeiten.
 
 Anschließend den Kontaktbogen aller Folien ansehen (Rezept in
-[WERKZEUGE.md](WERKZEUGE.md#kontaktbogen-bauen)). Der Prüflauf findet Überlappungen und
+[werkzeuge.md](werkzeuge.md#kontaktbogen-bauen)). Der Prüflauf findet Überlappungen und
 Überläufe zuverlässig — aber ob eine Folie *gut* ist, sieht man nur.

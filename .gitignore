@@ -14,9 +14,11 @@
 # ohnehin nicht in ein Repository.
 node_modules/
 
-# ------------------------------------------------------------------- Eigenes Repo
-# publish.bat fuellt dieses Verzeichnis per robocopy neu. Es wird ein eigenes
-# Repository (orangedentalGit/view) — dev/docs/VEROEFFENTLICHEN.md.
+# ------------------------------------------------------------ Weitergabe-Kopie
+# publish.bat fuellt dieses Verzeichnis per robocopy mit einer Deck-Fassung ohne
+# dev/ — zum Weitergeben als Ordner. Es ist NICHT der Weg ins Netz; veroeffentlicht
+# wird direkt aus diesem Repository heraus. Aus publish/ heraus zu pushen wuerde
+# dev/ im Repository loeschen — dev/docs/veroeffentlichen.md.
 /publish/
 
 # ------------------------------------------------------------- Build-Ergebnisse

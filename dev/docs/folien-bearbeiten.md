@@ -1,7 +1,7 @@
 # Folien bearbeiten
 
 Kochbuch für die häufigsten Änderungen. Bausteinkatalog steht in
-[DESIGN-SYSTEM.md](DESIGN-SYSTEM.md), Stolperfallen in [FALLSTRICKE.md](FALLSTRICKE.md).
+[design-system.md](design-system.md), Stolperfallen in [fallstricke.md](fallstricke.md).
 
 ---
 
@@ -118,7 +118,7 @@ Die anderen Karten bleiben unverändert — das Raster gleicht die Höhen aus.
 
 **Achtung bei Folie 32:** Das Raster ist `cards--app` (vier Karten 2×2, Kamera-Aufnahme als
 `.card--wide` rechts über beide Reihen, siehe
-[DESIGN-SYSTEM.md](DESIGN-SYSTEM.md#vier-plus-eins-cards--app)). Ein `.card__shot` in einer
+[design-system.md](design-system.md#vier-plus-eins-cards--app)). Ein `.card__shot` in einer
 der **vier** Karten macht deren Reihe 132 px höher — und damit beide Reihen, weil sie gleich
 hoch bleiben. Der Block läuft dann unten aus dem Raster. In dem Fall den Startwert `top:518`
 verkleinern und die Kartentexte kürzen, oder das Bild nur in `.card--wide` einsetzen: die
@@ -134,7 +134,7 @@ hohe Karte hat Platz dafür, ohne dass sich am Rest etwas ändert.
    Titel, Trennern, Demo-Breaks und Schlussfolien.
 4. Nummerierungskommentar drüber setzen.
 5. `node dev/build/shot.mjs` — der Zähler „05 / 34" zählt automatisch neu.
-6. `node dev/build/inventory.mjs` — schreibt die Tabelle in `dev/docs/INHALT.md` fort.
+6. `node dev/build/inventory.mjs` — schreibt die Tabelle in `dev/docs/inhalt.md` fort.
 
 Soll die Folie auch über die Montage erhalten bleiben: zusätzlich in die passende Datei
 unter `dev/build/slides/` aufnehmen und `ORDER` in `assemble.mjs` erweitern.
@@ -208,7 +208,7 @@ Prüfen mit `node dev/build/shot.mjs --frag 18` — schießt jeden Schritt einze
 | `[img] … nicht geladen` | Datei fehlt oder Pfad falsch | Dateiname prüfen, `prepare-images.mjs` laufen lassen |
 
 Zusätzlich wird jede Konsolenmeldung des Browsers gemeldet. **Jede CORS-Meldung ist ein
-`file://`-Verstoß und ein Blocker** — siehe [FALLSTRICKE.md](FALLSTRICKE.md).
+`file://`-Verstoß und ein Blocker** — siehe [fallstricke.md](fallstricke.md).
 
 ---
 
@@ -217,7 +217,7 @@ Zusätzlich wird jede Konsolenmeldung des Browsers gemeldet. **Jede CORS-Meldung
 In `assets/css/deck.css` ganz oben stehen die Tokens. Ein Wert dort ändert das ganze Deck.
 
 **Bevor du eine neue Klasse schreibst:** prüf die Liste in
-[DESIGN-SYSTEM.md](DESIGN-SYSTEM.md#bausteine). Es gibt fast immer schon etwas. Neue Klassen
+[design-system.md](design-system.md#bausteine). Es gibt fast immer schon etwas. Neue Klassen
 gehören ins Stylesheet und in die Doku — nicht als `style="…"`-Einzelfall in eine Folie.
 
 Ausnahme: **Position und Größe** gehören als Inline-Style an die Folie. Das ist Absicht — so
@@ -229,7 +229,7 @@ sieht man beim Lesen einer Folie sofort, wo etwas liegt, ohne im CSS zu suchen.
 
 ```bash
 node dev/build/shot.mjs        # alle Folien neu, mit Layoutprüfung
-node dev/build/inventory.mjs   # Foliengliederung in dev/docs/INHALT.md fortschreiben
+node dev/build/inventory.mjs   # Foliengliederung in dev/docs/inhalt.md fortschreiben
 ```
 
 Vor der Abgabe einmal komplett:

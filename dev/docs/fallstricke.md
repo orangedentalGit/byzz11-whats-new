@@ -191,7 +191,7 @@ seine Änderungen.
 
 Beim Bauen ist das zweimal passiert: Agenten haben ihre Teildateien nach dem ersten
 Zusammensetzen noch nachgebessert. `node dev/build/assemble.mjs --check` zeigt gefahrlos, was
-passieren würde. Details in [FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
+passieren würde. Details in [folien-bearbeiten.md](folien-bearbeiten.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
 
 > **Die scharfe Kante daran: `verify.mjs` ruft `assemble.mjs` ohne `--check` auf.**
 > Der Abnahmelauf ist also selbst der Überschreiber. Wer eine Folie direkt in `index.html`
@@ -204,7 +204,7 @@ passieren würde. Details in [FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md#erst-di
 >
 > Ob die beiden auseinandergelaufen sind, zeigt der Vergleich gegen eine
 > Sicherungskopie: Rezept in
-> [WERKZEUGE.md](WERKZEUGE.md#sind-teildateien-und-indexhtml-deckungsgleich).
+> [werkzeuge.md](werkzeuge.md#sind-teildateien-und-indexhtml-deckungsgleich).
 
 ---
 
@@ -265,13 +265,13 @@ GSAP-Timelines langsamer als die Wanduhr, und Screenshots zeigten halbfertige Ü
 Der Prüfstand nutzt deshalb `headless: true` und ruft vor jedem Bild `BYZZ.settle()` auf.
 
 **Die Chrome-Erweiterung kann keine `file://`-URLs öffnen.** Für die Abnahme deshalb
-Puppeteer mit dem installierten Chrome — siehe [WERKZEUGE.md](WERKZEUGE.md).
+Puppeteer mit dem installierten Chrome — siehe [werkzeuge.md](werkzeuge.md).
 
 **Pfade aus dem Arbeitsverzeichnis abzuleiten macht Skripte ortsabhängig.** Die
 Werkzeuge lösten ihre Pfade mit `resolve('slides')` und `resolve('..', 'index.html')`
 auf — also gegen das *Arbeitsverzeichnis*, nicht gegen den eigenen Ort. Wer nicht vorher
 `cd` gemacht hatte, bekam einen Fehler über eine fehlende Datei, nicht über das falsche
-Verzeichnis. Genau deshalb liefen die in [AGENTEN-BRIEFING.md](AGENTEN-BRIEFING.md)
+Verzeichnis. Genau deshalb liefen die in [agenten-briefing.md](agenten-briefing.md)
 dokumentierten Aufrufe `node build/assemble.mjs` von der Projektwurzel aus ins Leere,
 ohne dass es jemandem auffiel. Seit dem Umzug nach `dev/build/` steht jeder Pfad einmal
 in `paths.mjs`, abgeleitet aus `import.meta.url`. Neue Skripte importieren von dort und

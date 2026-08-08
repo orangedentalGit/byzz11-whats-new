@@ -172,7 +172,7 @@ auf Folie 29 in der Kategorienliste steht). Nicht wieder zu fünf gleichen Kache
 zusammenziehen.
 
 **Das Markensymbol steht still.** Es sitzt fest rechts und vertikal mittig und wechselt beim
-Folienwechsel nur die Deckkraft (Details in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md#bewegung)).
+Folienwechsel nur die Deckkraft (Details in [design-system.md](design-system.md#bewegung)).
 Vorher wanderte es je Abschnitt an eine andere Stelle. Ausdrücklich so gewünscht — nicht
 zurückbauen.
 
@@ -241,7 +241,7 @@ weitergegeben und allein durchgesehen; wer es dann öffnet, ist nicht der Vortra
 34 Notizen sind deshalb neu geschrieben — was zeigt die Folie, was heißt das in der Praxis,
 was gehört zur Einordnung dazu. Fachliche Einschränkungen sind erhalten, aber als Aussage
 formuliert. Regel dazu in
-[FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md#sprechnotizen-ändern).
+[folien-bearbeiten.md](folien-bearbeiten.md#sprechnotizen-ändern).
 
 ---
 
@@ -249,7 +249,7 @@ formuliert. Regel dazu in
 
 **Screenshots fehlen** für PDF-Viewer, Video-Player und Kamera-Aufnahme der byzz app.
 Folie 32 zeigt dort Piktogramme. Die Karten sind auf einen Austausch vorbereitet —
-Anleitung in [FOLIEN-BEARBEITEN.md](FOLIEN-BEARBEITEN.md#fehlende-app-screenshots-nachliefern).
+Anleitung in [folien-bearbeiten.md](folien-bearbeiten.md#fehlende-app-screenshots-nachliefern).
 
 **QR-Codes** zeigen auf:
 ```

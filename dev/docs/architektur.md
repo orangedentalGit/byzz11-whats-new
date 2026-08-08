@@ -19,7 +19,7 @@ der komplette Bauplan:
 | `BroadcastChannel`, `localStorage` als Kanal | direkte Objektreferenz aufs Popup |
 | Canvas-Pixel lesen nach lokalem Bild | keine Bildanalyse zur Laufzeit |
 
-Alles davon ist gemessen, nicht vermutet — siehe [FALLSTRICKE.md](FALLSTRICKE.md).
+Alles davon ist gemessen, nicht vermutet — siehe [fallstricke.md](fallstricke.md).
 
 **Konsequenz für dich:** Kein Bundler, kein Build-Schritt zum Vorführen. Was in
 `index.html` steht, ist das Deck. `dev/build/` enthält nur Werkzeuge, die man zum *Ändern*
@@ -47,7 +47,7 @@ assets/
   brand/              Logos
 
 dev/                  alles, was nur beim Bauen gebraucht wird
-  build/              Werkzeuge, siehe WERKZEUGE.md
+  build/              Werkzeuge, siehe werkzeuge.md
     paths.mjs         alle Projektpfade an einer Stelle
     slides/           Folien-Teildateien für die Montage
   docs/               diese Dokumentation
@@ -197,7 +197,7 @@ Zwei Bauarten, beide in `T.showFragment()`:
 Zusätzlich wandert ein `[data-pointer]`-Element bei jedem Schritt an eine neue x-Position
 (`T.movePointer`). Folie 12 nutzt das, um auf die jeweils aktive Umschalt-Schaltfläche im
 Screenshot zu zeigen. Bewegt wird ausschließlich `translateX`, und nur beim Schrittwechsel —
-Details in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md#zeiger).
+Details in [design-system.md](design-system.md#zeiger).
 
 ### Sichtbarkeit
 
@@ -215,7 +215,7 @@ teuer ist nur, was gerendert wird.
 
 ## Bewegung
 
-Details und Regeln stehen in [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md#bewegung).
+Details und Regeln stehen in [design-system.md](design-system.md#bewegung).
 Hier nur das Modell:
 
 Das Deck ist **eine Kamerafahrt**, kein Stapel Folien. Vorwärts kommt der neue Inhalt aus

@@ -4,7 +4,7 @@
  * Abgeleitet wird vom Ort DIESER Datei (import.meta.url), nicht vom
  * Arbeitsverzeichnis. Das ist der Unterschied, auf den es ankommt: mit
  * resolve('slides') haette jedes Skript nur funktioniert, wenn man vorher
- * `cd dev/build` gemacht hat — die in AGENTEN-BRIEFING.md dokumentierten
+ * `cd dev/build` gemacht hat — die in agenten-briefing.md dokumentierten
  * Aufrufe von der Projektwurzel aus liefen deshalb ins Leere.
  *
  * Zieht der Werkzeugordner noch einmal um, aendert sich hier eine Zeile
