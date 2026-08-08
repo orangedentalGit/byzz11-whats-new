@@ -1,0 +1,57 @@
+Ich will eine Fullscreen HTML Präsentation erstellen (evtl. später zusätzlich auch als Powerpoint)
+
+Vorab ein paar allgemeine Infos:
+- Firma orangedental
+- Internes Vertriebsmeeting (~10-15 Teilnehmer) zum Thema byzz 11
+- Ordner design-system enthält Firmenlogos
+- Premium Logo (Big) in die linke untere Ecke (dessen Farbe ist Primärfarbe)
+- Ordner inbox enthält Screenshots von byzz, sowie eine .pptx zum selben Thema (unschöner erster Entwurf - wird so nicht verwendet - nur als ganz grobe Orientierung)
+- Verwende die Screenshots, wenn hinter einem der nachfolgenden Punkte (Shot: xxx) steht.
+- Eher helles Desing - aber nicht zu harte Kontraste (es sei denn, es macht irgendwo Sinn)
+
+Achte auf eine hochqualitative, ansprechende und professionell aussehende Präsentation.
+Die Folien sollten nicht überladen sein, achte daher auf eine sinnvolle Aufteilung.
+Nutze mehrere Agenten wenn möglich/benötigt.
+Achte darauf, dass Elemente nicht übereinanderlappen, sofern es nicht explizit gewollt ist/Sinn macht. Insbesondere Texte müssen gut erkennbar sein.
+Nutze entsprechende Design-Skills und vor Allem auch HyperFrames für dezente, hübsche Animationen.
+Außerdem hierbei eventuell auch Weichzeichnungen, wenn etwas in den Hintergrund tritt oder aus diesem hervorkommt (und dann scharf wird) - natürlich nur, wenn es Sinn macht.
+Die Performance muss dabei natürlich gut bleiben.
+Der Umfang dürfte so im Bereich 20 - 30+ an Slides sein (ist aber flexibel und nicht in Stein gemeißelt)
+Kein Raten und irgendwelche Annahmen treffen - stelle Fragen, wenn was nicht zu 95% klar ist!
+
+Nachfolgend der erste Entwurf einer Aufteilung und die zugehörigen Unterpunkte:
+
+Neues unter der Haube
+- Umstellung der Server-Client-Kommunikation auf http
+- Umstellung von 32 auf 64 Bit (erlaubt u.a. größere 3D-Modelle)
+- byzz Paro komplett überarbeitet und damit deutlich performanter
+- Automatische Integration der externen Programme, wenn diese installiert sind (Shot: ExterneProgramme.jpg)
+- Anpassungen für das Green X evo 21 (Face-Scan)
+
+Neue Menüpunkte
+- Hilfe - Webinare (Internet-Zugang nötig)
+- Hilfe - App für Mobilgeräte (QR-Codes für die Stores)
+- Ansicht - Zeige Thumbnail Erstellungsdatum und -zeit (Shot: Erstellungsdatum.jpg)
+
+Neue Features
+- Aktive Bildansichten änderbar (Ansichten ein-/ausblenden)
+- Bildansichten in 3 Modi: Standard, Raster und Liste (Shot: Xray1.jpg, Xray2.jpg, Xray3.jpg)
+- Viele kleinere Anpassungen in der GUI (Look & Feel)
+- DVT-Einstellungen – Ez3D-i (Segmentation Engine) ein/aus
+- Integration der 3D-Slida-Schnittstelle (Testing steht noch aus)
+- AI-Läsions-Ermittlung (Nostic) (Shot: opg.jpg)
+- Weitere Sprachen wurden hinzugefügt (jetzt 8 insgesamt: Dänisch, Deutsch, Englisch, Französisch, Italienisch, Portugiesisch, Russisch, Spanisch)
+- Referenzsuche (Suche wird jetzt jedes Mal entsprechend den Suchparametern neu ausgeführt)
+- Datenbank-Merging (zwei DBs können zusammengeführt werden)
+- Aktivierung/Lizenzierung/Patching über Konfigurator
+- dentaleyepad Direktanbindung (keine weitere Software nötig)
+- Vordefinierte Direktanbindungen von externen Programmen (Diagnocat, exocad, Fussen, Shining)
+- DVT-Viewer (in den DVT-Einstellungen neuer standard 3D-Viewer)
+- DVT-Export mit Viewer (Shots: DVT-Export1.jpg, DVT-Export2.jpg, DVT-Export3.jpg)
+- byzz app - mobile App für Android, iOS und Browser. Ersetzt die alte ibyzz; keine FTP-Installation mehr benötigt.
+  + DVT-Viewer
+  + Model-Viewer
+  + PDF-Viewer
+  + Video-Player
+  + Kamera-Aufnahme
+  (Shots: app_home.jpg, app_login.jpg, app_patienten.jpg, app_dvts.jpg, app_3d.jpg)

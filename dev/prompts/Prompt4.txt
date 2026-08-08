@@ -1,0 +1,23 @@
+Slide 12:
+Den Pfeil mindestens doppelt so groß
+
+Slide 14:
+In der Unterüberschrift "und im Panel rechts" einfach weglassen.
+
+Slide 15:
+Überschrift ändern zu: 3D-Darstellung von Intraoralscans
+
+Slide 22:
+Überschrift ändern zu: Der Konfigurator - die Zentrale für administrative Aufgaben.
+
+Slide 31:
+Die Kamera-Aufnahme ist natürlich kein Betrachter.
+Neue Überschrift: Vier Betrachter stecken in der App, begleitet von der Kamera-Aufnahme
+Irgendwie die vier ersten Kachel evtl. 2x2 anordnen und die Kamera Kachel etwas größer rechts daneben. Evtl. auch mit Info, "Im Reiter Kamera".
+
+Slide 33:
+Unterüberschrift erweitern zu: Auch weitere Anmerkungen und Wünsche sind willkommen.
+
+
+Zu guter letzt:
+Ich wollte die Notizen nicht im Hauptfenster sondern im extra Fenster (was mit P geöffnet wird) - hier dann gerne auch mit N zu- und abschaltbar

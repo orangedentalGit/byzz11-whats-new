@@ -1,0 +1,69 @@
+Vorab - Thema 1:
+Ich habe die Ordnerstruktur etwas geändert.
+Ich habe inbox in dev umbenannt und den design-system ordner hierhin verschoben
+Außderdem die Screenshots in ein entsprechendes Unterverzeichnis. Die .pptx liegt direkt in dev.
+Weiterhin ein prompts Verzeichnis für mich, damit ich nachvollziehen kann, welche Prompts ich geschrieben habe.
+Passe dahingehend die Doku an, falls irgendwo entsprechend benötigt.
+
+Vorab - Thema 2:
+Ich musste gerade mit Schrecken feststellen, dass die Slides auf das Format 16:9 (oder was auch immer) fixiert sind. Ändere ich die Fenstergröße habe ich links/rechts oder oben/unten weiße Balken
+Das darf auf keinen Fall sein.
+
+Slide 02:
+Rechts bei 03 "Der größte Block: " einfach weglassen
+
+Slide 06:
+Ich hatte es explizit gesagt, es heißt: ... und byzz besser auf Green X ...
+also ohne "den" - das passt hier definitiv nicht!
+
+Slide 12 bei allen 3 Screenshots.
+Bezüglich der verschiedenen Ansichten sieht man unten in der StatusBar, den jeweils aktiven Button (weißer Rahmen). Kannst du da noch einen schönen Pfeil, von unten drauf (auf allen drei Slide auf den entsprechenden Button) zeigend einfügen. Vielleicht kann der auch dezent animiert jeweils zum nächsten Button wandern
+
+Slide 15:
+Anstatt den vorhandenen Pills 3 neue: STL, OBJ, PLY
+
+Slide 17:
+Rechte Card, zweiter Satz mit "Das Testing..." komplett entfernen und den orangenen Satz erweitern auf "Testing steht noch aus"
+
+Slide 19:
+Überschrift ändern zu: Das dentaleyepad kommuniziert jetzt direkt mit byzz.
+Unterüberschrift, 2ter Satz ohne 11.
+Im Vorher Zweig ganz rechts anstatt byzz "byzz 10"
+
+Slide 20:
+Müssen wir trennen in die Referenzsuche (eine alte Suche (wird ja immer neu ausgeführt) findet auch bei geändertem Datenbestand dir korrekten Bilder) und eine neue Folie:
+Überschrift Merging und Migration (Shot: merge_migrator.jpg)
+
+2 Karten:
+
+1. Datenbank-Merging
+Zwei byzz-Datenbanken lassen sich zusammenführen. Thema bei Praxisübernahmen, Zusammenlegungen und Standortfusionen.
+2. Weitere Migrationsmöglichkeiten
+Überleg dir einen kurzen Text hierzu: Aus DICOMDIR, PACS und BVS [BVS sind Bild-Verwaltungs-Softwaren - also andere Programme mit eigenen DBs])
+
+Slide 21:
+Überschrift ändern zu: Der Konfigurator - die zentrale Anlaufstelle.
+
+Slide 22:
+In der Überschrift die 11 weg.
+
+Slide 24:
+In beiden Zweigen haben wir die Box mit Server-Service...
+oben jetzt: byzz 10 Server-Service
+unten jetzt: byzz 11 Server-Service
+
+Im oberen Zweig den Satz ändern zu: Manuelle Einrichtung in jeder Praxis - fehleranfällig
+
+Slide 25:
+Überschrift ändern zu (zwei Zeilen):
+Client-Erstinstallation ohne Medium.
+App Zugriff ohne Installation.
+
+Slide 27:
+Text entfernen: "auf allen drei Wegen"
+
+Slide 28;:
+"in den bekannten Kategorien" ändern zu "in den entsprechenden Kategorien"
+
+Slide 31:
+Überschrift "Das" bewußt weglassen!!!

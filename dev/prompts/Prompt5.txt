@@ -1,0 +1,2 @@
+Im Referentenfenster brauchen wir die An-/Abschaltung der Notizen gar nicht.
+Einfach immer sichtbar lassen

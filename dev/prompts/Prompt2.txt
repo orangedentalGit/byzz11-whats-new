@@ -1,0 +1,114 @@
+Generell sollten die Notizen in dem Fenster der Referentenansicht liegen.
+
+Slide 01 und folgende:
+- Das od Symbol (was übrigens quasi eine Art Unendlichkeitssymbol/Brille ist) soll wie jetzt auch rechts aber vertikal mittig ausgerichtet und nicht gedreht sein.
+- rechts unten darf immer byzz 11 stehen, wobei byzz in dem grau der Schrift ganz links oben und 11 orange dargestellt wird
+
+Slide 01:
+Fragezeichen noch nach "Was ist neu"
+Wechsel von Slide 1 auf 2 und generell wo das Symbol wandert:
+Das od Symbol im Hintergrund soll nicht wandern, sondern einfach etwas (aber nicht vollständig) ausfaden - darf aber noch ganz leicht im Hintergrund sein.
+
+Slide 02:
+Die Zeilen Vier Blöcke und von unten nach oben entfernen und durch Agenda ersetzen
+Darunter einfach nur: Fundament, Bedienung, Funktionen, App
+In der Pill einfach nur: Auch live in byzz
+
+Slide 03:
+Links den zweiten Satz ändern in: Änderungen die man nicht sieht - aber alles verändern
+
+Slide 04:
+Links den unteren Satz ändern in: Die Kommunikation läuft über ein Standardprotokoll statt über eine Microsoft-spezifische Implementierung
+Rechts in der Server-Service Pill statt byzz 11: = Webservice
+
+Slide 05:
+Links die DVT-Datensätze Pill weglassen
+
+Slide 06:
+Links oben den Text ändern in: Anpassungen für flüssigeres Arbeiten und mehr Möglichkeiten
+Links unten den Text ändern in: byzz Paro wurde komplett überarbeitet, und byzz besser auf Green X evo 21 abgestimmt
+
+Slide 07:
+Links oben Text ändern in: Ist ein unterstütztes Fremdprogramm installiert, steht es in byzz sofort zur Verfügung.
+
+Slide 08:
+Unteren Text ändern in: Einträge in den Menüs - mehr Informationen direkt aus byzz heraus
+
+Slide 11:
+Unteren Text ändern in: Was in byzz dazugekommen ist.
+
+Slide 13: Ersatzlos streichen
+
+Slide 14:
+Linke Card, unteren Text (vorderer Teil) ändern in: Die Ansichten lassen sich ein- und ausblenden - ...
+
+Slide 15:
+Im unteren Text nach Klassifikation diese Angabe: "D3/D4" entfernen
+
+Slide 16:
+Links unterer Text ändern in: byzz als Standard DVT-Viewer.
+
+Außerdem Slide 16 und 17 vertauschen.
+
+Slide 18:
+Links oberer Text ändern in (2 Zeilen):
+Ez3D-i Segmentation
+3D-Slida-Integration
+
+Unterer Text ändern in:
+Erweiterte Einstellungen und eine neue Schnittstelle
+
+Slide 19:
+Links im unteren Text das "lauffähiges" entfernen. Klingt wie eine Software, die gerade dem Krabbelalter entkommen ist... negativer Beigeschmack.
+
+Slide 22:
+Patching Card: unterne Text ändern in: Updates werden nur über den Konfigurator eingespielt
+
+Slide 23:
+Den Text unterhalb des Überschriftstrenners ändern in: Für weitere Märkte und mehr Kunden
+
+Slide 24: Ersatzlos streichen
+
+Slide 25:
+Unteren Text ändern in: Ein neues Kapitel in byzz - und eines, das der Kunde in den Händen halten kann.
+
+Slide 26:
+Unterüberschrift noch ergänzen (nach iOS); MacOS
+Der ibyzz Ablauf ist falsch und sieht so aus: Gerät -> FTP-Installation -> Server-Service  (ja, in byzz 10 gab es auch einen Server-Service)
+Im byzz app Ablauf in der rechten Pill das "byzz" raus (und nur Server-Service lassen).
+
+Slide 27:
+Überschrift ergänzen zu: Die App startet auch im Browser ...
+Unterüberschrift Text ersetzen durch (2 Zeilen):
+Direktzugriff auf den Server-Service über den Browser
+http://<servername>:8100
+Die Addresszeile dabei mittig unter der Zeile darüber setzen.
+Die Bulletpoints bleiben.
+
+Slide 28:
+Überschrift ändern zu: Login wie in der Desktop Anwendung
+Unterüberschrift ändern zu: Anmeldung wie gewohnt.
+
+Slide 29:
+Überschrift ändern zu: Der Patient ist sofort da.
+
+Slide 30:
+Überschrift ändern zu: Bekannte Aufteilung der Bildtypen
+Unterüberschrift ändern zu: Innerhalb eines Patienten liegen die Bilder in den bekannten Kategorien
+
+Slide 31:
+Unterüberschrift ändern zu: Der DVT-Viewer auch in der App: Konfigurierbare MPR/3D-Ansicht.
+
+Slide 33: Ersatzlos streichen
+
+Slide 34:
+Hier auch rechts oben die Seitenzahl anzeigen
+Überschrift ändern in: Das byzz in neuer Generation
+Die erste Card (Netzlaufwerk...) entfernen - stimmt so nicht, da die Netzwerkfreigabe immer noch auf das Bildverzeichnis erfolgt (im Übrigen automatisch durch den Konfigurator).
+Anordnung der Cards so:
+[Eine App für alle Geräte (Text: Die byzz app läuft auf Android, iOS, MacOS und im Browser)] [DVT-Viewer (neue Card! Text: Für einfaches Betrachten keine extra Software mehr benötigt)}
+[DVT-Export mit Betrachter (Text: Der Export bringt seinen eigenen Betrachter mit — der Empfänger braucht nichts zu installieren.)] [KI Unterstützung für Kleinröntgen und OPGs (Text: Durch Nostic werden potentielle Läsionen im Röntgenbild markiert.)]
+
+Slide 25:
+Unterüberschrift ändern in: Auch weitere Anmerkungen, Wünsche sind willkommen.
+Die Pill weg.

@@ -1,0 +1,47 @@
+Nachtrag: Wir ändern den Sinn der Präsentation insofern, dass es eher als Präsentation für den Kunden dient (nicht mehr internes Vertriebsmeeting).
+Aber wir ändern nichts weiter - abgesehenvon folgendem:
+
+Slide 02:
+Pill "Auch live in byzz" mit irgendwas anderem Ersetzen - mache mir Vorschläge!
+
+Slide 09:
+Wie Webinare gibt es noch einen dritten neuen Punkt: Häufig gestellte Fragen
+Wobei das eigentlich der erste neue Punkt ist und zusammen mit den Webinaren auf die orangedental Webseite und dort auf die FAQ Seite geht.
+
+Slide 10:
+Unterüberschrift ergängzen zu: Datum und Uhrzeit werden auf Wunsch ...
+
+Slide 13:
+Textzeile ganz unten. Es ist nicht alles ausblendbar:
+Control Center, Historie und Suche sind NICHT ausblendbar!
+
+Slide 19:
+Unterüberschrift, 2ter Satz erweitern zu: Die entfällt in byzz 11.
+(Hier ist die 11 richtig, da es der Unterschied zur 10 ist.)
+
+Slide 20:
+Rechte Seite oben: "Eine" wegnehmen, so dass nur noch "Gespeicherte Liste" steht
+Unten: Ebenfalls den Artikel wegnehmen, so dass nur noch "Referenzsuche" steht
+Hier brauchen wir die Artikel nicht.
+
+Slide 21:
+2. Karte, unteren Satz ändern in: Bilddaten auch aus DICOMDIR, PACS oder aus einer fremden Bildverwaltung (BVS) übernehmen.
+(wieder weniger Artikel)
+
+Slide 22:
+Karte Lizenzierung an erster Stelle.
+Karte Aktivierung ist hier missverständlich:
+Nähere Erklärung für dich: Die Aktivierung bei uns ist eine Art vorgefertigte Lizenzierung, wobei die ausgewählten Module vordefiniert sind und der Kunde nur einen Aktivierungscode bekommt.
+Bei erfolgreichem Aktivierungsprozess (erfolgt online über unseren Lizenzserver) bekommt der Kunde (automatisch) eine entsprechende Lizenz.
+So genau, soll das hier gar nicht stehen - mache mir einen Vorschlag für eine neue Karte, wo nur ein Satz drinsteht.
+
+Slide 28:
+Unterüberschrift ändern in: Übersichtliche Auswahl mit Suchfeld und alphabetischem Schnellzugriff. 
+
+Nach Slide 29:
+Neuen Slide einfügen mit Screenshot app_options.jpg
+Optionen zu Funktionalität, Darstellung und Sprache.
+
+Slide 33:
+Vollständig Ersetzen durch einen Abschlußslide. Screenshot bcc.jpg hier mittig setzen.
+Mache mir Vorschläge zu einem kurzen Abschlußsatz - evtl. mit irgendeiner Art Danksagung.

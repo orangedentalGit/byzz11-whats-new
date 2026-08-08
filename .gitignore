@@ -1,0 +1,48 @@
+# byzz 11 — „Was ist neu"
+#
+# Verfolgt wird alles, was ein Klon auf einer anderen Maschine braucht:
+# das Deck selbst (index.html + assets/), die Werkzeuge unter dev/build/,
+# die Doku unter dev/docs/ und die Quellbilder in dev/screenshots/.
+# Draussen bleibt nur, was sich reproduzieren laesst oder woanders hingehoert.
+#
+# Achtung beim Erweitern: .gitignore kennt KEINE Kommentare am Zeilenende.
+# Ein "#" hinter einem Muster gehoert zum Muster. Kommentare immer eigene Zeile.
+
+# ---------------------------------------------------------------- Abhaengigkeiten
+# `npm ci` in dev/build/ stellt sie aus der package-lock.json wieder her.
+# ffmpeg-static und sharp sind plattformabhaengige Binaerdateien und gehoeren
+# ohnehin nicht in ein Repository.
+node_modules/
+
+# ------------------------------------------------------------------- Eigenes Repo
+# publish.bat fuellt dieses Verzeichnis per robocopy neu. Es wird ein eigenes
+# Repository (orangedentalGit/view) — dev/docs/VEROEFFENTLICHEN.md.
+/publish/
+
+# ------------------------------------------------------------- Build-Ergebnisse
+# shot.mjs — wird bei jedem Lauf geloescht und neu geschrieben
+/dev/build/shots/
+# prepare-video.mjs --probe
+/dev/build/frames/
+# prepare-video.mjs
+/dev/build/tmp-video/
+# pdf.mjs — Folie 2 verlinkt die Fassung auf data.orangedental.de, nicht diese
+/byzz-11-was-ist-neu.pdf
+
+# ------------------------------------------------------------------- Persoenliches
+# .claude/settings.json bleibt verfolgt (Projektrechte), die lokale Fassung nicht.
+.claude/settings.local.json
+
+# -------------------------------------------------------- Betriebssystem, Editor
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# ------------------------------------------------------------------- Protokolle
+*.log
+npm-debug.log*

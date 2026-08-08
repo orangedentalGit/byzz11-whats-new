@@ -1,0 +1,306 @@
+  <!-- ================================================================= -->
+  <!-- 17 · DVT-EINSTELLUNGEN: Ez3D-i UND 3D-SLIDA                       -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="DVT-Einstellungen: Ez3D-i und 3D-Slida" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:214px;width:1300px">
+        <h2 class="h-1" data-anim>Ez3D-i Segmentation<br>3D-Slida-Integration</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1060px">Erweiterte Einstellungen und eine neue Schnittstelle.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:600px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-cube"/></svg></div>
+          <h3 class="card__t">Ez3D-i Segmentation Engine</h3>
+          <p class="card__d">Die Segmentation Engine lässt sich in den DVT-Einstellungen ein- und ausschalten — je nachdem, ob die Praxis sie braucht.</p>
+          <div style="margin-top:18px"><span class="badge badge--muted">In den DVT-Einstellungen</span></div>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-link"/></svg></div>
+          <h3 class="card__t">3D-Slida-Schnittstelle</h3>
+          <p class="card__d">Die Schnittstelle ist in byzz 11 integriert.</p>
+          <div style="margin-top:18px"><span class="badge">Testing steht noch aus</span></div>
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Zwei Einstellungen rund um DVT und 3D. Die <b>Ez3D-i Segmentation Engine</b> ist ab byzz 11 in den DVT-Einstellungen ein- und ausschaltbar — praktisch, wenn eine Praxis sie nicht nutzt oder die Leistung am Arbeitsplatz knapp ist.</p>
+      <p>Die <b>3D-Slida-Schnittstelle</b> ist eingebaut, aber noch nicht getestet: vorhanden, Freigabe steht aus. Zu Funktionsumfang und Termin liegt bislang nichts fest.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 18 · DVT-EXPORT MIT BETRACHTER  (Sequenz, 3 Fragmente)            -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="DVT-Export mit eigenem Betrachter" data-section="3" data-fragments="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Das DVT geht raus,<br>der Betrachter mit.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Der Export legt die DVT-Daten und ein Betrachterprogramm zusammen ab. Der Empfänger braucht kein byzz.</p>
+
+        <div class="steps" data-anim style="position:relative;margin-top:38px">
+          <span class="step is-on"><span class="step__n">01</span>Aufrufen</span>
+          <span class="step"><span class="step__n">02</span>Ziel wählen</span>
+          <span class="step"><span class="step__n">03</span>Weitergeben</span>
+        </div>
+      </div>
+
+      <!-- Feste Flaeche 936x560 ab 872/250. Jedes Bild sitzt darin mit seinem
+           eigenen Seitenverhaeltnis, horizontal und vertikal zentriert:
+             1150x717 -> 880x549  bei 28/6     (Mitte 468/280.5)
+              610x489 -> 610x489  bei 163/36   (Mitte 468/280.5)
+              950x204 -> 936x201  bei 0/180    (Mitte 468/280.5) -->
+      <div class="seq" data-anim style="left:872px;top:250px;width:936px;height:560px">
+        <div class="seq__stack">
+
+          <div class="seq__item is-on">
+            <div class="shot" style="left:28px;top:6px;width:880px;height:549px">
+              <img class="shot__spill" src="assets/img/dvt-export1.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/dvt-export1.webp" width="1150" height="717" alt="Kontextmenü der DVT-Liste mit dem Eintrag Export (DVT mit Betrachter)"></div>
+              <img class="shot__soft" src="assets/img/dvt-export1.soft.jpg" alt="">
+              <div class="shot__cap">Kontextmenü · Export (DVT mit Betrachter)</div>
+            </div>
+          </div>
+
+          <div class="seq__item">
+            <div class="shot" style="left:163px;top:36px;width:610px;height:489px">
+              <img class="shot__spill" src="assets/img/dvt-export2.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/dvt-export2.webp" width="610" height="489" alt="Dialog DVT-Export mit Zielverzeichnis, drei Exportoptionen und Auswahl der Exportsprache"></div>
+              <img class="shot__soft" src="assets/img/dvt-export2.soft.jpg" alt="">
+              <div class="shot__cap">Dialog · DVT-Export</div>
+            </div>
+          </div>
+
+          <div class="seq__item">
+            <div class="shot" style="left:0;top:180px;width:936px;height:201px">
+              <img class="shot__spill" src="assets/img/dvt-export3.soft.jpg" alt="">
+              <div class="shot__frame"><img src="assets/img/dvt-export3.webp" width="950" height="204" alt="Zielordner mit den Verzeichnissen dicom, series und viewer sowie der Datei DVT-Betrachter.exe"></div>
+              <img class="shot__soft" src="assets/img/dvt-export3.soft.jpg" alt="">
+              <div class="shot__cap">Ergebnisordner · DVT-Betrachter.exe</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Der Export in drei Schritten. <b>Aufrufen</b>: im Kontextmenü der DVT-Liste steht der neue Eintrag <code>Export (DVT mit Betrachter)</code> direkt unter dem normalen Export.</p>
+      <p><b>Ziel wählen</b>: Zielverzeichnis, dazu drei Optionen — Unterverzeichnis mit Patientenname, kein Unterverzeichnis (überschreibt vorhandene Daten) oder Zip-Datei. Die Sprache des Betrachters lässt sich separat einstellen, was zählt, wenn der Empfänger im Ausland sitzt.</p>
+      <p>Der entscheidende Schritt ist der dritte: im Zielordner liegen <code>dicom</code>, <code>series</code>, <code>viewer</code> und die <code>DVT-Betrachter.exe</code>. <b>Überweiser, Labor und Patient brauchen kein byzz</b>, um das DVT anzusehen.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 19 · DENTALEYEPAD OHNE ZUSATZSOFTWARE                             -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="dentaleyepad ohne Zusatzsoftware" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Das dentaleyepad<br>kommuniziert jetzt<br>direkt mit byzz.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Bisher lief die Anbindung über eine zusätzliche Software. Die entfällt in byzz 11.</p>
+      </div>
+
+      <div class="marks" data-anim style="left:112px;top:636px;width:700px">
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Ein Installationsschritt weniger</b> beim Einrichten.</p></div>
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Eine Fehlerquelle weniger</b> im laufenden Betrieb.</p></div>
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Aufnahmen landen direkt</b> beim richtigen Patienten.</p></div>
+      </div>
+
+      <!-- Schaubild: der Zwischenschritt faellt weg -->
+      <div data-anim style="position:absolute;left:900px;top:356px;width:908px">
+        <svg viewBox="0 0 908 310" style="width:908px;height:310px;overflow:visible">
+          <defs>
+            <marker id="ah-dep-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#948C82"/>
+            </marker>
+            <marker id="ah-dep-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="17" font-weight="500">
+
+            <!-- vorher -->
+            <text x="0" y="16" fill="#948C82" font-size="15" letter-spacing=".14em">VORHER</text>
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0"   y="36" width="252" height="76" rx="13"/>
+              <rect x="328" y="36" width="252" height="76" rx="13"/>
+              <rect x="656" y="36" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#948C82">
+              <text x="26"  y="80">dentaleyepad</text>
+              <text x="354" y="80">Zusatzsoftware</text>
+              <text x="682" y="80">byzz 10</text>
+            </g>
+            <g stroke="#948C82" stroke-width="2" fill="none" marker-end="url(#ah-dep-g)" opacity=".75">
+              <path d="M262 74 L318 74"/>
+              <path d="M590 74 L646 74"/>
+            </g>
+
+            <!-- jetzt -->
+            <text x="0" y="200" fill="#C2620A" font-size="15" letter-spacing=".14em">JETZT</text>
+            <g fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2">
+              <rect x="0"   y="220" width="252" height="76" rx="13"/>
+              <rect x="656" y="220" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#191714">
+              <text x="26"  y="264">dentaleyepad</text>
+              <text x="682" y="264">byzz 11</text>
+            </g>
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah-dep-o)">
+              <path d="M262 258 L646 258"/>
+            </g>
+            <text x="454" y="242" fill="#C2620A" font-size="15" text-anchor="middle">ohne Umweg</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Das <b>dentaleyepad</b> ist in byzz 11 direkt angebunden. Bisher brauchte es dafür eine weitere Software auf dem Rechner — die fällt weg.</p>
+      <p>In der Praxis heißt das: ein Installationsschritt weniger bei der Einrichtung und ein Programm weniger, das im Betrieb ausfallen kann. Die Aufnahmen landen direkt beim geöffneten Patienten.</p>
+      <p>Der Ablauf am Behandlungsplatz bleibt derselbe wie bisher: Aufnahme machen, Bild ist da — nur ohne den Zwischenschritt im Schaubild rechts.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 20 · REFERENZSUCHE                                                -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Referenzsuche" data-section="3">
+    <div class="slide-inner">
+      <div class="col-l" style="top:236px;width:720px">
+        <h2 class="h-1" data-anim>Eine gespeicherte Suche<br>läuft jedes Mal neu.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Die Referenzsuche wird bei jedem Aufruf neu ausgeführt. Auch bei geändertem Datenbestand findet sie die richtigen Bilder.</p>
+      </div>
+
+      <div class="marks" data-anim style="left:112px;top:704px;width:720px">
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Keine eingefrorene Liste</b> — die Treffer zeigen den heutigen Stand.</p></div>
+        <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Neue Fälle sind automatisch dabei</b>, wenn sie den Kriterien entsprechen.</p></div>
+      </div>
+
+      <!-- Schaubild: dieselbe gespeicherte Suche, zwei Zeitpunkte -->
+      <div data-anim style="position:absolute;left:900px;top:356px;width:908px">
+        <svg viewBox="0 0 908 310" style="width:908px;height:310px;overflow:visible">
+          <defs>
+            <marker id="ah-ref-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#948C82"/>
+            </marker>
+            <marker id="ah-ref-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="17" font-weight="500">
+
+            <!-- vorher -->
+            <text x="0" y="16" fill="#948C82" font-size="15" letter-spacing=".14em">GESPEICHERTE LISTE</text>
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0"   y="36" width="252" height="76" rx="13"/>
+              <rect x="656" y="36" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#948C82">
+              <text x="26"  y="80">Suche</text>
+              <text x="682" y="80">Stand von damals</text>
+            </g>
+            <g stroke="#948C82" stroke-width="2" fill="none" marker-end="url(#ah-ref-g)" opacity=".75">
+              <path d="M262 74 L646 74"/>
+            </g>
+            <text x="454" y="58" fill="#948C82" font-size="15" text-anchor="middle">einmal ausgeführt</text>
+
+            <!-- jetzt -->
+            <text x="0" y="200" fill="#C2620A" font-size="15" letter-spacing=".14em">REFERENZSUCHE</text>
+            <g fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2">
+              <rect x="0"   y="220" width="252" height="76" rx="13"/>
+              <rect x="656" y="220" width="252" height="76" rx="13"/>
+            </g>
+            <g fill="#191714">
+              <text x="26"  y="264">Suche</text>
+              <text x="682" y="264">Stand von heute</text>
+            </g>
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah-ref-o)">
+              <path d="M262 258 L646 258"/>
+            </g>
+            <text x="454" y="242" fill="#C2620A" font-size="15" text-anchor="middle">bei jedem Aufruf</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die <b>Referenzsuche</b> ist keine eingefrorene Liste: Was einmal als Suche gespeichert wurde, läuft bei jedem Öffnen neu gegen den aktuellen Bestand.</p>
+      <p>Der Punkt, der zählt: <b>Auch wenn sich der Datenbestand geändert hat, kommen die richtigen Bilder.</b> Neue Fälle, die den Kriterien entsprechen, stehen automatisch mit drin.</p>
+      <p>Das Schaubild rechts stellt beides gegenüber: oben die einmal ausgeführte, gespeicherte Liste mit dem Stand von damals — unten die Referenzsuche, die bei jedem Aufruf den heutigen Stand liefert.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 21 · MERGING UND MIGRATION                                        -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Merging und Migration" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:250px;width:900px">
+        <h2 class="h-1" data-anim>Merging und Migration.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Bestände zusammenführen — aus einer zweiten byzz-Datenbank oder aus einem fremden System.</p>
+      </div>
+
+      <div class="cards cards--2" data-anim style="left:112px;top:540px;width:920px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-database"/></svg></div>
+          <h3 class="card__t">Datenbank-Merging</h3>
+          <p class="card__d">Zwei byzz-Datenbanken lassen sich zusammenführen. Thema bei Praxisübernahmen, Zusammenlegungen und Standortfusionen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-plug"/></svg></div>
+          <h3 class="card__t">Weitere Migrations&shy;möglichkeiten</h3>
+          <p class="card__d">Bilddaten auch aus DICOMDIR, PACS oder aus einer fremden Bildverwaltung (BVS) übernehmen.</p>
+        </div>
+      </div>
+
+      <div class="shot" data-anim style="left:1092px;top:230px;width:716px;height:609px">
+        <img class="shot__spill" src="assets/img/merge-migrator.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/merge-migrator.webp" width="716" height="609" alt="byzz Merge Migrator mit den Quellen Merge, DICOMDIR, PACS und BVS">
+        </div>
+        <img class="shot__soft" src="assets/img/merge-migrator.soft.jpg" alt="">
+        <div class="shot__cap">BYZZ MERGE MIGRATOR</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p><b>Datenbank-Merging</b> führt zwei byzz-Datenbanken zusammen. Das Thema kommt bei Praxisübernahmen, Zusammenlegungen und Standortfusionen — Bestände müssen nicht nebeneinander weiterlaufen.</p>
+      <p>Derselbe Weg holt Bilddaten auch von außen herein: <b>DICOMDIR, PACS und BVS</b> — also Bildverwaltungen anderer Hersteller mit eigener Datenbank.</p>
+      <p>Merging ist ein Projekt, kein Klick — Umfang und Ablauf werden vorher mit dem orangedental-Support abgestimmt. Wie vollständig eine Übernahme gelingt, hängt am Quellsystem.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 22 · ACHT SPRACHEN                                                -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="byzz spricht acht Sprachen" data-section="3">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:206px;width:1300px">
+        <h2 class="h-1" data-anim>byzz spricht<br>jetzt acht Sprachen.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1060px">Für weitere Märkte und mehr Kunden.</p>
+      </div>
+
+      <div class="langs" data-anim style="left:112px;top:560px;width:1696px">
+        <div class="lang"><div class="lang__n">Dänisch</div><div class="lang__c">DA</div></div>
+        <div class="lang"><div class="lang__n">Deutsch</div><div class="lang__c">DE</div></div>
+        <div class="lang"><div class="lang__n">Englisch</div><div class="lang__c">EN</div></div>
+        <div class="lang"><div class="lang__n">Französisch</div><div class="lang__c">FR</div></div>
+        <div class="lang"><div class="lang__n">Italienisch</div><div class="lang__c">IT</div></div>
+        <div class="lang"><div class="lang__n">Portugiesisch</div><div class="lang__c">PT</div></div>
+        <div class="lang"><div class="lang__n">Russisch</div><div class="lang__c">RU</div></div>
+        <div class="lang"><div class="lang__n">Spanisch</div><div class="lang__c">ES</div></div>
+      </div>
+
+      <p class="tiny" data-anim style="position:absolute;left:112px;top:846px;width:1100px">Unabhängig davon lässt sich beim DVT-Export die Exportsprache eigens wählen.</p>
+    </div>
+    <template class="notes">
+      <p>byzz 11 kommt in <b>acht Sprachen</b>: Dänisch, Deutsch, Englisch, Französisch, Italienisch, Portugiesisch, Russisch und Spanisch.</p>
+      <p>Die Oberfläche lässt sich <b>pro Arbeitsplatz</b> umstellen — das zählt für Standorte im Ausland ebenso wie für mehrsprachige Teams in größeren Praxen und MVZ.</p>
+      <p>Davon zu unterscheiden: Beim <code>DVT-Export</code> gibt es eine eigene Sprachauswahl, die nur den Betrachter beim Empfänger betrifft.</p>
+    </template>
+  </section>
+

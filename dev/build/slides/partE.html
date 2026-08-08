@@ -1,0 +1,351 @@
+  <!-- ================================================================= -->
+  <!-- 23 · DIVIDER 04                                                   -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="byzz app" data-section="4" data-divider data-bare>
+    <div class="slide-inner">
+      <div class="div-block">
+        <div class="div-num" data-anim>ABSCHNITT 04</div>
+        <h2 class="h-l" data-anim>byzz app</h2>
+        <p class="div-meta" data-anim>Ein neues Kapitel in byzz — und eines, das der Kunde in den Händen halten kann.</p>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Bis hierhin ging es um Fundament und Arbeitsplatz. Jetzt kommt das Stück, das <b>aus der Praxis herausgeht</b> — aufs Tablet, aufs Handy, in den Browser.</p>
+      <p>Die byzz app löst ibyzz ab und ist der weitreichendste Punkt dieser Version. Die folgenden Folien gehen sie der Reihe nach durch: Einstieg, Login, Patientenliste, Medien, Einstellungen, DVT-Viewer und die eingebauten Betrachter.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 24 · DIE byzz APP LOEST ibyzz AB                                  -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Die byzz app löst ibyzz ab" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:250px">
+        <h2 class="h-1" data-anim>Die byzz app<br>löst ibyzz ab.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Dieselbe App auf Android, iOS, MacOS und im Browser. Die FTP-Installation entfällt — die App spricht direkt mit dem Server-Service.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">Android</span>
+          <span class="chip">iOS</span>
+          <span class="chip">MacOS</span>
+          <span class="chip">Browser</span>
+        </div>
+      </div>
+
+      <!-- Schaubild: alter Weg (FTP) gegen neuen Weg (HTTP) -->
+      <div data-anim style="position:absolute;left:868px;top:300px;width:940px">
+        <svg viewBox="0 0 940 390" style="width:940px;height:390px;overflow:visible">
+          <defs>
+            <marker id="ah-e-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#948C82"/>
+            </marker>
+            <marker id="ah-e-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#F68B1A"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="16" font-weight="500">
+
+            <!-- Alter Weg. Drei Stationen, rechte Kante buendig mit der Zeile
+                 darunter: 0–188 · 376–564 · 678–940. Die rechte Station ist
+                 breiter als die uebrigen, weil "byzz 10 Server-Service" in
+                 IBM Plex Mono 16 px 212 px misst. -->
+            <text x="0" y="14" fill="#948C82" font-size="15" letter-spacing=".16em">BISHER · ibyzz</text>
+            <g fill="#FFFFFF" stroke="rgba(25,23,20,.14)">
+              <rect x="0"   y="38" width="188" height="78" rx="13"/>
+              <rect x="376" y="38" width="188" height="78" rx="13"/>
+              <rect x="678" y="38" width="262" height="78" rx="13"/>
+            </g>
+            <g fill="#948C82" text-anchor="middle">
+              <text x="94"  y="84">Gerät</text>
+              <text x="470" y="84">FTP-Installation</text>
+              <text x="809" y="84">byzz 10 Server-Service</text>
+            </g>
+            <g stroke="#948C82" stroke-width="2" fill="none" marker-end="url(#ah-e-grey)" opacity=".75">
+              <path d="M188 77 L374 77"/>
+              <path d="M564 77 L676 77"/>
+            </g>
+            <text x="0" y="148" fill="#948C82" font-size="15">Manuelle Einrichtung in jeder Praxis · fehleranfällig</text>
+
+            <!-- Neuer Weg -->
+            <text x="0" y="228" fill="#C2620A" font-size="15" letter-spacing=".16em">NEU · byzz app</text>
+            <rect x="0"   y="252" width="188" height="78" rx="13" fill="#FFFFFF" stroke="rgba(25,23,20,.14)"/>
+            <rect x="678" y="252" width="262" height="78" rx="16" fill="#FFFFFF" stroke="rgba(246,139,26,.5)" stroke-width="2"/>
+            <g fill="#191714" text-anchor="middle">
+              <text x="94"  y="298">Gerät</text>
+              <text x="809" y="298">byzz 11 Server-Service</text>
+            </g>
+            <g stroke="#F68B1A" stroke-width="2" fill="none" marker-end="url(#ah-e-orange)">
+              <path d="M188 291 L676 291"/>
+            </g>
+            <text x="432" y="278" fill="#C2620A" font-size="15" letter-spacing=".08em" text-anchor="middle">HTTP</text>
+            <text x="0" y="362" fill="#948C82" font-size="15">Keine Installation · die App verbindet sich direkt</text>
+
+          </g>
+        </svg>
+      </div>
+    </div>
+    <template class="notes">
+      <p><b>ibyzz ist Geschichte.</b> Die byzz app ist der Nachfolger — dieselbe App für Android, iOS, MacOS und Browser.</p>
+      <p>Einen Server-Service gab es auch in byzz 10 schon. Der aufwendige Teil war die <b>FTP-Installation</b>, einmal pro Gerät. Genau die entfällt, weil die App über HTTP direkt mit dem Server-Service spricht — die Umstellung aus Abschnitt 01.</p>
+      <p>Das Schaubild rechts zeigt beide Wege übereinander: oben der Aufwand aus ibyzz, unten der direkte Weg in byzz 11.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 25 · EINSTIEG UEBER DEN BROWSER                                   -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Einstieg über den Browser" data-section="4">
+    <div class="slide-inner">
+      <!-- Die Ueberschrift laeuft ueber die volle Breite, nicht in .col-l:
+           "Client-Erstinstallation ohne Medium." misst in h-1 rund 1180 px und
+           wuerde in der 660er Spalte in vier Zeilen zerfallen. Das Panel rutscht
+           dafuer unter die Ueberschrift und wird kleiner. -->
+      <div style="position:absolute;left:112px;top:196px;width:1400px">
+        <h2 class="h-1" data-anim>Client-Erstinstallation ohne Medium.<br>App&nbsp;Zugriff ohne Installation.</h2>
+        <div class="rule" data-anim></div>
+      </div>
+
+      <div class="col-l" style="top:432px">
+        <!-- Umbruch von Hand: der automatische liesse "Browser" allein stehen,
+             und die Adresszeile darunter saesse dann unter einem Schusterjungen. -->
+        <p class="lead" data-anim>Direktzugriff auf den Server-Service<br>über den Browser</p>
+        <!-- Die Adresszeile sitzt mittig unter der Zeile darueber, deshalb
+             text-align:center ueber die volle Spaltenbreite. -->
+        <p class="mono" data-anim style="margin-top:14px;width:660px;text-align:center;font-size:26px;line-height:1.3;color:var(--ink)">http://&lt;servername&gt;:8100</p>
+
+        <div class="marks" data-anim style="position:relative;margin-top:34px;width:660px">
+          <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Browser-App starten</b> — läuft sofort, es wird nichts installiert.</p></div>
+          <div class="mark"><span class="mark__b"></span><p class="mark__t"><b>Desktop-App laden</b> — der Download für den festen Arbeitsplatz.</p></div>
+        </div>
+
+        <p class="tiny" data-anim style="margin-top:24px">Oben die Version, unten Kontakt und TeamViewer für den Support.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:1008px;top:420px;width:800px;height:450px">
+        <img class="shot__spill" src="assets/img/app-home.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-home.webp" width="1600" height="899" alt="Startseite der byzz app mit den Schaltflächen für die Browser-App und den Desktop-App-Download">
+        </div>
+        <img class="shot__soft" src="assets/img/app-home.soft.jpg" alt="">
+        <div class="shot__cap">STARTSEITE · BROWSER ODER DESKTOP</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Der Einstieg in einem Satz: <b>Adresse aufrufen, Browser-App starten, fertig.</b> Kein Setup, keine Rechte, kein IT-Termin nötig.</p>
+      <p>Die Desktop-App bietet denselben Funktionsumfang für Arbeitsplätze, an denen dauerhaft damit gearbeitet wird.</p>
+      <p>Unten auf der Seite stehen Kontakt und TeamViewer-Zugang — Hilfe ist also von derselben Stelle aus erreichbar.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 26 · LOGIN                                                        -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Login" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:284px">
+        <h2 class="h-1" data-anim>Login wie in der<br>Desktop&nbsp;Anwendung.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Anmeldung wie gewohnt.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">Praxis</span>
+          <span class="chip">Benutzer</span>
+          <span class="chip">Passwort</span>
+        </div>
+        <p class="tiny" data-anim style="margin-top:24px">Unten stehen byzz-Version und App-Version nebeneinander — die erste Frage im Support ist damit beantwortet.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:551px">
+        <img class="shot__spill" src="assets/img/app-login.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-login.webp" width="1600" height="892" alt="Anmeldemaske der byzz app mit den Feldern Praxis, Benutzer und Passwort">
+        </div>
+        <img class="shot__soft" src="assets/img/app-login.soft.jpg" alt="">
+        <div class="shot__cap">ANMELDUNG · PRAXIS, BENUTZER, PASSWORT</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Der <b>Standardlogin lässt sich merken</b> — am Tablet im Behandlungszimmer muss damit nicht dreimal täglich eine Praxiskennung getippt werden.</p>
+      <p>Unten im Bild stehen zwei Versionsnummern. Genau diese beiden Zahlen werden bei einem Support-Fall benötigt.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 27 · PATIENTENLISTE                                               -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Patientenliste" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:300px">
+        <h2 class="h-1" data-anim>Der Patient ist<br>sofort da.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Übersichtliche Auswahl mit Suchfeld und alphabetischem Schnellzugriff.</p>
+        <p class="tiny" data-anim style="margin-top:28px">Dasselbe Bedienmuster — wer es einmal kennt, findet sich überall zurecht.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:510px">
+        <img class="shot__spill" src="assets/img/app-patienten.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-patienten.webp" width="1600" height="826" alt="Patientenliste der byzz app mit Suchfeld und alphabetischem Schnellzugriff am Rand">
+        </div>
+        <img class="shot__soft" src="assets/img/app-patienten.soft.jpg" alt="">
+        <div class="shot__cap">PATIENTEN · SUCHE UND ALPHABET-SPRUNG</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die Patientenliste ist der Einstieg in alles Weitere. <b>Suchen oder springen</b> — mehr Wege gibt es nicht, und mehr braucht es auch nicht.</p>
+      <p>Der Alphabet-Streifen am Rand ist für die Bedienung mit dem Daumen gemacht, nicht für die Maus — er zeigt seinen Nutzen erst am Tablet.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 28 · MEDIEN NACH TYP                                              -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Medien nach Typ" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:250px">
+        <h2 class="h-1" data-anim>Bekannte Aufteilung<br>der Bildtypen.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Innerhalb eines Patienten liegen die Bilder in den entsprechenden Kategorien.</p>
+        <div data-anim style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip chip--muted">Alles</span>
+          <span class="chip chip--muted">Kamera</span>
+          <span class="chip chip--muted">Kleinröntgen</span>
+          <span class="chip chip--muted">OPG</span>
+          <span class="chip chip--muted">Fernröntgen</span>
+          <span class="chip">DVT</span>
+          <span class="chip chip--muted">Dokument</span>
+          <span class="chip chip--muted">Modelldaten</span>
+        </div>
+        <p class="tiny" data-anim style="margin-top:24px">Jede Kachel zeigt das Aufnahmedatum und ein Info-Symbol.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:551px">
+        <img class="shot__spill" src="assets/img/app-dvts.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-dvts.webp" width="1600" height="892" alt="Patientenakte in der byzz app, Reiter DVT mit Kacheln und Aufnahmedatum">
+        </div>
+        <img class="shot__soft" src="assets/img/app-dvts.soft.jpg" alt="">
+        <div class="shot__cap">PATIENTENAKTE · REITER DVT</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die Reiter sind die einzige Navigation innerhalb eines Patienten: <b>ein Reiter je Medientyp</b>, links im Bild der ausgewählte.</p>
+      <p>Damit entfällt das Scrollen durch alles, was je aufgenommen wurde. Wer das OPG sucht, tippt auf OPG.</p>
+      <p>Das Aufnahmedatum steht an jeder Kachel — das ist beim Vergleich alter und neuer Aufnahmen der entscheidende Wert.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 29 · EINSTELLUNGEN DER APP                                        -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Einstellungen der App" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:250px">
+        <h2 class="h-1" data-anim>Jeder richtet sich<br>die App selbst ein.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Optionen zu Funktionalität, Darstellung und Sprache.</p>
+        <p class="tiny" data-anim style="margin-top:28px">Mehrere Farbschemata zur Auswahl, dazu Schalter für Patientenliste, Login und Navigation.</p>
+      </div>
+
+      <!-- Panelhoehe gerechnet: 988 x 900/1424 = 624,5 -> 625. Das Bild ist
+           hoeher als die uebrigen App-Aufnahmen, weil der Einstellungsbereich
+           bis an den unteren Fensterrand reicht. -->
+      <div class="shot" data-anim style="left:820px;top:250px;width:988px;height:625px">
+        <img class="shot__spill" src="assets/img/app-options.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-options.webp" width="1424" height="900" alt="Einstellungen der byzz app mit Schaltern für die Funktionalität und Farbschemata für das Erscheinungsbild">
+        </div>
+        <img class="shot__soft" src="assets/img/app-options.soft.jpg" alt="">
+        <div class="shot__cap">EINSTELLUNGEN · FUNKTIONALITÄT UND ERSCHEINUNGSBILD</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Die Einstellungen sitzen im Zahnrad rechts oben und gelten <b>je Gerät</b> — jeder richtet sich seine Ansicht selbst ein, ohne dass es andere betrifft.</p>
+      <p>Oben Schalter für die Funktionalität: ob sich die Patientenliste nach der Auswahl schließt, ob das Datum an den Vorschaubildern steht, ob das Suchfeld im Login erscheint.</p>
+      <p>Darunter das Erscheinungsbild mit mehreren Farbschemata zur Auswahl, dazu die Sprache. Ein Wechsel wirkt sofort auf die gesamte Oberfläche — vorgegeben ist hier nichts.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 30 · DVT-VIEWER IN DER APP                                        -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="DVT-Viewer in der App" data-section="4">
+    <div class="slide-inner">
+      <div class="col-l" style="top:224px">
+        <h2 class="h-1" data-anim>Ein DVT auf dem<br>Tablet — direkt<br>am Stuhl.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim>Der DVT-Viewer auch in der App: konfigurierbare MPR/3D-Ansicht.</p>
+        <div data-anim style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="chip">3D</span>
+          <span class="chip">Axial</span>
+          <span class="chip">Sagittal</span>
+          <span class="chip">Coronal</span>
+        </div>
+        <p class="tiny" data-anim style="margin-top:26px">Die Fadenkreuze lassen sich verschieben — die Schnittebenen folgen.</p>
+      </div>
+
+      <div class="shot" data-anim style="left:820px;top:270px;width:988px;height:553px">
+        <img class="shot__spill" src="assets/img/app-3d.soft.jpg" alt="">
+        <div class="shot__frame">
+          <img src="assets/img/app-3d.webp" width="1600" height="896" alt="DVT-Viewer der byzz app mit 3D-Rendering und den Schnittebenen axial, sagittal und coronal">
+        </div>
+        <img class="shot__soft" src="assets/img/app-3d.soft.jpg" alt="">
+        <div class="shot__cap">DVT-VIEWER · 3D UND DREI SCHNITTEBENEN</div>
+      </div>
+    </div>
+    <template class="notes">
+      <p><b>Ein vollwertiger DVT-Viewer auf dem Tablet</b> — kein Standbild und kein abgespeckter Betrachter.</p>
+      <p>Wird das Fadenkreuz mit dem Finger gezogen, laufen die beiden anderen Ebenen mit. Axial, sagittal und coronal bleiben dabei immer auf derselben Stelle.</p>
+      <p>Damit bleibt der Behandler am Stuhl und zeigt dem Patienten die Aufnahme dort, wo das Gespräch stattfindet.</p>
+    </template>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- 31 · ALLES IN EINER APP (Karten)                                  -->
+  <!-- ================================================================= -->
+  <section class="slide" data-title="Alles in einer App" data-section="4">
+    <div class="slide-inner">
+      <div style="position:absolute;left:112px;top:206px;width:1300px">
+        <h2 class="h-1" data-anim>Vier Betrachter stecken in der App,<br>begleitet von der Kamera-Aufnahme.</h2>
+        <div class="rule" data-anim></div>
+        <p class="lead" data-anim style="max-width:1040px">Für jeden Medientyp bringt die byzz app den passenden Betrachter mit.</p>
+      </div>
+
+      <!-- Die vier Betrachter als 2x2-Block, die Kamera-Aufnahme daneben ueber
+           beide Reihen: sie ist kein Betrachter, sondern der Weg hinein. -->
+      <div class="cards cards--app" data-anim style="left:112px;top:518px;width:1696px">
+        <div class="card glass">
+          <div class="card__ico"><svg><use href="#i-cube"/></svg></div>
+          <h3 class="card__t">DVT-Viewer</h3>
+          <p class="card__d">3D-Rendering und drei Schnittebenen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-scan"/></svg></div>
+          <h3 class="card__t">Model-Viewer</h3>
+          <p class="card__d">Modelldaten am Gerät ansehen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-doc"/></svg></div>
+          <h3 class="card__t">PDF-Viewer</h3>
+          <p class="card__d">Dokumente in der App öffnen.</p>
+        </div>
+        <div class="card">
+          <div class="card__ico"><svg><use href="#i-film"/></svg></div>
+          <h3 class="card__t">Video-Player</h3>
+          <p class="card__d">Videos in der App abspielen.</p>
+        </div>
+        <div class="card card--wide">
+          <div class="card__ico"><svg><use href="#i-camera"/></svg></div>
+          <h3 class="card__t">Kamera-Aufnahme</h3>
+          <p class="card__d">Aufnahmen mit der Gerätekamera.</p>
+          <span class="path"><svg><use href="#i-layout"/></svg>Reiter Kamera</span>
+        </div>
+      </div>
+    </div>
+    <template class="notes">
+      <p>Zusammenfassung des Abschnitts: <b>ein Programm statt fünf.</b> Was in der Akte liegt, lässt sich in der App auch öffnen — ohne Umweg über ein anderes Werkzeug.</p>
+      <p>Vier Betrachter: DVT, Modelldaten, PDF und Video. Die <b>Kamera-Aufnahme ist kein Betrachter</b>, sondern der Weg hinein — sie sitzt im Reiter Kamera.</p>
+      <p>Der DVT-Viewer ist davon der weitreichendste Punkt, die übrigen drei sind die Selbstverständlichkeit, die eine App zum Arbeitsgerät macht.</p>
+      <p>Zu PDF-Viewer, Video-Player und Kamera-Aufnahme liegen bislang keine Einzelheiten vor.</p>
+    </template>
+  </section>
+
