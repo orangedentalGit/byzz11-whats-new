@@ -196,9 +196,15 @@ am Ende auffällt. Die Schlussfolie trägt ihn deshalb **nicht** noch einmal.
 **Das Hilfe-Menü hat drei neue Einträge, nicht zwei** (Folie 9). Reihenfolge: „Häufig
 gestellte Fragen", „Webinare", „App für Mobilgeräte". Der FAQ-Eintrag führt auf die
 FAQ-Seite der orangedental-Webseite, „Webinare" wie bisher auf die Webinar-Seite — beide
-Ziele sind bestätigt und **nicht** dieselbe Seite. Damit die drei Karten plus QR-Codes
-zwischen y = 200 und y = 940 passen, ist die Überschrift einzeilig und die QR-Codes stehen
-bei 112 px unter dem Kartentext statt bei 132 px daneben.
+Ziele sind bestätigt und **nicht** dieselbe Seite.
+
+Die Folie zeigt trotzdem nur **zwei Karten**: die beiden Web-Einträge teilen sich eine,
+weil sie dasselbe Ziel haben — die orangedental-Webseite. Beide Menüpfade stehen dort
+untereinander, die Zahl drei bleibt also am Bildschirm nachweisbar und wird von der
+Unterzeile „Alle drei führen aus byzz heraus" gehalten. Drei gleich breite Karten hatten
+das Problem, dass die QR-Codes die Zeilenhöhe auf 496 px trieben und unter den beiden
+Textkarten je rund 200 px Leerraum stehen blieben; in `cards--2` stehen die QR-Codes
+neben dem Text statt darunter, und beide Karten sind gemessene 332 px hoch.
 
 **byzz sucht keine Fremdprogramme** (Folie 7). byzz 11 **kennt die Standardpfade** der
 unterstützten Programme; sie stehen von vornherein in den Feldern. Stimmt der Pfad — der
