@@ -95,33 +95,21 @@ veraltete Fassung ([veroeffentlichen.md](dev/docs/veroeffentlichen.md)).
 
 ## Veröffentlichen
 
-Committen und pushen:
-
-```bash
-git status                      # erst ansehen, was sich geändert hat
-git add -A
-git commit -m "Deck aktualisiert"
-git push
-```
-
 `.github/workflows/pages.yml` läuft bei jedem Push nach `main` und stellt das
 Repository online: https://orangedentalgit.github.io/byzz11-whats-new/
 
 Der Workflow packt mit `path: .` **alles** — auch `dev/` und die Markdown-Dateien.
 Das ist so gewollt; wer etwas ablegt, das nicht nach außen soll, nimmt es in die
-`.gitignore` auf. Einzelheiten in [veroeffentlichen.md](dev/docs/veroeffentlichen.md).
+`.gitignore` auf.
 
-`publish.bat` erzeugt eine Deck-Fassung ohne `dev/` zum Weitergeben als Ordner —
-kopiert werden `index.html`, `readme.txt`, `assets\` und `.github\`. Es ist nicht der
-Weg ins Netz: Aus `publish/` heraus zu pushen würde `dev/` im Repository löschen.
+Die Datei liegt in genau der Struktur, die GitHub verlangt. Workflows werden **nur**
+unter `.github/workflows/` erkannt; liegt die Datei woanders, wird sie kommentarlos
+ignoriert und es passiert scheinbar gar nichts.
 
-`.github/workflows/pages.yml` liegt in genau der Struktur, die GitHub verlangt.
-Workflows werden **nur** unter `.github/workflows/` erkannt; liegt die Datei woanders,
-wird sie kommentarlos ignoriert und es passiert scheinbar gar nichts.
-
-Was zu tun ist, wenn das Deployment in `deployment_queued` hängen bleibt, steht in
-[veroeffentlichen.md](dev/docs/veroeffentlichen.md) — kurz: erneut anstoßen, das hilft
-meistens.
+Online geht es aus diesem Repository heraus, nie aus `publish/` — ein Push von dort
+würde `dev/` im Repository löschen. Das und was bei einem in `deployment_queued`
+hängenden Deployment zu tun ist, steht in
+[veroeffentlichen.md](dev/docs/veroeffentlichen.md).
 
 ---
 
