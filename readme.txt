@@ -111,9 +111,8 @@
   24 - 32   byzz app
   33 - 34   Zusammenfassung und Dank
 
-  Eigene Demo-Folien gibt es nicht mehr. Wer live in byzz zeigen will,
-  wechselt einfach an der passenden Stelle in das Programm und kommt
-  danach mit Zahl + Enter zurueck.
+  Wer live in byzz zeigen will, wechselt an der passenden Stelle in das
+  Programm und kommt danach mit Zahl + Enter zurueck.
 
 
   Zum Aendern der Folien: siehe README.md und den Ordner dev/docs/

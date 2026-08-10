@@ -11,11 +11,6 @@ Fullscreen-Präsentation für den Termin beim Kunden. 34 Folien, HTML, läuft of
 Ein eigenständiges Präsentations-Deck, das per Doppelklick startet — ohne Server, ohne Node,
 ohne Internet. Der Ordner lässt sich als Ganzes weitergeben oder auf einen USB-Stick kopieren.
 
-Es ersetzt einen früheren PowerPoint-Entwurf. Der lag bis zuletzt als
-`dev/byzz v11 - Was ist neu.pptx` daneben und ist inzwischen entfernt — alles, was
-daraus gebraucht wurde, steckt im Deck: die beiden Videos in `assets/video/`, die
-inhaltlichen Festlegungen in [`dev/docs/inhalt.md`](dev/docs/inhalt.md).
-
 | | |
 |---|---|
 | Folien | 34, in vier Abschnitten |
@@ -49,10 +44,14 @@ index.html            das Deck — Bühne, Symbole, alle 34 Folien
 readme.txt            Bedienung
 byzz-11-was-ist-neu.pdf   dieselben Folien statisch, 38 Seiten     [erzeugt]
 README.md             diese Datei
+CLAUDE.md             Arbeitsregeln für Claude Code
 
 publish.bat           Doppelklick: Deck-Fassung ohne dev\ zum Weitergeben
 pdf.bat               Doppelklick: erzeugt das PDF neu
 .gitignore            was nicht ins Repository gehört
+
+.claude/
+  settings.json       Projektrechte
 
 .github/
   workflows/pages.yml der GitHub-Actions-Workflow, der die Seite baut
@@ -79,13 +78,18 @@ dev/                  alles, was nur beim Bauen gebraucht wird
   prompts/            Auftragstexte, chronologisch
 ```
 
-Weitergeben genügen `index.html`, `assets/` und `readme.txt`. `dev/` ist Arbeitsmaterial
-und bleibt zurück.
+Zum Weitergeben genügen `index.html`, `readme.txt`, `assets/` und `.github/` — genau das
+kopiert `publish.bat` nach `publish/`. `dev/` ist Arbeitsmaterial und bleibt zurück.
 
 Das PDF liegt daneben, gehört aber nicht dazu: Es ist die statische Fassung für alle, die
 das Deck nur ansehen oder ausdrucken wollen. Neu erzeugt wird es per Doppelklick auf
 `pdf.bat` — oder mit `node dev/build/pdf.mjs`
 ([werkzeuge.md](dev/docs/werkzeuge.md#pdfmjs--das-deck-als-pdf)).
+
+**Folie 2 verlinkt das PDF von `data.orangedental.de`.** Die Datei dort gehört nicht zum
+Build und wird von keinem Prüflauf erfasst. Nach Folienänderungen also nicht nur das PDF
+neu erzeugen, sondern es auch dort hochladen — sonst verteilt der Link im Deck eine
+veraltete Fassung ([veroeffentlichen.md](dev/docs/veroeffentlichen.md)).
 
 ---
 
@@ -107,9 +111,9 @@ Der Workflow packt mit `path: .` **alles** — auch `dev/` und die Markdown-Date
 Das ist so gewollt; wer etwas ablegt, das nicht nach außen soll, nimmt es in die
 `.gitignore` auf. Einzelheiten in [veroeffentlichen.md](dev/docs/veroeffentlichen.md).
 
-**`publish.bat` ist nicht mehr der Weg ins Netz.** Es erzeugt nur noch eine
-Deck-Fassung ohne `dev/` zum Weitergeben als Ordner. Aus `publish/` heraus zu pushen
-würde `dev/` im Repository löschen.
+`publish.bat` erzeugt eine Deck-Fassung ohne `dev/` zum Weitergeben als Ordner —
+kopiert werden `index.html`, `readme.txt`, `assets\` und `.github\`. Es ist nicht der
+Weg ins Netz: Aus `publish/` heraus zu pushen würde `dev/` im Repository löschen.
 
 `.github/workflows/pages.yml` liegt in genau der Struktur, die GitHub verlangt.
 Workflows werden **nur** unter `.github/workflows/` erkannt; liegt die Datei woanders,
@@ -142,29 +146,3 @@ in `dev/build/slides/` — und **`verify.mjs` ruft `assemble.mjs` mit auf.** Wer
 `index.html` gearbeitet hat, spielt die Änderung vorher in die passende Datei unter
 `dev/build/slides/` zurück, sonst räumt die Abnahme sie weg. Wann welcher Weg richtig ist, steht
 in [folien-bearbeiten.md](dev/docs/folien-bearbeiten.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
-
----
-
-## Stand
-
-Alle Prüfungen bestanden: 34 Folien ohne Layoutbefund, Skalierung auf sechs Bildschirmgrößen,
-Übersicht, Navigation vor- und rückwärts, schnelles Durchklicken, Referentenansicht mit
-Notizen und Tastenbrücke, Kaltstart aus fremdem Pfad, beide Videos — null Konsolenmeldungen.
-
-Offen:
-
-- **Screenshots** für PDF-Viewer, Video-Player und Kamera-Aufnahme der byzz app fehlen.
-  Folie 31 zeigt dort Piktogramme. Ein Austausch ist vorbereitet (`.card__shot`), verändert
-  im 2×2-Raster aber die Kartenhöhe — siehe
-  [folien-bearbeiten.md](dev/docs/folien-bearbeiten.md#fehlende-app-screenshots-nachliefern).
-- **Am echten Beamer** ist das Deck noch nicht gelaufen. Vor dem Meeting einmal durchspielen,
-  besonders die Reihenfolge „erst `P`, dann Vollbild".
-
----
-
-## Warum HTML und nicht PowerPoint
-
-Die Übergänge, die Tiefenwirkung der Screenshots und die mehrstufigen Folien lassen sich in
-PowerPoint nicht sauber nachbauen. Eine PowerPoint-Fassung bleibt nachträglich möglich —
-jede Folie ließe sich über `dev/build/shot.mjs` als Bild exportieren und einsetzen. Die
-Animationen gingen dabei verloren.
