@@ -30,10 +30,10 @@ ohne Internet. Der Ordner lässt sich als Ganzes weitergeben oder auf einen USB-
 | [`dev/docs/design-system.md`](dev/docs/design-system.md) | Was das Stylesheet anbietet: Raster, Farben, Schrift, Bausteine, Bildtabelle, Piktogramme. |
 | [`dev/docs/fallstricke.md`](dev/docs/fallstricke.md) | Was beim Bauen schiefging, mit Messwerten. Vor größeren Eingriffen lesen. |
 | [`dev/docs/architektur.md`](dev/docs/architektur.md) | Wie es funktioniert: Bühne, Zustandsmaschine, Bewegung, Referentenansicht. |
-| [`dev/docs/werkzeuge.md`](dev/docs/werkzeuge.md) | Alles unter `dev/build/`: Prüfstand, PDF-Ausgabe, Bildaufbereitung, Montage. |
+| [`dev/docs/werkzeuge.md`](dev/docs/werkzeuge.md) | Alles unter `dev/build/`: Prüfstand, PDF-Ausgabe, Bildaufbereitung, Inventar. |
 | [`dev/docs/inhalt.md`](dev/docs/inhalt.md) | Foliengliederung, Quellen, inhaltliche Festlegungen, offene Punkte. |
 | [`dev/docs/veroeffentlichen.md`](dev/docs/veroeffentlichen.md) | Das Deck online stellen (GitHub Pages) — Einrichtung, Prüfschritte, was tun, wenn das Deployment hängt. |
-| [`dev/docs/agenten-briefing.md`](dev/docs/agenten-briefing.md) | Vorlage, um Folien parallel von mehreren Agenten bauen zu lassen. |
+| [`dev/docs/agenten-briefing.md`](dev/docs/agenten-briefing.md) | Rückschau: wie die Folien parallel von mehreren Agenten entstanden sind, und was dabei getragen hat. |
 
 ---
 
@@ -129,8 +129,6 @@ Der wichtigste Satz für den Einstieg: **Folientexte stehen direkt in `index.htm
 Folie in einer eigenen `<section class="slide">`, die Sprechnotizen darin in
 `<template class="notes">`. Für eine Textkorrektur brauchst du kein Werkzeug.
 
-Aber: `dev/build/assemble.mjs` überschreibt genau diesen Bereich wieder aus den Teildateien
-in `dev/build/slides/` — und **`verify.mjs` ruft `assemble.mjs` mit auf.** Wer direkt in
-`index.html` gearbeitet hat, spielt die Änderung vorher in die passende Datei unter
-`dev/build/slides/` zurück, sonst räumt die Abnahme sie weg. Wann welcher Weg richtig ist, steht
-in [folien-bearbeiten.md](dev/docs/folien-bearbeiten.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
+`index.html` ist dabei die einzige Quelle — es gibt keine Teildateien und keinen
+Montageschritt mehr, der Handarbeit überschreiben könnte. Das Kochbuch für die
+häufigsten Änderungen steht in [folien-bearbeiten.md](dev/docs/folien-bearbeiten.md).

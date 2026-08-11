@@ -49,7 +49,6 @@ assets/
 dev/                  alles, was nur beim Bauen gebraucht wird
   build/              Werkzeuge, siehe werkzeuge.md
     paths.mjs         alle Projektpfade an einer Stelle
-    slides/           Folien-Teildateien für die Montage
   docs/               diese Dokumentation
   screenshots/        Ausgangsbilder (Quelle, unverändert)
   design-system/      Logos im Original (Quelle)

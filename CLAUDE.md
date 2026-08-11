@@ -47,6 +47,14 @@ Alles Nicht-Auslieferbare liegt unter `dev/`: `dev/build/` (Werkzeuge),
 `dev/docs/` (Dokumentation), `dev/screenshots/` (Bildquellen),
 `dev/design-system/` (Logos im Original) und `dev/prompts/` (Auftragstexte).
 
+**`index.html` ist die einzige Quelle der Folien.** Es gab einmal eine Montage:
+`dev/build/assemble.mjs` setzte die Datei aus Teildateien unter `dev/build/slides/`
+zusammen, weil beim Bauen fünf Agenten parallel je eine Teildatei schrieben. Beides
+ist entfernt. Übrig blieb nur die Falle, dass jede Textkorrektur an zwei Stellen
+stehen musste und der Abnahmelauf die eine davon wegräumte
+(`dev/docs/fallstricke.md` §9). Wieder einführen lohnt nicht — für ein neues Deck
+ist der Skill zuständig.
+
 Der alte PowerPoint-Entwurf (`dev/byzz v11 - Was ist neu.pptx`) ist entfernt.
 Er war nur noch Quelle für die beiden Videos; die liegen fertig geschnitten in
 `assets/video/`. `dev/build/prepare-video.mjs` kann deshalb nicht mehr laufen —
@@ -96,7 +104,7 @@ sonst verteilt der Link im Deck eine veraltete Fassung
 | Eingriff in `assets/js/` oder `deck.css` | `dev/docs/architektur.md` **und** `dev/docs/fallstricke.md` |
 | Assets neu erzeugen, Prüfläufe | `dev/docs/werkzeuge.md` |
 | Inhaltliche Fragen, „warum ist das so?" | `dev/docs/inhalt.md` |
-| Folien parallel von Agenten bauen | `dev/docs/agenten-briefing.md` |
+| Erfahrungen aus dem Parallelbau der Folien | `dev/docs/agenten-briefing.md` |
 | Deck über GitHub Pages veröffentlichen | `dev/docs/veroeffentlichen.md` |
 
 Nicht aus dem Gedächtnis arbeiten — die Dokumente enthalten gemessene Werte und
@@ -111,32 +119,28 @@ teils so, dass es erst im Meeting auffällt.
    `fetch()` auf lokale Dateien, kein `@font-face` mit Datei-URL, keine Iframes
    zwischen lokalen Dateien, kein `BroadcastChannel`/`localStorage` als Kanal.
    Alles davon ist gemessen blockiert (`dev/docs/fallstricke.md` §1).
-2. **`dev/build/assemble.mjs` überschreibt `index.html`** zwischen den Markern
-   `<!-- SLIDES:START -->` und `<!-- SLIDES:END -->` aus `dev/build/slides/`.
-   Für Textkorrekturen direkt in `index.html` arbeiten und `assemble.mjs` dann
-   **nicht** mehr aufrufen. `--check` zeigt gefahrlos, was passieren würde.
-3. **Zustand nie aus dem DOM lesen.** Während eines Übergangs tragen zwei Folien
+2. **Zustand nie aus dem DOM lesen.** Während eines Übergangs tragen zwei Folien
    `is-active`. Immer `BYZZ.current()` / `BYZZ.slideAt(n)`.
-4. **Die Sperre `if (fired) return;` in `preload()` bleibt.** Ohne sie springt das
+3. **Die Sperre `if (fired) return;` in `preload()` bleibt.** Ohne sie springt das
    Deck sechs Sekunden nach dem Start zurück auf Folie 1.
-5. **Bilder nie über 1,15× ihrer nativen Breite** anzeigen. Panelhöhe aus dem
+4. **Bilder nie über 1,15× ihrer nativen Breite** anzeigen. Panelhöhe aus dem
    nativen Seitenverhältnis rechnen, nicht schätzen.
-6. **Logo-Schutzzone** x 100–372 / y 948–1034 bleibt frei. Inhalt zwischen
+5. **Logo-Schutzzone** x 100–372 / y 948–1034 bleibt frei. Inhalt zwischen
    y = 200 und y = 940.
-7. **Blur-Budget einhalten:** Aurora nur als `radial-gradient`, maximal zwei
+6. **Blur-Budget einhalten:** Aurora nur als `radial-gradient`, maximal zwei
    geblurrte Ebenen, Radius ≤ 12 px, danach `filter: none`, `backdrop-filter`
    höchstens einmal pro Folie, kein Leerlauf-Wackeln.
-8. **Bildquelle ist ausschließlich `dev/screenshots/`.** Die höher aufgelösten
+7. **Bildquelle ist ausschließlich `dev/screenshots/`.** Die höher aufgelösten
    Screenshots aus der `.pptx` waren vom Auftraggeber ausdrücklich ausgeschlossen —
    die Frage stellt sich nicht mehr, seit die Datei entfernt ist. Sollte sie je
    zurückkommen: nicht eigenmächtig austauschen. Ausgenommen waren die beiden
    Videos, die längst in `assets/video/` liegen.
-9. **Bestehende CSS-Klassen und Piktogramm-IDs verwenden.** Erfundene `#i-*`-IDs
+8. **Bestehende CSS-Klassen und Piktogramm-IDs verwenden.** Erfundene `#i-*`-IDs
    rendern als Leerfläche. Neue Klassen gehören ins Stylesheet **und** in
    `dev/docs/design-system.md`.
-10. **Nichts erfinden.** Keine Zahlen, Dateiformate oder Funktionsumfänge, die
-    nicht belegt sind. Lieber knapper formulieren.
-11. **`#stage` und `#frame` nicht wieder zusammenlegen.** `#frame` ist der
+9. **Nichts erfinden.** Keine Zahlen, Dateiformate oder Funktionsumfänge, die
+   nicht belegt sind. Lieber knapper formulieren.
+10. **`#stage` und `#frame` nicht wieder zusammenlegen.** `#frame` ist der
     komponierte Bereich und immer exakt 1920 × 1080 — alle Folienkoordinaten
     beziehen sich darauf. `#stage` ist der sichtbare Bereich und wächst über
     `--stage-w` / `--stage-h` so weit, dass er nach der Skalierung jedes
@@ -165,9 +169,8 @@ und bauen sie nicht selbst zusammen.** Wer das Deck fernsteuert, nimmt dafür
 Arbeitsverzeichnis aufgelöst und funktioniert nur zufällig — siehe
 `dev/docs/fallstricke.md` §11.
 
-Vor der Abgabe zusätzlich `node dev/build/verify.mjs` (Montage, Folien,
-Rahmenfunktionen, Referentenansicht, Kaltstart) — und einmal wirklich
-`index.html` doppelklicken.
+Vor der Abgabe zusätzlich `node dev/build/verify.mjs` (Folien, Rahmenfunktionen,
+Referentenansicht, Kaltstart) — und einmal wirklich `index.html` doppelklicken.
 Niemals über einen Dev-Server abnehmen: über `http://` funktionieren genau die
 Dinge, die unter `file://` scheitern.
 

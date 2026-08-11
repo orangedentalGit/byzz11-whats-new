@@ -183,28 +183,26 @@ in einem System, in dem mehrere Leute (oder Agenten) parallel Folien bauen, eine
 
 ---
 
-## 9 · Montage überschreibt Handarbeit
+## 9 · Eine Montage, die Handarbeit überschrieb
 
-`dev/build/assemble.mjs` ersetzt alles zwischen `<!-- SLIDES:START -->` und `<!-- SLIDES:END -->`
-in `index.html`. Wer direkt dort arbeitet und danach die Montage laufen lässt, verliert
-seine Änderungen.
+Der Folienbereich von `index.html` wurde einmal erzeugt: `dev/build/assemble.mjs` ersetzte
+alles zwischen `<!-- SLIDES:START -->` und `<!-- SLIDES:END -->` durch die `<section>`-Blöcke
+aus fünf Teildateien unter `dev/build/slides/`. Sinnvoll war das genau einmal — als fünf
+Agenten gleichzeitig Folien bauten und nicht in dieselbe Datei schreiben durften.
 
-Beim Bauen ist das zweimal passiert: Agenten haben ihre Teildateien nach dem ersten
-Zusammensetzen noch nachgebessert. `node dev/build/assemble.mjs --check` zeigt gefahrlos, was
-passieren würde. Details in [folien-bearbeiten.md](folien-bearbeiten.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
+Danach war es nur noch eine Falle. Wer in `index.html` arbeitete und anschließend montierte,
+verlor seine Änderung. Beim Bauen ist das zweimal passiert. Die scharfe Kante:
+**`verify.mjs` rief `assemble.mjs` ohne `--check` auf** — der Abnahmelauf war selbst der
+Überschreiber, und er meldete nichts, weil er formal durchlief. `--check` half nicht: es
+zählte nur die Folien je Teildatei und sah in `index.html` überhaupt nicht hinein.
 
-> **Die scharfe Kante daran: `verify.mjs` ruft `assemble.mjs` ohne `--check` auf.**
-> Der Abnahmelauf ist also selbst der Überschreiber. Wer eine Folie direkt in `index.html`
-> geändert hat und danach `node dev/build/verify.mjs` startet, verliert die Änderung — und der Lauf
-> meldet nichts, weil er formal durchläuft.
->
-> **Deshalb: Textänderungen immer in die passende Teildatei unter `dev/build/slides/`
-> zurückspielen, bevor `verify.mjs` läuft.** `--check` prüft nur die Anzahl der Folien je
-> Teildatei, nicht ihren Inhalt — es findet diese Abweichung also nicht.
->
-> Ob die beiden auseinandergelaufen sind, zeigt der Vergleich gegen eine
-> Sicherungskopie: Rezept in
-> [werkzeuge.md](werkzeuge.md#sind-teildateien-und-indexhtml-deckungsgleich).
+Beides ist entfernt. `index.html` ist die einzige Quelle der Folien, jede Korrektur steht
+an genau einer Stelle. Wer parallel bauen will, tut das für ein *neues* Deck über den Skill
+`create-slides` — nicht, indem er hier eine zweite Wahrheit einführt.
+
+> Die eigentliche Lehre ist allgemeiner: **Ein Erzeugnis und seine Quelle dürfen nicht
+> beide von Hand bearbeitbar aussehen.** Solange `index.html` wie eine normale Datei
+> dalag, hat sie auch jeder wie eine normale Datei behandelt — zu Recht.
 
 ---
 
@@ -271,9 +269,9 @@ Puppeteer mit dem installierten Chrome — siehe [werkzeuge.md](werkzeuge.md).
 Werkzeuge lösten ihre Pfade mit `resolve('slides')` und `resolve('..', 'index.html')`
 auf — also gegen das *Arbeitsverzeichnis*, nicht gegen den eigenen Ort. Wer nicht vorher
 `cd` gemacht hatte, bekam einen Fehler über eine fehlende Datei, nicht über das falsche
-Verzeichnis. Genau deshalb liefen die in [agenten-briefing.md](agenten-briefing.md)
-dokumentierten Aufrufe `node build/assemble.mjs` von der Projektwurzel aus ins Leere,
-ohne dass es jemandem auffiel. Seit dem Umzug nach `dev/build/` steht jeder Pfad einmal
+Verzeichnis. Genau deshalb liefen die damals dokumentierten Aufrufe
+`node build/assemble.mjs` von der Projektwurzel aus ins Leere, ohne dass es jemandem
+auffiel. Seit dem Umzug nach `dev/build/` steht jeder Pfad einmal
 in `paths.mjs`, abgeleitet aus `import.meta.url`. Neue Skripte importieren von dort und
 bauen keine Pfade selbst zusammen.
 

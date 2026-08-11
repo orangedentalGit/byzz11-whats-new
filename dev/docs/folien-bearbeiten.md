@@ -5,32 +5,16 @@ Kochbuch für die häufigsten Änderungen. Bausteinkatalog steht in
 
 ---
 
-## Erst die wichtigste Entscheidung: wo bearbeiten?
+## Wo die Folien stehen
 
-Es gibt **zwei Wege**, und man muss sich für einen entscheiden:
+Alle 34 Folien stehen in `index.html`, jede in einer eigenen `<section class="slide">`.
+**Das ist die einzige Quelle.** Kein Werkzeug erzeugt diese Datei, keines überschreibt
+sie — Ändern heißt: aufmachen, `<section>` suchen, schreiben.
 
-| | Direkt in `index.html` | Über `dev/build/slides/` |
-|---|---|---|
-| Wann | Text ändern, Tippfehler, Zahl korrigieren, einzelne Folie umbauen | Folien neu erzeugen, Reihenfolge ändern, mehrere Folien parallel bauen |
-| Wie | Datei aufmachen, `<section>` suchen, ändern | Teildatei ändern, dann `node dev/build/assemble.mjs` |
-| Achtung | **`assemble.mjs` überschreibt das wieder** | Reihenfolge steht in `ORDER` in `assemble.mjs` |
-
-> **Die Falle:** `dev/build/assemble.mjs` ersetzt alles zwischen den Markern
-> `<!-- SLIDES:START -->` und `<!-- SLIDES:END -->` in `index.html` durch den Inhalt der
-> Teildateien. Wer direkt in `index.html` arbeitet und danach `assemble.mjs` laufen lässt,
-> verliert seine Änderungen. Genau das ist beim Bauen zweimal passiert, weil Agenten ihre
-> Teildateien nach der Montage noch nachgebessert haben.
->
-> **Faustregel:** Für Textkorrekturen direkt in `index.html` arbeiten und `assemble.mjs`
-> **nicht** mehr anfassen. Wer die Montage doch braucht, spielt die Änderung vorher in die
-> passende Teildatei zurück.
->
-> `node dev/build/assemble.mjs --check` zeigt gefahrlos, was passieren würde — aber nur die
-> Anzahl der Folien, nicht ihren Inhalt.
->
-> **Achtung vor der Abgabe:** `verify.mjs` startet `assemble.mjs` **ohne** `--check`.
-> Wer direkt in `index.html` gearbeitet hat, muss die Änderung vorher in `dev/build/slides/`
-> zurückspielen — sonst räumt der Abnahmelauf sie weg, ohne sich zu beschweren.
+Früher setzte `assemble.mjs` den Folienbereich aus Teildateien unter `dev/build/slides/`
+zusammen, weil fünf Agenten parallel daran gebaut haben. Beides ist entfernt; übrig war
+davon nur die Falle, dass jede Korrektur an zwei Stellen stehen musste und der
+Abnahmelauf die eine davon wegräumte ([fallstricke.md §9](fallstricke.md)).
 
 ---
 
@@ -41,8 +25,8 @@ Es gibt **zwei Wege**, und man muss sich für einen entscheiden:
 3. `node dev/build/shot.mjs 15` — schießt Folie 15 neu und prüft das Layout.
 4. `dev/build/shots/15.jpg` ansehen.
 
-Die Folien sind in `index.html` durchnummeriert kommentiert (`<!-- 15 · aus partC.html [3] -->`),
-die Nummer entspricht der Anzeige im Deck.
+Über jeder Folie steht ein Kommentar mit Nummer und Titel (`<!-- 15 · 3D-Modelldaten im
+Model-Viewer -->`), die Nummer entspricht der Anzeige im Deck.
 
 **Beim Kürzen und Verlängern auf die Zeilenzahl achten:** `.lead` darf maximal drei Zeilen
 haben, `.card__d` zwei. Läuft ein Text über, rutscht darunter alles nach unten und stößt
@@ -132,22 +116,17 @@ hohe Karte hat Platz dafür, ohne dass sich am Rest etwas ändert.
 2. `data-title` setzen (Pflicht — steht in Übersicht und Referentenansicht).
 3. `data-section` setzen: `1` Haube, `2` Menüs, `3` Features, `4` app. Weglassen bei
    Titel, Trennern, Demo-Breaks und Schlussfolien.
-4. Nummerierungskommentar drüber setzen.
+4. Kommentar mit Nummer und Titel drüber setzen, die folgenden Nummern nachziehen.
 5. `node dev/build/shot.mjs` — der Zähler „05 / 34" zählt automatisch neu.
 6. `node dev/build/inventory.mjs` — schreibt die Tabelle in `dev/docs/inhalt.md` fort.
-
-Soll die Folie auch über die Montage erhalten bleiben: zusätzlich in die passende Datei
-unter `dev/build/slides/` aufnehmen und `ORDER` in `assemble.mjs` erweitern.
 
 ---
 
 ## Folien umsortieren
 
-Zwei `<section>`-Blöcke in `index.html` tauschen. Sonst nichts — Zähler, Übersicht und
-Fortschrittsbalken lesen die DOM-Reihenfolge.
-
-Über die Montage: `ORDER` in `dev/build/assemble.mjs` ist die einzige Wahrheit über die
-Reihenfolge. Jeder Eintrag ist `['Teildatei', Position darin]`.
+Zwei `<section>`-Blöcke in `index.html` tauschen und die Nummern in den Kommentaren
+darüber anpassen. Sonst nichts — Zähler, Übersicht und Fortschrittsbalken lesen die
+DOM-Reihenfolge, nicht die Kommentare.
 
 ---
 
@@ -235,7 +214,7 @@ node dev/build/inventory.mjs   # Foliengliederung in dev/docs/inhalt.md fortschr
 Vor der Abgabe einmal komplett:
 
 ```bash
-node dev/build/verify.mjs      # Montage · Folien · Rahmen · Referentenansicht · Kaltstart
+node dev/build/verify.mjs      # Folien · Rahmen · Referentenansicht · Kaltstart
 ```
 
 Und dann **einmal wirklich `index.html` doppelklicken**. Kein Prüfskript ersetzt das.

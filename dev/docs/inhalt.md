@@ -41,10 +41,10 @@ beides; der Auftraggeber hat sich festgelegt.
 | 11 | Neue Features                                     | 03 Features | Trenner     | —                                                    | 309 Z. |
 | 12 | Bildansichten in drei Modi                        | 03 Features | Sequenz (3) | xray1.webp, xray2.webp, xray3.webp                   | 370 Z. |
 | 13 | Ansichten anpassen und Look & Feel                | 03 Features | Karten      | —                                                    | 519 Z. |
-| 14 | KI-gestützte Läsionserkennung                     | 03 Features | Screenshot  | opg.webp                                             | 550 Z. |
+| 14 | KI-gestützte Läsionserkennung                     | 03 Features | Screenshot  | opg.webp                                             | 582 Z. |
 | 15 | 3D-Modelldaten im Model-Viewer                    | 03 Features | Video       | model-viewer.mp4                                     | 388 Z. |
 | 16 | DVT-Viewer als neuer Standard                     | 03 Features | Video       | dvt-viewer.mp4                                       | 392 Z. |
-| 17 | DVT-Einstellungen: Ez3D-i und 3D-Slida            | 03 Features | Karten      | —                                                    | 378 Z. |
+| 17 | DVT-Einstellungen: Ez3D-i und 3D-Slida            | 03 Features | Karten      | —                                                    | 288 Z. |
 | 18 | DVT-Export mit eigenem Betrachter                 | 03 Features | Sequenz (3) | dvt-export1.webp, dvt-export2.webp, dvt-export3.webp | 608 Z. |
 | 19 | dentaleyepad ohne Zusatzsoftware                  | 03 Features | Diagramm    | —                                                    | 460 Z. |
 | 20 | Referenzsuche                                     | 03 Features | Diagramm    | —                                                    | 507 Z. |
@@ -52,10 +52,10 @@ beides; der Auftraggeber hat sich festgelegt.
 | 22 | Konfigurator: Lizenzierung, Aktivierung, Patching | 03 Features | Karten      | —                                                    | 284 Z. |
 | 23 | byzz spricht acht Sprachen                        | 03 Features | Raster      | —                                                    | 400 Z. |
 | 24 | byzz app                                          | 04 app      | Trenner     | —                                                    | 375 Z. |
-| 25 | Die byzz app löst ibyzz ab                        | 04 app      | Diagramm    | —                                                    | 451 Z. |
+| 25 | Die byzz app löst ibyzz ab                        | 04 app      | Diagramm    | —                                                    | 452 Z. |
 | 26 | Einstieg über den Browser                         | 04 app      | Screenshot  | app-home.webp                                        | 343 Z. |
-| 27 | Login                                             | 04 app      | Screenshot  | app-login.webp                                       | 245 Z. |
-| 28 | Patientenliste                                    | 04 app      | Screenshot  | app-patienten.webp                                   | 269 Z. |
+| 27 | Login                                             | 04 app      | Screenshot  | app-login.webp                                       | 246 Z. |
+| 28 | Patientenliste                                    | 04 app      | Screenshot  | app-patienten.webp                                   | 305 Z. |
 | 29 | Medien nach Typ                                   | 04 app      | Screenshot  | app-dvts.webp                                        | 338 Z. |
 | 30 | Einstellungen der App                             | 04 app      | Screenshot  | app-options.webp                                     | 484 Z. |
 | 31 | DVT-Viewer in der App                             | 04 app      | Screenshot  | app-3d.webp                                          | 353 Z. |

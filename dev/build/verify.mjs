@@ -1,10 +1,9 @@
 /**
  * Gesamtabnahme in einem Lauf:
- *   1. index.html aus den Teildateien zusammensetzen
- *   2. alle Folien fotografieren und auf Layoutfehler pruefen
- *   3. Rahmenfunktionen pruefen (Skalierung, Uebersicht, Navigation)
- *   4. Referentenansicht pruefen
- *   5. Kaltstart aus einem fremden Pfad (findet hartkodierte Pfade)
+ *   1. alle Folien fotografieren und auf Layoutfehler pruefen
+ *   2. Rahmenfunktionen pruefen (Skalierung, Uebersicht, Navigation)
+ *   3. Referentenansicht pruefen
+ *   4. Kaltstart aus einem fremden Pfad (findet hartkodierte Pfade)
  *
  * Bricht beim ersten Fehlschlag nicht ab, sondern faehrt alles durch und meldet
  * am Ende gesammelt — man will nach einem Lauf wissen, was ALLES offen ist.
@@ -14,7 +13,6 @@ import { join } from 'node:path';
 import { BUILD } from './paths.mjs';
 
 const STEPS = [
-  ['Montage',            'assemble.mjs',       []],
   ['Folien und Layout',  'shot.mjs',           ['--frag']],
   ['Rahmenfunktionen',   'test-shell.mjs',     []],
   ['Referentenansicht',  'test-presenter.mjs', []],

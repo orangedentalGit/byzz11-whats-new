@@ -70,20 +70,18 @@ für beide Werkzeuge — das ist der Zweck.
 node verify.mjs
 ```
 
-Fährt fünf Schritte durch und meldet am Ende gesammelt (bricht nicht beim ersten Fehler ab —
+Fährt vier Schritte durch und meldet am Ende gesammelt (bricht nicht beim ersten Fehler ab —
 man will nach einem Lauf wissen, was *alles* offen ist):
 
 | Schritt | Skript | Was geprüft wird |
 |---|---|---|
-| Montage | `assemble.mjs` | `index.html` aus `dev/build/slides/` zusammensetzen |
 | Folien und Layout | `shot.mjs --frag` | alle Folien fotografieren, Layout prüfen |
 | Rahmenfunktionen | `test-shell.mjs` | Skalierung (Rahmen passt, Bühne deckt), Übersicht, Navigation, Vollbild |
 | Referentenansicht | `test-presenter.mjs` | Popup, Notizen (nur dort, dauerhaft), Timer, Tastenbrücke, `B` |
 | Kaltstart | `test-coldstart.mjs` | Ordner an fremden Pfad kopieren und dort starten |
 
-> Wer nur Text geändert hat, sollte `verify.mjs` **nicht** blind laufen lassen — der erste
-> Schritt ist die Montage, und die überschreibt Handarbeit in `index.html`. Dann lieber
-> einzeln: `node shot.mjs`.
+Der Lauf liest `index.html` nur, er schreibt sie nicht — nach einer Textänderung ist er
+gefahrlos. Das war einmal anders ([fallstricke.md §9](fallstricke.md)).
 
 ---
 
@@ -256,43 +254,6 @@ Entdoppelt dabei nach URL — sonst wäre dieselbe variable Datei mehrfach einge
 Die beiden Store-Adressen stehen oben im Skript. Ausgabe als SVG (nicht PNG), damit die
 Modulkanten beim Skalieren scharf bleiben — ein weichgezeichneter QR-Code wird von
 Handykameras schlechter erkannt.
-
----
-
-## Montage
-
-```bash
-node assemble.mjs           # index.html neu zusammensetzen
-node assemble.mjs --check   # nur berichten, nichts schreiben
-```
-
-Setzt `index.html` aus den Teildateien in `dev/build/slides/` zusammen. Die Reihenfolge steht in
-`ORDER` oben im Skript und ist die einzige Wahrheit darüber, welche Folie an welcher Stelle
-liegt. Ersetzt wird alles zwischen `<!-- SLIDES:START -->` und `<!-- SLIDES:END -->`.
-
-⚠ **Überschreibt Handarbeit in `index.html`.** Siehe
-[folien-bearbeiten.md](folien-bearbeiten.md#erst-die-wichtigste-entscheidung-wo-bearbeiten).
-
-### Sind Teildateien und `index.html` deckungsgleich?
-
-`--check` beantwortet diese Frage **nicht** — es zählt nur Folien je Teildatei und
-schaut `index.html` überhaupt nicht an ([fallstricke.md §9](fallstricke.md)). Wer
-wissen will, ob jemand direkt in `index.html` gearbeitet hat, montiert gegen eine
-Sicherungskopie und vergleicht:
-
-```bash
-cd dev/build
-cp ../../index.html /tmp/index.before.html
-node assemble.mjs > /dev/null
-diff /tmp/index.before.html ../../index.html && echo "deckungsgleich"
-```
-
-Kommt eine Abweichung, steckt sie in `index.html` und **nicht** in `slides/` — dann die
-Zeilen aus dem Diff in die passende Teildatei zurückspielen, sonst räumt der nächste
-Abnahmelauf sie weg. Die Sicherungskopie ist der Rückweg, falls etwas schiefgeht.
-
-Vor jedem größeren Eingriff einmal laufen lassen. Es kostet zwei Sekunden und ist die
-einzige Prüfung, die den in §9 beschriebenen stillen Verlust vorher findet.
 
 ---
 

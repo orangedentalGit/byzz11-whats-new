@@ -1,32 +1,21 @@
 # Agenten-Briefing
 
-Vorlage, um Folien **parallel von mehreren Agenten** bauen zu lassen. So sind die 30 Folien
-nach den fünf Referenzfolien entstanden: fünf Agenten gleichzeitig, danach eine Montage.
+Rückschau auf den Parallelbau: So sind die 30 Folien nach den fünf Referenzfolien
+entstanden — fünf Agenten gleichzeitig, jeder in einer eigenen Teildatei, danach eine
+Montage zu `index.html`.
 
-Wer nur ein, zwei Folien ändert, braucht das hier nicht — dann direkt
-[folien-bearbeiten.md](folien-bearbeiten.md).
+**Der Mechanismus ist entfernt** ([fallstricke.md §9](fallstricke.md)). Teildateien und
+Montage gibt es nicht mehr; `index.html` ist die einzige Quelle. Wer ein *neues* Deck
+parallel bauen lassen will, nimmt den Skill `create-slides`. Wer an *diesem* Deck etwas
+ändert, geht nach [folien-bearbeiten.md](folien-bearbeiten.md).
 
----
+Was bleibt, ist das Teure daran: wie man solche Aufträge schneidet und was in ein
+Briefing gehört, damit brauchbare Folien herauskommen. Genau dafür steht dieses Dokument
+noch hier.
 
-## Warum Teildateien statt gemeinsamer Datei
-
-Mehrere Agenten dürfen nicht gleichzeitig in `index.html` schreiben. Jeder bekommt deshalb
-eine eigene Datei unter `dev/build/slides/partX.html` und schreibt dort **nur** die
-`<section class="slide">`-Blöcke, ohne umgebendes Gerüst. `dev/build/assemble.mjs` setzt daraus
-`index.html` zusammen; die Reihenfolge steht in `ORDER` und mischt die Teildateien beliebig.
-
-Aufteilung beim ersten Bau — je 3 bis 9 Folien pro Agent hat gut funktioniert:
-
-| Datei | Folien |
-|---|---|
-| `partBase.html` | 1, 3, 4, 12, 22 — die von Hand gebauten Referenzfolien |
-| `partA.html` | 2, 33, 34 |
-| `partB.html` | 5–10 |
-| `partC.html` | 11, 13–16 |
-| `partD.html` | 17–21, 23 |
-| `partE.html` | 24–32 |
-
-Maßgeblich ist immer `ORDER` in `dev/build/assemble.mjs`, nicht diese Tabelle.
+Die Aufteilung damals — je 3 bis 9 Folien pro Agent hat gut funktioniert: 1, 3, 4, 12, 22
+waren die von Hand gebauten Referenzfolien, die übrigen verteilten sich in Blöcken
+(2/33/34 · 5–10 · 11/13–16 · 17–21/23 · 24–32) auf fünf Agenten.
 
 ---
 
@@ -37,7 +26,8 @@ Maßgeblich ist immer `ORDER` in `dev/build/assemble.mjs`, nicht diese Tabelle.
 - `dev/docs/design-system.md` — Raster, Farben, Schrift, Bausteine, Bildtabelle, Piktogramme
 - `index.html` — die fertigen Referenzfolien als Muster für Stil und Tonfall
 
-**2 · Genau eine Ausgabedatei**, kein Zugriff auf `index.html`, `assets/` oder fremde Teildateien.
+**2 · Genau eine Ausgabedatei je Agent**, kein Zugriff auf `assets/` oder fremde
+Ausgabedateien. Zwei Agenten in derselben Datei geht nicht gut.
 
 **3 · Fachlicher Kontext.** byzz ist eine Bildverwaltungs- und Diagnosesoftware für
 Zahnarztpraxen (Röntgen, OPG, Fernröntgen, DVT, Intraoralkamera, Modelldaten). Publikum ist
@@ -80,9 +70,9 @@ verzerrte Folie verhindert.
 wird plausibel klingender Unsinn ergänzt.
 
 **Eigene `<marker>`-IDs bei SVG-Diagrammen.** Mehrere Agenten haben unabhängig Pfeilspitzen
-gebraucht. Ohne den Hinweis heißen sie alle `#ah` und überschreiben sich nach der Montage
-gegenseitig. Die Agenten haben von sich aus `ah-e-grey`, `ah-dep-o` usw. vergeben, nachdem
-das Problem benannt war.
+gebraucht. Ohne den Hinweis heißen sie alle `#ah` und überschreiben sich gegenseitig, sobald
+die Folien in einer Datei stehen. Die Agenten haben von sich aus `ah-e-grey`, `ah-dep-o` usw.
+vergeben, nachdem das Problem benannt war.
 
 **Variation einfordern**, wenn ein Agent viele ähnliche Folien baut. Ohne den Hinweis „nicht
 neunmal dieselbe Folie" entsteht ein monotoner Block.
@@ -94,16 +84,14 @@ neunmal dieselbe Folie" entsteht ein monotoner Block.
 Von der Projektwurzel aus, kein `cd` nötig:
 
 ```bash
-node dev/build/assemble.mjs --check   # sind alle Teildateien vollständig?
-node dev/build/assemble.mjs           # zusammensetzen
 node dev/build/shot.mjs --frag        # alle Folien fotografieren und prüfen
 node dev/build/inventory.mjs          # Gliederung in dev/docs/inhalt.md fortschreiben
 ```
 
 > **Agenten bessern nach.** Zwei der fünf haben ihre Teildatei noch korrigiert, *nachdem*
-> ich zusammengesetzt hatte — die Korrektur landete deshalb erst im zweiten Montagelauf.
-> Erst montieren, wenn alle Agenten fertig gemeldet haben, und danach nicht mehr direkt in
-> `index.html` arbeiten.
+> die Folien schon zusammengeführt waren — die Korrektur ging beim nächsten Lauf beinahe
+> verloren. Erst zusammenführen, wenn alle fertig gemeldet haben, und danach nur noch an
+> einer Stelle arbeiten.
 
 Anschließend den Kontaktbogen aller Folien ansehen (Rezept in
 [werkzeuge.md](werkzeuge.md#kontaktbogen-bauen)). Der Prüflauf findet Überlappungen und

@@ -10,7 +10,6 @@
     "fonts": "node embed-fonts.mjs",
     "qr": "node make-qr.mjs",
     "assets": "npm run images && npm run video && npm run fonts && npm run qr",
-    "assemble": "node assemble.mjs",
     "shots": "node shot.mjs --frag",
     "pdf": "node pdf.mjs",
     "verify": "node verify.mjs",

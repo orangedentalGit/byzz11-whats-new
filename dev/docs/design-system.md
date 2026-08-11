@@ -300,7 +300,7 @@ wieder einsetzen lassen.
 
 ### Dauerhafte Rahmenelemente
 
-Beide liegen in `index.html` **außerhalb** der Montage-Marker, aber **innerhalb von
+Beide liegen in `index.html` **außerhalb** der `<section>`-Blöcke, aber **innerhalb von
 `#frame`**, und stehen auf jeder Folie — auch auf Titel, Trennern und Schlussfolie. In eine
 `<section>` gehören sie nicht. Dass sie im Rahmen liegen und nicht in der Bühne, ist
 Absicht: sie sollen an der komponierten Kante sitzen, nicht an der Fensterkante.
